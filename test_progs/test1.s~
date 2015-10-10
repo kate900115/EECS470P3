@@ -1,0 +1,51 @@
+	lda $r29, 1
+	lda $r0, 8
+	lda $r1, 1
+	lda $r2, 3
+	lda $r3, 2
+	lda $r4, 4
+	lda $r5, 0
+	lda $r6, 3
+	lda $r7, 2
+	lda $r8, 4
+	lda $r9, 0x1000
+	lda $r10, 3
+
+	addq  $r5,$r6,$r1
+	addq  $r1,$r8,$r2	
+	addq  $r3,$r2,$r5
+	addq  $r5,$r6,$r1
+	addq  $r1,$r3,$r4
+	  lda $r4, 0x1000
+        addq  $r8,$r8,$r8
+        addq  $r3,$r3,$r3
+        addq  $r3,$r3,$r3 
+       addq  $r3,$r3,$r3      
+ addq  $r3,$r3,$r3
+	stq  $r4,8($r9)     
+	ldq  $r5,8($r9)
+	stq  $r4,8($r5)      
+	addq $r3,5,$r15
+	addq  $r1,$r5,$r2
+	addq  $r1,$r0,$r11	
+	addq  $r2,5,$r5
+	addq  $r5,8,$r1
+	addq  $r5,8,$r1
+	addq  $r7,$r5,$r10
+	ldq  $r3,8($r9)
+	addq $r3,5,$r9
+	addq $r3,$r3,$r9
+
+a:	subq  $r0,$r29,$r0
+	addq  $r1,$r5,$r2	
+	addq  $r3,$r2,$r5
+	addq  $r5,$r6,$r1
+	addq  $r1,$r3,$r4
+	addq  $r7,$r4,$r10
+	bne $r0, a
+	or  $r20, $r29, $r29
+	or  $r21, $r29, $r29
+	or  $r21, $r29, $r29
+	or  $r21, $r29, $r29
+	call_pal 0x555 # this is where we should exit
+

@@ -1,0 +1,11 @@
+=======================DVE Context and Call Stack=========================
+The tool has just exited abnormally:
+=======================DVE Context and Call Stack=========================
+Command line: /usr/caen/vcs-2015.09/gui/dve/linux64/bin/dve.exe -full64 -ucliplatform=linux64 -toolargs "-ucligui -toolexe dve +vc +memcbk  -pid 14276" -toolin /tmp/vcs_20151010183944_14275_zyuxuan..stdin -toolout /tmp/vcs_20151010183944_14275_zyuxuan..stdout
+
+/usr/caen/vcs-2015.09/gui/dve/linux64/bin/dve.exe -full64 -ucliplatform=linux64 -toolargs "-ucligui -toolexe dve +vc +memcbk  -pid 14276" -toolin /tmp/vcs_20151010183944_14275_zyuxuan..stdin -toolout /tmp/vcs_20151010183944_14275_zyuxuan..stdout
+
+--- Stack trace follows:
+
+--- Stack trace follows:
+Could not create "/tmp/vcs_20151010183937_13631/.stack_annotator_gdb_output_file_RxCSw9": Invalid argument

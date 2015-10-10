@@ -1,0 +1,446 @@
+                                                                            D-MEM Bus &
+Cycle:      IF      |     ID      |     EX      |     MEM     |     WB      Reg Result
+    0:    4:lda     |   0:-       |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[0] accepted 1
+    1:    8:br      |   4:lda     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[0] accepted 1
+    2:   12:ldg     |   8:br      |   4:lda     |   0:-       |   0:-       BUS_LOAD  MEM[8] accepted 1
+    3:   16:ldah    |  12:ldg     |   8:br      |   4:lda     |   0:-       BUS_LOAD  MEM[8] accepted 1
+    4:   20:stq     |  16:ldah    |  12:-       |   8:br      |   4:lda     r0=4096  BUS_LOAD  MEM[16] accepted 1
+    5:   28:ldq     |   0:-       |   0:-       |   0:-       |   8:br      r1=8  BUS_LOAD  MEM[24] accepted 1
+    6:   32:ldq     |  28:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[24] accepted 1
+    7:   36:lda     |  32:ldq     |  28:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[32] accepted 1
+    8:    0:-       |  36:lda     |  32:ldq     |  28:ldq     |   0:-       BUS_LOAD  MEM[8] accepted 1
+    9:    0:-       |   0:-       |  36:lda     |  32:ldq     |  28:ldq     r2=0x27bb2ee687b0b0fd  BUS_LOAD  MEM[16] accepted 1
+   10:   40:addq    |   0:-       |   0:-       |  36:lda     |  32:ldq     r3=-1257966803  BUS_LOAD  MEM[32] accepted 1
+   11:   44:cmple   |  40:addq    |   0:-       |   0:-       |  36:lda     r4=0  BUS_LOAD  MEM[40] accepted 1
+   12:   48:mulq    |  44:cmple   |  40:addq    |   0:-       |   0:-       BUS_LOAD  MEM[40] accepted 1
+   13:   52:addq    |  48:mulq    |  44:cmple   |  40:addq    |   0:-       BUS_LOAD  MEM[48] accepted 1
+   14:   56:mulq    |  52:addq    |  48:mulq    |  44:cmple   |  40:addq    r4=1  BUS_LOAD  MEM[48] accepted 1
+   15:   60:addq    |  56:mulq    |  52:addq    |  48:mulq    |  44:cmple   r5=1  BUS_LOAD  MEM[56] accepted 1
+   16:   64:mulq    |  60:addq    |  56:mulq    |  52:addq    |  48:mulq    r10=0x3dd977343d8587e8  BUS_LOAD  MEM[56] accepted 1
+   17:   68:addq    |  64:mulq    |  60:addq    |  56:mulq    |  52:addq    r10=0x3dd97734f28a7b15  BUS_LOAD  MEM[64] accepted 1
+   18:   72:mulq    |  68:addq    |  64:mulq    |  60:addq    |  56:mulq    r11=0x680c570d98ea13c1  BUS_LOAD  MEM[64] accepted 1
+   19:   76:addq    |  72:mulq    |  68:addq    |  64:mulq    |  60:addq    r11=0x680c570e4def06ee  BUS_LOAD  MEM[72] accepted 1
+   20:   80:srl     |  76:addq    |  72:mulq    |  68:addq    |  64:mulq    r12=0xfed37d879f9d7936  BUS_LOAD  MEM[72] accepted 1
+   21:   84:stq     |  80:srl     |  76:addq    |  72:mulq    |  68:addq    r12=0xfed37d8854a26c63  BUS_LOAD  MEM[80] accepted 1
+   22:   88:srl     |  84:stq     |  80:srl     |  76:addq    |  72:mulq    r1=0xea64cbb08192dd7  BUS_LOAD  MEM[80] accepted 1
+   23:   92:stq     |  88:srl     |  84:stq     |  80:srl     |  76:addq    r1=0xea64cbb0bd1e2104  BUS_LOAD  MEM[88] accepted 1
+   24:    0:-       |  92:stq     |  88:srl     |  84:stq     |  80:srl     r10=1037662004  BUS_STORE MEM[4096] = 1037662004 accepted 1
+   25:   96:srl     |   0:-       |  92:stq     |  88:srl     |  84:stq     BUS_LOAD  MEM[88] accepted 1
+   26:    0:-       |  96:srl     |   0:-       |  92:stq     |  88:srl     r11=1745639182  BUS_STORE MEM[4104] = 1745639182 accepted 1
+   27:  100:stq     |   0:-       |  96:srl     |   0:-       |  92:stq     BUS_LOAD  MEM[96] accepted 1
+   28:  104:srl     | 100:stq     |   0:-       |  96:srl     |   0:-       BUS_LOAD  MEM[96] accepted 1
+   29:  108:stq     | 104:srl     | 100:stq     |   0:-       |  96:srl     r12=-19694200  BUS_LOAD  MEM[104] accepted 1
+   30:    0:-       | 108:stq     | 104:srl     | 100:stq     |   0:-       BUS_STORE MEM[4112] = -19694200 accepted 1
+   31:  112:addq    |   0:-       | 108:stq     | 104:srl     | 100:stq     BUS_LOAD  MEM[104] accepted 1
+   32:    0:-       | 112:addq    |   0:-       | 108:stq     | 104:srl     r13=-362493008  BUS_STORE MEM[4120] = -362493008 accepted 1
+   33:  116:bne     |   0:-       | 112:addq    |   0:-       | 108:stq     BUS_LOAD  MEM[112] accepted 1
+   34:  120:halt    | 116:bne     |   0:-       | 112:addq    |   0:-       BUS_LOAD  MEM[112] accepted 1
+   35:  124:call_pal| 120:halt    | 116:bne     |   0:-       | 112:addq    r0=4128  BUS_LOAD  MEM[120] accepted 1
+   36:  128:call_pal| 124:call_pal| 120:halt    | 116:bne     |   0:-       BUS_LOAD  MEM[120] accepted 1
+   37:   40:addq    |   0:-       |   0:-       |   0:-       | 116:bne     BUS_LOAD  MEM[32] accepted 1
+   38:   44:cmple   |  40:addq    |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[40] accepted 1
+   39:   48:mulq    |  44:cmple   |  40:addq    |   0:-       |   0:-       BUS_LOAD  MEM[40] accepted 1
+   40:   52:addq    |  48:mulq    |  44:cmple   |  40:addq    |   0:-       BUS_LOAD  MEM[48] accepted 1
+   41:   56:mulq    |  52:addq    |  48:mulq    |  44:cmple   |  40:addq    r4=2  BUS_LOAD  MEM[48] accepted 1
+   42:   60:addq    |  56:mulq    |  52:addq    |  48:mulq    |  44:cmple   r5=1  BUS_LOAD  MEM[56] accepted 1
+   43:   64:mulq    |  60:addq    |  56:mulq    |  52:addq    |  48:mulq    r10=0x3bd019676c3960f4  BUS_LOAD  MEM[56] accepted 1
+   44:   68:addq    |  64:mulq    |  60:addq    |  56:mulq    |  52:addq    r10=0x3bd01968213e5421  BUS_LOAD  MEM[64] accepted 1
+   45:   72:mulq    |  68:addq    |  64:mulq    |  60:addq    |  56:mulq    r11=0x1b77efa0f21fd49d  BUS_LOAD  MEM[64] accepted 1
+   46:   76:addq    |  72:mulq    |  68:addq    |  64:mulq    |  60:addq    r11=0x1b77efa1a724c7ca  BUS_LOAD  MEM[72] accepted 1
+   47:   80:srl     |  76:addq    |  72:mulq    |  68:addq    |  64:mulq    r12=0x160e0fcc599452a2  BUS_LOAD  MEM[72] accepted 1
+   48:   84:stq     |  80:srl     |  76:addq    |  72:mulq    |  68:addq    r12=0x160e0fcde9945cf  BUS_LOAD  MEM[80] accepted 1
+   49:   88:srl     |  84:stq     |  80:srl     |  76:addq    |  72:mulq    r1=0xa5e45edaf4c84d93  BUS_LOAD  MEM[80] accepted 1
+   50:   92:stq     |  88:srl     |  84:stq     |  80:srl     |  76:addq    r1=0xa5e45edba9cd40c0  BUS_LOAD  MEM[88] accepted 1
+   51:    0:-       |  92:stq     |  88:srl     |  84:stq     |  80:srl     r10=1003493736  BUS_STORE MEM[4128] = 1003493736 accepted 1
+   52:   96:srl     |   0:-       |  92:stq     |  88:srl     |  84:stq     BUS_LOAD  MEM[88] accepted 1
+   53:    0:-       |  96:srl     |   0:-       |  92:stq     |  88:srl     r11=460844961  BUS_STORE MEM[4136] = 460844961 accepted 1
+   54:  100:stq     |   0:-       |  96:srl     |   0:-       |  92:stq     BUS_LOAD  MEM[96] accepted 1
+   55:  104:srl     | 100:stq     |   0:-       |  96:srl     |   0:-       BUS_LOAD  MEM[96] accepted 1
+   56:  108:stq     | 104:srl     | 100:stq     |   0:-       |  96:srl     r12=370020301  BUS_LOAD  MEM[104] accepted 1
+   57:    0:-       | 108:stq     | 104:srl     | 100:stq     |   0:-       BUS_STORE MEM[4144] = 370020301 accepted 1
+   58:  112:addq    |   0:-       | 108:stq     | 104:srl     | 100:stq     BUS_LOAD  MEM[104] accepted 1
+   59:    0:-       | 112:addq    |   0:-       | 108:stq     | 104:srl     r13=-1511760165  BUS_STORE MEM[4152] = -1511760165 accepted 1
+   60:  116:bne     |   0:-       | 112:addq    |   0:-       | 108:stq     BUS_LOAD  MEM[112] accepted 1
+   61:  120:halt    | 116:bne     |   0:-       | 112:addq    |   0:-       BUS_LOAD  MEM[112] accepted 1
+   62:  124:call_pal| 120:halt    | 116:bne     |   0:-       | 112:addq    r0=4160  BUS_LOAD  MEM[120] accepted 1
+   63:  128:call_pal| 124:call_pal| 120:halt    | 116:bne     |   0:-       BUS_LOAD  MEM[120] accepted 1
+   64:   40:addq    |   0:-       |   0:-       |   0:-       | 116:bne     BUS_LOAD  MEM[32] accepted 1
+   65:   44:cmple   |  40:addq    |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[40] accepted 1
+   66:   48:mulq    |  44:cmple   |  40:addq    |   0:-       |   0:-       BUS_LOAD  MEM[40] accepted 1
+   67:   52:addq    |  48:mulq    |  44:cmple   |  40:addq    |   0:-       BUS_LOAD  MEM[48] accepted 1
+   68:   56:mulq    |  52:addq    |  48:mulq    |  44:cmple   |  40:addq    r4=3  BUS_LOAD  MEM[48] accepted 1
+   69:   60:addq    |  56:mulq    |  52:addq    |  48:mulq    |  44:cmple   r5=1  BUS_LOAD  MEM[56] accepted 1
+   70:   64:mulq    |  60:addq    |  56:mulq    |  52:addq    |  48:mulq    r10=0xfdc36a95b05cfdc0  BUS_LOAD  MEM[56] accepted 1
+   71:   68:addq    |  64:mulq    |  60:addq    |  56:mulq    |  52:addq    r10=0xfdc36a966561f0ed  BUS_LOAD  MEM[64] accepted 1
+   72:   72:mulq    |  68:addq    |  64:mulq    |  60:addq    |  56:mulq    r11=0x81ac20a6255e0a39  BUS_LOAD  MEM[64] accepted 1
+   73:   76:addq    |  72:mulq    |  68:addq    |  64:mulq    |  60:addq    r11=0x81ac20a6da62fd66  BUS_LOAD  MEM[72] accepted 1
+   74:   80:srl     |  76:addq    |  72:mulq    |  68:addq    |  64:mulq    r12=0x8f69505ce22a8dce  BUS_LOAD  MEM[72] accepted 1
+   75:   84:stq     |  80:srl     |  76:addq    |  72:mulq    |  68:addq    r12=0x8f69505d972f80fb  BUS_LOAD  MEM[80] accepted 1
+   76:   88:srl     |  84:stq     |  80:srl     |  76:addq    |  72:mulq    r1=0x8f9abd9e1c2f080f  BUS_LOAD  MEM[80] accepted 1
+   77:   92:stq     |  88:srl     |  84:stq     |  80:srl     |  76:addq    r1=0x8f9abd9ed133fb3c  BUS_LOAD  MEM[88] accepted 1
+   78:    0:-       |  92:stq     |  88:srl     |  84:stq     |  80:srl     r10=-37524842  BUS_STORE MEM[4160] = -37524842 accepted 1
+   79:   96:srl     |   0:-       |  92:stq     |  88:srl     |  84:stq     BUS_LOAD  MEM[88] accepted 1
+   80:    0:-       |  96:srl     |   0:-       |  92:stq     |  88:srl     r11=-2119425882  BUS_STORE MEM[4168] = -2119425882 accepted 1
+   81:  100:stq     |   0:-       |  96:srl     |   0:-       |  92:stq     BUS_LOAD  MEM[96] accepted 1
+   82:  104:srl     | 100:stq     |   0:-       |  96:srl     |   0:-       BUS_LOAD  MEM[96] accepted 1
+   83:  108:stq     | 104:srl     | 100:stq     |   0:-       |  96:srl     r12=-1888923555  BUS_LOAD  MEM[104] accepted 1
+   84:    0:-       | 108:stq     | 104:srl     | 100:stq     |   0:-       BUS_STORE MEM[4176] = -1888923555 accepted 1
+   85:  112:addq    |   0:-       | 108:stq     | 104:srl     | 100:stq     BUS_LOAD  MEM[104] accepted 1
+   86:    0:-       | 112:addq    |   0:-       | 108:stq     | 104:srl     r13=-1885684322  BUS_STORE MEM[4184] = -1885684322 accepted 1
+   87:  116:bne     |   0:-       | 112:addq    |   0:-       | 108:stq     BUS_LOAD  MEM[112] accepted 1
+   88:  120:halt    | 116:bne     |   0:-       | 112:addq    |   0:-       BUS_LOAD  MEM[112] accepted 1
+   89:  124:call_pal| 120:halt    | 116:bne     |   0:-       | 112:addq    r0=4192  BUS_LOAD  MEM[120] accepted 1
+   90:  128:call_pal| 124:call_pal| 120:halt    | 116:bne     |   0:-       BUS_LOAD  MEM[120] accepted 1
+   91:   40:addq    |   0:-       |   0:-       |   0:-       | 116:bne     BUS_LOAD  MEM[32] accepted 1
+   92:   44:cmple   |  40:addq    |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[40] accepted 1
+   93:   48:mulq    |  44:cmple   |  40:addq    |   0:-       |   0:-       BUS_LOAD  MEM[40] accepted 1
+   94:   52:addq    |  48:mulq    |  44:cmple   |  40:addq    |   0:-       BUS_LOAD  MEM[48] accepted 1
+   95:   56:mulq    |  52:addq    |  48:mulq    |  44:cmple   |  40:addq    r4=4  BUS_LOAD  MEM[48] accepted 1
+   96:   60:addq    |  56:mulq    |  52:addq    |  48:mulq    |  44:cmple   r5=1  BUS_LOAD  MEM[56] accepted 1
+   97:   64:mulq    |  60:addq    |  56:mulq    |  52:addq    |  48:mulq    r10=0x607952e9da588a4c  BUS_LOAD  MEM[56] accepted 1
+   98:   68:addq    |  64:mulq    |  60:addq    |  56:mulq    |  52:addq    r10=0x607952ea8f5d7d79  BUS_LOAD  MEM[64] accepted 1
+   99:   72:mulq    |  68:addq    |  64:mulq    |  60:addq    |  56:mulq    r11=0x24b28a877d83095  BUS_LOAD  MEM[64] accepted 1
+  100:   76:addq    |  72:mulq    |  68:addq    |  64:mulq    |  60:addq    r11=0x24b28a87bcdd23c2  BUS_LOAD  MEM[72] accepted 1
+  101:   80:srl     |  76:addq    |  72:mulq    |  68:addq    |  64:mulq    r12=0xed6bac2d9281b6ba  BUS_LOAD  MEM[72] accepted 1
+  102:   84:stq     |  80:srl     |  76:addq    |  72:mulq    |  68:addq    r12=0xed6bac2e4786a9e7  BUS_LOAD  MEM[80] accepted 1
+  103:   88:srl     |  84:stq     |  80:srl     |  76:addq    |  72:mulq    r1=0x339352a0e4b4b94b  BUS_LOAD  MEM[80] accepted 1
+  104:   92:stq     |  88:srl     |  84:stq     |  80:srl     |  76:addq    r1=0x339352a199b9ac78  BUS_LOAD  MEM[88] accepted 1
+  105:    0:-       |  92:stq     |  88:srl     |  84:stq     |  80:srl     r10=1618563818  BUS_STORE MEM[4192] = 1618563818 accepted 1
+  106:   96:srl     |   0:-       |  92:stq     |  88:srl     |  84:stq     BUS_LOAD  MEM[88] accepted 1
+  107:    0:-       |  96:srl     |   0:-       |  92:stq     |  88:srl     r11=615680647  BUS_STORE MEM[4200] = 615680647 accepted 1
+  108:  100:stq     |   0:-       |  96:srl     |   0:-       |  92:stq     BUS_LOAD  MEM[96] accepted 1
+  109:  104:srl     | 100:stq     |   0:-       |  96:srl     |   0:-       BUS_LOAD  MEM[96] accepted 1
+  110:  108:stq     | 104:srl     | 100:stq     |   0:-       |  96:srl     r12=-311710674  BUS_LOAD  MEM[104] accepted 1
+  111:    0:-       | 108:stq     | 104:srl     | 100:stq     |   0:-       BUS_STORE MEM[4208] = -311710674 accepted 1
+  112:  112:addq    |   0:-       | 108:stq     | 104:srl     | 100:stq     BUS_LOAD  MEM[104] accepted 1
+  113:    0:-       | 112:addq    |   0:-       | 108:stq     | 104:srl     r13=865292961  BUS_STORE MEM[4216] = 865292961 accepted 1
+  114:  116:bne     |   0:-       | 112:addq    |   0:-       | 108:stq     BUS_LOAD  MEM[112] accepted 1
+  115:  120:halt    | 116:bne     |   0:-       | 112:addq    |   0:-       BUS_LOAD  MEM[112] accepted 1
+  116:  124:call_pal| 120:halt    | 116:bne     |   0:-       | 112:addq    r0=4224  BUS_LOAD  MEM[120] accepted 1
+  117:  128:call_pal| 124:call_pal| 120:halt    | 116:bne     |   0:-       BUS_LOAD  MEM[120] accepted 1
+  118:   40:addq    |   0:-       |   0:-       |   0:-       | 116:bne     BUS_LOAD  MEM[32] accepted 1
+  119:   44:cmple   |  40:addq    |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[40] accepted 1
+  120:   48:mulq    |  44:cmple   |  40:addq    |   0:-       |   0:-       BUS_LOAD  MEM[40] accepted 1
+  121:   52:addq    |  48:mulq    |  44:cmple   |  40:addq    |   0:-       BUS_LOAD  MEM[48] accepted 1
+  122:   56:mulq    |  52:addq    |  48:mulq    |  44:cmple   |  40:addq    r4=5  BUS_LOAD  MEM[48] accepted 1
+  123:   60:addq    |  56:mulq    |  52:addq    |  48:mulq    |  44:cmple   r5=1  BUS_LOAD  MEM[56] accepted 1
+  124:   64:mulq    |  60:addq    |  56:mulq    |  52:addq    |  48:mulq    r10=0x608e0ce6d91f298  BUS_LOAD  MEM[56] accepted 1
+  125:   68:addq    |  64:mulq    |  60:addq    |  56:mulq    |  52:addq    r10=0x608e0cf2296e5c5  BUS_LOAD  MEM[64] accepted 1
+  126:   72:mulq    |  68:addq    |  64:mulq    |  60:addq    |  56:mulq    r11=0xe5bcc463c78883b1  BUS_LOAD  MEM[64] accepted 1
+  127:   76:addq    |  72:mulq    |  68:addq    |  64:mulq    |  60:addq    r11=0xe5bcc4647c8d76de  BUS_LOAD  MEM[72] accepted 1
+  128:   80:srl     |  76:addq    |  72:mulq    |  68:addq    |  64:mulq    r12=0xcdf6175524271966  BUS_LOAD  MEM[72] accepted 1
+  129:   84:stq     |  80:srl     |  76:addq    |  72:mulq    |  68:addq    r12=0xcdf61755d92c0c93  BUS_LOAD  MEM[80] accepted 1
+  130:   88:srl     |  84:stq     |  80:srl     |  76:addq    |  72:mulq    r1=0xa9025422133d7d47  BUS_LOAD  MEM[80] accepted 1
+  131:   92:stq     |  88:srl     |  84:stq     |  80:srl     |  76:addq    r1=0xa9025422c8427074  BUS_LOAD  MEM[88] accepted 1
+  132:    0:-       |  92:stq     |  88:srl     |  84:stq     |  80:srl     r10=101245135  BUS_STORE MEM[4224] = 101245135 accepted 1
+  133:   96:srl     |   0:-       |  92:stq     |  88:srl     |  84:stq     BUS_LOAD  MEM[88] accepted 1
+  134:    0:-       |  96:srl     |   0:-       |  92:stq     |  88:srl     r11=-440613788  BUS_STORE MEM[4232] = -440613788 accepted 1
+  135:  100:stq     |   0:-       |  96:srl     |   0:-       |  92:stq     BUS_LOAD  MEM[96] accepted 1
+  136:  104:srl     | 100:stq     |   0:-       |  96:srl     |   0:-       BUS_LOAD  MEM[96] accepted 1
+  137:  108:stq     | 104:srl     | 100:stq     |   0:-       |  96:srl     r12=-839510187  BUS_LOAD  MEM[104] accepted 1
+  138:    0:-       | 108:stq     | 104:srl     | 100:stq     |   0:-       BUS_STORE MEM[4240] = -839510187 accepted 1
+  139:  112:addq    |   0:-       | 108:stq     | 104:srl     | 100:stq     BUS_LOAD  MEM[104] accepted 1
+  140:    0:-       | 112:addq    |   0:-       | 108:stq     | 104:srl     r13=-1459465182  BUS_STORE MEM[4248] = -1459465182 accepted 1
+  141:  116:bne     |   0:-       | 112:addq    |   0:-       | 108:stq     BUS_LOAD  MEM[112] accepted 1
+  142:  120:halt    | 116:bne     |   0:-       | 112:addq    |   0:-       BUS_LOAD  MEM[112] accepted 1
+  143:  124:call_pal| 120:halt    | 116:bne     |   0:-       | 112:addq    r0=4256  BUS_LOAD  MEM[120] accepted 1
+  144:  128:call_pal| 124:call_pal| 120:halt    | 116:bne     |   0:-       BUS_LOAD  MEM[120] accepted 1
+  145:   40:addq    |   0:-       |   0:-       |   0:-       | 116:bne     BUS_LOAD  MEM[32] accepted 1
+  146:   44:cmple   |  40:addq    |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[40] accepted 1
+  147:   48:mulq    |  44:cmple   |  40:addq    |   0:-       |   0:-       BUS_LOAD  MEM[40] accepted 1
+  148:   52:addq    |  48:mulq    |  44:cmple   |  40:addq    |   0:-       BUS_LOAD  MEM[48] accepted 1
+  149:   56:mulq    |  52:addq    |  48:mulq    |  44:cmple   |  40:addq    r4=6  BUS_LOAD  MEM[48] accepted 1
+  150:   60:addq    |  56:mulq    |  52:addq    |  48:mulq    |  44:cmple   r5=1  BUS_LOAD  MEM[56] accepted 1
+  151:   64:mulq    |  60:addq    |  56:mulq    |  52:addq    |  48:mulq    r10=0x7d4ba74012b8e2a4  BUS_LOAD  MEM[56] accepted 1
+  152:   68:addq    |  64:mulq    |  60:addq    |  56:mulq    |  52:addq    r10=0x7d4ba740c7bdd5d1  BUS_LOAD  MEM[64] accepted 1
+  153:   72:mulq    |  68:addq    |  64:mulq    |  60:addq    |  56:mulq    r11=0x9443ea62204bff8d  BUS_LOAD  MEM[64] accepted 1
+  154:   76:addq    |  72:mulq    |  68:addq    |  64:mulq    |  60:addq    r11=0x9443ea62d550f2ba  BUS_LOAD  MEM[72] accepted 1
+  155:   80:srl     |  76:addq    |  72:mulq    |  68:addq    |  64:mulq    r12=0x50e86d176dbfc1d2  BUS_LOAD  MEM[72] accepted 1
+  156:   84:stq     |  80:srl     |  76:addq    |  72:mulq    |  68:addq    r12=0x50e86d1822c4b4ff  BUS_LOAD  MEM[80] accepted 1
+  157:   88:srl     |  84:stq     |  80:srl     |  76:addq    |  72:mulq    r1=0x20277a8a81263003  BUS_LOAD  MEM[80] accepted 1
+  158:   92:stq     |  88:srl     |  84:stq     |  80:srl     |  76:addq    r1=0x20277a8b362b2330  BUS_LOAD  MEM[88] accepted 1
+  159:    0:-       |  92:stq     |  88:srl     |  84:stq     |  80:srl     r10=2102110016  BUS_STORE MEM[4256] = 2102110016 accepted 1
+  160:   96:srl     |   0:-       |  92:stq     |  88:srl     |  84:stq     BUS_LOAD  MEM[88] accepted 1
+  161:    0:-       |  96:srl     |   0:-       |  92:stq     |  88:srl     r11=-1807488414  BUS_STORE MEM[4264] = -1807488414 accepted 1
+  162:  100:stq     |   0:-       |  96:srl     |   0:-       |  92:stq     BUS_LOAD  MEM[96] accepted 1
+  163:  104:srl     | 100:stq     |   0:-       |  96:srl     |   0:-       BUS_LOAD  MEM[96] accepted 1
+  164:  108:stq     | 104:srl     | 100:stq     |   0:-       |  96:srl     r12=1357409560  BUS_LOAD  MEM[104] accepted 1
+  165:    0:-       | 108:stq     | 104:srl     | 100:stq     |   0:-       BUS_STORE MEM[4272] = 1357409560 accepted 1
+  166:  112:addq    |   0:-       | 108:stq     | 104:srl     | 100:stq     BUS_LOAD  MEM[104] accepted 1
+  167:    0:-       | 112:addq    |   0:-       | 108:stq     | 104:srl     r13=539458187  BUS_STORE MEM[4280] = 539458187 accepted 1
+  168:  116:bne     |   0:-       | 112:addq    |   0:-       | 108:stq     BUS_LOAD  MEM[112] accepted 1
+  169:  120:halt    | 116:bne     |   0:-       | 112:addq    |   0:-       BUS_LOAD  MEM[112] accepted 1
+  170:  124:call_pal| 120:halt    | 116:bne     |   0:-       | 112:addq    r0=4288  BUS_LOAD  MEM[120] accepted 1
+  171:  128:call_pal| 124:call_pal| 120:halt    | 116:bne     |   0:-       BUS_LOAD  MEM[120] accepted 1
+  172:   40:addq    |   0:-       |   0:-       |   0:-       | 116:bne     BUS_LOAD  MEM[32] accepted 1
+  173:   44:cmple   |  40:addq    |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[40] accepted 1
+  174:   48:mulq    |  44:cmple   |  40:addq    |   0:-       |   0:-       BUS_LOAD  MEM[40] accepted 1
+  175:   52:addq    |  48:mulq    |  44:cmple   |  40:addq    |   0:-       BUS_LOAD  MEM[48] accepted 1
+  176:   56:mulq    |  52:addq    |  48:mulq    |  44:cmple   |  40:addq    r4=7  BUS_LOAD  MEM[48] accepted 1
+  177:   60:addq    |  56:mulq    |  52:addq    |  48:mulq    |  44:cmple   r5=1  BUS_LOAD  MEM[56] accepted 1
+  178:   64:mulq    |  60:addq    |  56:mulq    |  52:addq    |  48:mulq    r10=0x3ae0b28b1d2c670  BUS_LOAD  MEM[56] accepted 1
+  179:   68:addq    |  64:mulq    |  60:addq    |  56:mulq    |  52:addq    r10=0x3ae0b2966d7b99d  BUS_LOAD  MEM[64] accepted 1
+  180:   72:mulq    |  68:addq    |  64:mulq    |  60:addq    |  56:mulq    r11=0x7639eede59be6029  BUS_LOAD  MEM[64] accepted 1
+  181:   76:addq    |  72:mulq    |  68:addq    |  64:mulq    |  60:addq    r11=0x7639eedfec35356  BUS_LOAD  MEM[72] accepted 1
+  182:   80:srl     |  76:addq    |  72:mulq    |  68:addq    |  64:mulq    r12=0xdbe5e71785747bfe  BUS_LOAD  MEM[72] accepted 1
+  183:   84:stq     |  80:srl     |  76:addq    |  72:mulq    |  68:addq    r12=0xdbe5e7183a796f2b  BUS_LOAD  MEM[80] accepted 1
+  184:   88:srl     |  84:stq     |  80:srl     |  76:addq    |  72:mulq    r1=0x2510e2e361006d7f  BUS_LOAD  MEM[80] accepted 1
+  185:   92:stq     |  88:srl     |  84:stq     |  80:srl     |  76:addq    r1=0x2510e2e4160560ac  BUS_LOAD  MEM[88] accepted 1
+  186:    0:-       |  92:stq     |  88:srl     |  84:stq     |  80:srl     r10=61737769  BUS_STORE MEM[4288] = 61737769 accepted 1
+  187:   96:srl     |   0:-       |  92:stq     |  88:srl     |  84:stq     BUS_LOAD  MEM[88] accepted 1
+  188:    0:-       |  96:srl     |   0:-       |  92:stq     |  88:srl     r11=1983508191  BUS_STORE MEM[4296] = 1983508191 accepted 1
+  189:  100:stq     |   0:-       |  96:srl     |   0:-       |  92:stq     BUS_LOAD  MEM[96] accepted 1
+  190:  104:srl     | 100:stq     |   0:-       |  96:srl     |   0:-       BUS_LOAD  MEM[96] accepted 1
+  191:  108:stq     | 104:srl     | 100:stq     |   0:-       |  96:srl     r12=-605690088  BUS_LOAD  MEM[104] accepted 1
+  192:    0:-       | 108:stq     | 104:srl     | 100:stq     |   0:-       BUS_STORE MEM[4304] = -605690088 accepted 1
+  193:  112:addq    |   0:-       | 108:stq     | 104:srl     | 100:stq     BUS_LOAD  MEM[104] accepted 1
+  194:    0:-       | 112:addq    |   0:-       | 108:stq     | 104:srl     r13=621863652  BUS_STORE MEM[4312] = 621863652 accepted 1
+  195:  116:bne     |   0:-       | 112:addq    |   0:-       | 108:stq     BUS_LOAD  MEM[112] accepted 1
+  196:  120:halt    | 116:bne     |   0:-       | 112:addq    |   0:-       BUS_LOAD  MEM[112] accepted 1
+  197:  124:call_pal| 120:halt    | 116:bne     |   0:-       | 112:addq    r0=4320  BUS_LOAD  MEM[120] accepted 1
+  198:  128:call_pal| 124:call_pal| 120:halt    | 116:bne     |   0:-       BUS_LOAD  MEM[120] accepted 1
+  199:   40:addq    |   0:-       |   0:-       |   0:-       | 116:bne     BUS_LOAD  MEM[32] accepted 1
+  200:   44:cmple   |  40:addq    |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[40] accepted 1
+  201:   48:mulq    |  44:cmple   |  40:addq    |   0:-       |   0:-       BUS_LOAD  MEM[40] accepted 1
+  202:   52:addq    |  48:mulq    |  44:cmple   |  40:addq    |   0:-       BUS_LOAD  MEM[48] accepted 1
+  203:   56:mulq    |  52:addq    |  48:mulq    |  44:cmple   |  40:addq    r4=8  BUS_LOAD  MEM[48] accepted 1
+  204:   60:addq    |  56:mulq    |  52:addq    |  48:mulq    |  44:cmple   r5=1  BUS_LOAD  MEM[56] accepted 1
+  205:   64:mulq    |  60:addq    |  56:mulq    |  52:addq    |  48:mulq    r10=0x13f0c6c2a006c9fc  BUS_LOAD  MEM[56] accepted 1
+  206:   68:addq    |  64:mulq    |  60:addq    |  56:mulq    |  52:addq    r10=0x13f0c6c3550bbd29  BUS_LOAD  MEM[64] accepted 1
+  207:   72:mulq    |  68:addq    |  64:mulq    |  60:addq    |  56:mulq    r11=0xd63ab32bc9d62185  BUS_LOAD  MEM[64] accepted 1
+  208:   76:addq    |  72:mulq    |  68:addq    |  64:mulq    |  60:addq    r11=0xd63ab32c7edb14b2  BUS_LOAD  MEM[72] accepted 1
+  209:   80:srl     |  76:addq    |  72:mulq    |  68:addq    |  64:mulq    r12=0x4b40fca4151dd3ea  BUS_LOAD  MEM[72] accepted 1
+  210:   84:stq     |  80:srl     |  76:addq    |  72:mulq    |  68:addq    r12=0x4b40fca4ca22c717  BUS_LOAD  MEM[80] accepted 1
+  211:   88:srl     |  84:stq     |  80:srl     |  76:addq    |  72:mulq    r1=0x6ea04963ae0e91bb  BUS_LOAD  MEM[80] accepted 1
+  212:   92:stq     |  88:srl     |  84:stq     |  80:srl     |  76:addq    r1=0x6ea04964631384e8  BUS_LOAD  MEM[88] accepted 1
+  213:    0:-       |  92:stq     |  88:srl     |  84:stq     |  80:srl     r10=334546627  BUS_STORE MEM[4320] = 334546627 accepted 1
+  214:   96:srl     |   0:-       |  92:stq     |  88:srl     |  84:stq     BUS_LOAD  MEM[88] accepted 1
+  215:    0:-       |  96:srl     |   0:-       |  92:stq     |  88:srl     r11=-700796116  BUS_STORE MEM[4328] = -700796116 accepted 1
+  216:  100:stq     |   0:-       |  96:srl     |   0:-       |  92:stq     BUS_LOAD  MEM[96] accepted 1
+  217:  104:srl     | 100:stq     |   0:-       |  96:srl     |   0:-       BUS_LOAD  MEM[96] accepted 1
+  218:  108:stq     | 104:srl     | 100:stq     |   0:-       |  96:srl     r12=1262550180  BUS_LOAD  MEM[104] accepted 1
+  219:    0:-       | 108:stq     | 104:srl     | 100:stq     |   0:-       BUS_STORE MEM[4336] = 1262550180 accepted 1
+  220:  112:addq    |   0:-       | 108:stq     | 104:srl     | 100:stq     BUS_LOAD  MEM[104] accepted 1
+  221:    0:-       | 112:addq    |   0:-       | 108:stq     | 104:srl     r13=1855998308  BUS_STORE MEM[4344] = 1855998308 accepted 1
+  222:  116:bne     |   0:-       | 112:addq    |   0:-       | 108:stq     BUS_LOAD  MEM[112] accepted 1
+  223:  120:halt    | 116:bne     |   0:-       | 112:addq    |   0:-       BUS_LOAD  MEM[112] accepted 1
+  224:  124:call_pal| 120:halt    | 116:bne     |   0:-       | 112:addq    r0=4352  BUS_LOAD  MEM[120] accepted 1
+  225:  128:call_pal| 124:call_pal| 120:halt    | 116:bne     |   0:-       BUS_LOAD  MEM[120] accepted 1
+  226:   40:addq    |   0:-       |   0:-       |   0:-       | 116:bne     BUS_LOAD  MEM[32] accepted 1
+  227:   44:cmple   |  40:addq    |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[40] accepted 1
+  228:   48:mulq    |  44:cmple   |  40:addq    |   0:-       |   0:-       BUS_LOAD  MEM[40] accepted 1
+  229:   52:addq    |  48:mulq    |  44:cmple   |  40:addq    |   0:-       BUS_LOAD  MEM[48] accepted 1
+  230:   56:mulq    |  52:addq    |  48:mulq    |  44:cmple   |  40:addq    r4=9  BUS_LOAD  MEM[48] accepted 1
+  231:   60:addq    |  56:mulq    |  52:addq    |  48:mulq    |  44:cmple   r5=1  BUS_LOAD  MEM[56] accepted 1
+  232:   64:mulq    |  60:addq    |  56:mulq    |  52:addq    |  48:mulq    r10=0xdf040d45d29d948  BUS_LOAD  MEM[56] accepted 1
+  233:   68:addq    |  64:mulq    |  60:addq    |  56:mulq    |  52:addq    r10=0xdf040d45c22ecc75  BUS_LOAD  MEM[64] accepted 1
+  234:   72:mulq    |  68:addq    |  64:mulq    |  60:addq    |  56:mulq    r11=0x24bcf88d58407fa1  BUS_LOAD  MEM[64] accepted 1
+  235:   76:addq    |  72:mulq    |  68:addq    |  64:mulq    |  60:addq    r11=0x24bcf88ed4572ce  BUS_LOAD  MEM[72] accepted 1
+  236:   80:srl     |  76:addq    |  72:mulq    |  68:addq    |  64:mulq    r12=0xa9cc35e06c301596  BUS_LOAD  MEM[72] accepted 1
+  237:   84:stq     |  80:srl     |  76:addq    |  72:mulq    |  68:addq    r12=0xa9cc35e1213508c3  BUS_LOAD  MEM[80] accepted 1
+  238:   88:srl     |  84:stq     |  80:srl     |  76:addq    |  72:mulq    r1=0x6fcfbb99227fb8b7  BUS_LOAD  MEM[80] accepted 1
+  239:   92:stq     |  88:srl     |  84:stq     |  80:srl     |  76:addq    r1=0x6fcfbb99d784abe4  BUS_LOAD  MEM[88] accepted 1
+  240:    0:-       |  92:stq     |  88:srl     |  84:stq     |  80:srl     r10=-553382587  BUS_STORE MEM[4352] = -553382587 accepted 1
+  241:   96:srl     |   0:-       |  92:stq     |  88:srl     |  84:stq     BUS_LOAD  MEM[88] accepted 1
+  242:    0:-       |  96:srl     |   0:-       |  92:stq     |  88:srl     r11=616364174  BUS_STORE MEM[4360] = 616364174 accepted 1
+  243:  100:stq     |   0:-       |  96:srl     |   0:-       |  92:stq     BUS_LOAD  MEM[96] accepted 1
+  244:  104:srl     | 100:stq     |   0:-       |  96:srl     |   0:-       BUS_LOAD  MEM[96] accepted 1
+  245:  108:stq     | 104:srl     | 100:stq     |   0:-       |  96:srl     r12=-1446234655  BUS_LOAD  MEM[104] accepted 1
+  246:    0:-       | 108:stq     | 104:srl     | 100:stq     |   0:-       BUS_STORE MEM[4368] = -1446234655 accepted 1
+  247:  112:addq    |   0:-       | 108:stq     | 104:srl     | 100:stq     BUS_LOAD  MEM[104] accepted 1
+  248:    0:-       | 112:addq    |   0:-       | 108:stq     | 104:srl     r13=1875884953  BUS_STORE MEM[4376] = 1875884953 accepted 1
+  249:  116:bne     |   0:-       | 112:addq    |   0:-       | 108:stq     BUS_LOAD  MEM[112] accepted 1
+  250:  120:halt    | 116:bne     |   0:-       | 112:addq    |   0:-       BUS_LOAD  MEM[112] accepted 1
+  251:  124:call_pal| 120:halt    | 116:bne     |   0:-       | 112:addq    r0=4384  BUS_LOAD  MEM[120] accepted 1
+  252:  128:call_pal| 124:call_pal| 120:halt    | 116:bne     |   0:-       BUS_LOAD  MEM[120] accepted 1
+  253:   40:addq    |   0:-       |   0:-       |   0:-       | 116:bne     BUS_LOAD  MEM[32] accepted 1
+  254:   44:cmple   |  40:addq    |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[40] accepted 1
+  255:   48:mulq    |  44:cmple   |  40:addq    |   0:-       |   0:-       BUS_LOAD  MEM[40] accepted 1
+  256:   52:addq    |  48:mulq    |  44:cmple   |  40:addq    |   0:-       BUS_LOAD  MEM[48] accepted 1
+  257:   56:mulq    |  52:addq    |  48:mulq    |  44:cmple   |  40:addq    r4=10  BUS_LOAD  MEM[48] accepted 1
+  258:   60:addq    |  56:mulq    |  52:addq    |  48:mulq    |  44:cmple   r5=1  BUS_LOAD  MEM[56] accepted 1
+  259:   64:mulq    |  60:addq    |  56:mulq    |  52:addq    |  48:mulq    r10=0x2f52b3e89d0aa054  BUS_LOAD  MEM[56] accepted 1
+  260:   68:addq    |  64:mulq    |  60:addq    |  56:mulq    |  52:addq    r10=0x2f52b3e9520f9381  BUS_LOAD  MEM[64] accepted 1
+  261:   72:mulq    |  68:addq    |  64:mulq    |  60:addq    |  56:mulq    r11=0x47d58b653e7d767d  BUS_LOAD  MEM[64] accepted 1
+  262:   76:addq    |  72:mulq    |  68:addq    |  64:mulq    |  60:addq    r11=0x47d58b65f38269aa  BUS_LOAD  MEM[72] accepted 1
+  263:   80:srl     |  76:addq    |  72:mulq    |  68:addq    |  64:mulq    r12=0xb2b785489b674d02  BUS_LOAD  MEM[72] accepted 1
+  264:   84:stq     |  80:srl     |  76:addq    |  72:mulq    |  68:addq    r12=0xb2b78549506c402f  BUS_LOAD  MEM[80] accepted 1
+  265:   88:srl     |  84:stq     |  80:srl     |  76:addq    |  72:mulq    r1=0xd6f09d3dd06bbe73  BUS_LOAD  MEM[80] accepted 1
+  266:   92:stq     |  88:srl     |  84:stq     |  80:srl     |  76:addq    r1=0xd6f09d3e8570b1a0  BUS_LOAD  MEM[88] accepted 1
+  267:    0:-       |  92:stq     |  88:srl     |  84:stq     |  80:srl     r10=793949161  BUS_STORE MEM[4384] = 793949161 accepted 1
+  268:   96:srl     |   0:-       |  92:stq     |  88:srl     |  84:stq     BUS_LOAD  MEM[88] accepted 1
+  269:    0:-       |  96:srl     |   0:-       |  92:stq     |  88:srl     r11=1205177189  BUS_STORE MEM[4392] = 1205177189 accepted 1
+  270:  100:stq     |   0:-       |  96:srl     |   0:-       |  92:stq     BUS_LOAD  MEM[96] accepted 1
+  271:  104:srl     | 100:stq     |   0:-       |  96:srl     |   0:-       BUS_LOAD  MEM[96] accepted 1
+  272:  108:stq     | 104:srl     | 100:stq     |   0:-       |  96:srl     r12=-1296595639  BUS_LOAD  MEM[104] accepted 1
+  273:    0:-       | 108:stq     | 104:srl     | 100:stq     |   0:-       BUS_STORE MEM[4400] = -1296595639 accepted 1
+  274:  112:addq    |   0:-       | 108:stq     | 104:srl     | 100:stq     BUS_LOAD  MEM[104] accepted 1
+  275:    0:-       | 112:addq    |   0:-       | 108:stq     | 104:srl     r13=-688874178  BUS_STORE MEM[4408] = -688874178 accepted 1
+  276:  116:bne     |   0:-       | 112:addq    |   0:-       | 108:stq     BUS_LOAD  MEM[112] accepted 1
+  277:  120:halt    | 116:bne     |   0:-       | 112:addq    |   0:-       BUS_LOAD  MEM[112] accepted 1
+  278:  124:call_pal| 120:halt    | 116:bne     |   0:-       | 112:addq    r0=4416  BUS_LOAD  MEM[120] accepted 1
+  279:  128:call_pal| 124:call_pal| 120:halt    | 116:bne     |   0:-       BUS_LOAD  MEM[120] accepted 1
+  280:   40:addq    |   0:-       |   0:-       |   0:-       | 116:bne     BUS_LOAD  MEM[32] accepted 1
+  281:   44:cmple   |  40:addq    |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[40] accepted 1
+  282:   48:mulq    |  44:cmple   |  40:addq    |   0:-       |   0:-       BUS_LOAD  MEM[40] accepted 1
+  283:   52:addq    |  48:mulq    |  44:cmple   |  40:addq    |   0:-       BUS_LOAD  MEM[48] accepted 1
+  284:   56:mulq    |  52:addq    |  48:mulq    |  44:cmple   |  40:addq    r4=11  BUS_LOAD  MEM[48] accepted 1
+  285:   60:addq    |  56:mulq    |  52:addq    |  48:mulq    |  44:cmple   r5=1  BUS_LOAD  MEM[56] accepted 1
+  286:   64:mulq    |  60:addq    |  56:mulq    |  52:addq    |  48:mulq    r10=0x2e4ae36cd87d8b20  BUS_LOAD  MEM[56] accepted 1
+  287:   68:addq    |  64:mulq    |  60:addq    |  56:mulq    |  52:addq    r10=0x2e4ae36d8d827e4d  BUS_LOAD  MEM[64] accepted 1
+  288:   72:mulq    |  68:addq    |  64:mulq    |  60:addq    |  56:mulq    r11=0xf07d7e0ebbc219  BUS_LOAD  MEM[64] accepted 1
+  289:   76:addq    |  72:mulq    |  68:addq    |  64:mulq    |  60:addq    r11=0xf07d7e0eb5c0b546  BUS_LOAD  MEM[72] accepted 1
+  290:   80:srl     |  76:addq    |  72:mulq    |  68:addq    |  64:mulq    r12=0x5e7cb676a633462e  BUS_LOAD  MEM[72] accepted 1
+  291:   84:stq     |  80:srl     |  76:addq    |  72:mulq    |  68:addq    r12=0x5e7cb6775b38395b  BUS_LOAD  MEM[80] accepted 1
+  292:   88:srl     |  84:stq     |  80:srl     |  76:addq    |  72:mulq    r1=0x5326a154398f3eef  BUS_LOAD  MEM[80] accepted 1
+  293:   92:stq     |  88:srl     |  84:stq     |  80:srl     |  76:addq    r1=0x5326a154ee94321c  BUS_LOAD  MEM[88] accepted 1
+  294:    0:-       |  92:stq     |  88:srl     |  84:stq     |  80:srl     r10=776659821  BUS_STORE MEM[4416] = 776659821 accepted 1
+  295:   96:srl     |   0:-       |  92:stq     |  88:srl     |  84:stq     BUS_LOAD  MEM[88] accepted 1
+  296:    0:-       |  96:srl     |   0:-       |  92:stq     |  88:srl     r11=-260211186  BUS_STORE MEM[4424] = -260211186 accepted 1
+  297:  100:stq     |   0:-       |  96:srl     |   0:-       |  92:stq     BUS_LOAD  MEM[96] accepted 1
+  298:  104:srl     | 100:stq     |   0:-       |  96:srl     |   0:-       BUS_LOAD  MEM[96] accepted 1
+  299:  108:stq     | 104:srl     | 100:stq     |   0:-       |  96:srl     r12=1585231479  BUS_LOAD  MEM[104] accepted 1
+  300:    0:-       | 108:stq     | 104:srl     | 100:stq     |   0:-       BUS_STORE MEM[4432] = 1585231479 accepted 1
+  301:  112:addq    |   0:-       | 108:stq     | 104:srl     | 100:stq     BUS_LOAD  MEM[104] accepted 1
+  302:    0:-       | 112:addq    |   0:-       | 108:stq     | 104:srl     r13=1395040596  BUS_STORE MEM[4440] = 1395040596 accepted 1
+  303:  116:bne     |   0:-       | 112:addq    |   0:-       | 108:stq     BUS_LOAD  MEM[112] accepted 1
+  304:  120:halt    | 116:bne     |   0:-       | 112:addq    |   0:-       BUS_LOAD  MEM[112] accepted 1
+  305:  124:call_pal| 120:halt    | 116:bne     |   0:-       | 112:addq    r0=4448  BUS_LOAD  MEM[120] accepted 1
+  306:  128:call_pal| 124:call_pal| 120:halt    | 116:bne     |   0:-       BUS_LOAD  MEM[120] accepted 1
+  307:   40:addq    |   0:-       |   0:-       |   0:-       | 116:bne     BUS_LOAD  MEM[32] accepted 1
+  308:   44:cmple   |  40:addq    |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[40] accepted 1
+  309:   48:mulq    |  44:cmple   |  40:addq    |   0:-       |   0:-       BUS_LOAD  MEM[40] accepted 1
+  310:   52:addq    |  48:mulq    |  44:cmple   |  40:addq    |   0:-       BUS_LOAD  MEM[48] accepted 1
+  311:   56:mulq    |  52:addq    |  48:mulq    |  44:cmple   |  40:addq    r4=12  BUS_LOAD  MEM[48] accepted 1
+  312:   60:addq    |  56:mulq    |  52:addq    |  48:mulq    |  44:cmple   r5=1  BUS_LOAD  MEM[56] accepted 1
+  313:   64:mulq    |  60:addq    |  56:mulq    |  52:addq    |  48:mulq    r10=0x48e60e6ce228c5ac  BUS_LOAD  MEM[56] accepted 1
+  314:   68:addq    |  64:mulq    |  60:addq    |  56:mulq    |  52:addq    r10=0x48e60e6d972db8d9  BUS_LOAD  MEM[64] accepted 1
+  315:   72:mulq    |  68:addq    |  64:mulq    |  60:addq    |  56:mulq    r11=0xb26b71d5b74de75  BUS_LOAD  MEM[64] accepted 1
+  316:   76:addq    |  72:mulq    |  68:addq    |  64:mulq    |  60:addq    r11=0xb26b71e1079d1a2  BUS_LOAD  MEM[72] accepted 1
+  317:   80:srl     |  76:addq    |  72:mulq    |  68:addq    |  64:mulq    r12=0xe2f6a8e295e38d1a  BUS_LOAD  MEM[72] accepted 1
+  318:   84:stq     |  80:srl     |  76:addq    |  72:mulq    |  68:addq    r12=0xe2f6a8e34ae88047  BUS_LOAD  MEM[80] accepted 1
+  319:   88:srl     |  84:stq     |  80:srl     |  76:addq    |  72:mulq    r1=0x7372496881c7962b  BUS_LOAD  MEM[80] accepted 1
+  320:   92:stq     |  88:srl     |  84:stq     |  80:srl     |  76:addq    r1=0x7372496936cc8958  BUS_LOAD  MEM[88] accepted 1
+  321:    0:-       |  92:stq     |  88:srl     |  84:stq     |  80:srl     r10=1223036525  BUS_STORE MEM[4448] = 1223036525 accepted 1
+  322:   96:srl     |   0:-       |  92:stq     |  88:srl     |  84:stq     BUS_LOAD  MEM[88] accepted 1
+  323:    0:-       |  96:srl     |   0:-       |  92:stq     |  88:srl     r11=187086622  BUS_STORE MEM[4456] = 187086622 accepted 1
+  324:  100:stq     |   0:-       |  96:srl     |   0:-       |  92:stq     BUS_LOAD  MEM[96] accepted 1
+  325:  104:srl     | 100:stq     |   0:-       |  96:srl     |   0:-       BUS_LOAD  MEM[96] accepted 1
+  326:  108:stq     | 104:srl     | 100:stq     |   0:-       |  96:srl     r12=-487151389  BUS_LOAD  MEM[104] accepted 1
+  327:    0:-       | 108:stq     | 104:srl     | 100:stq     |   0:-       BUS_STORE MEM[4464] = -487151389 accepted 1
+  328:  112:addq    |   0:-       | 108:stq     | 104:srl     | 100:stq     BUS_LOAD  MEM[104] accepted 1
+  329:    0:-       | 112:addq    |   0:-       | 108:stq     | 104:srl     r13=1936869737  BUS_STORE MEM[4472] = 1936869737 accepted 1
+  330:  116:bne     |   0:-       | 112:addq    |   0:-       | 108:stq     BUS_LOAD  MEM[112] accepted 1
+  331:  120:halt    | 116:bne     |   0:-       | 112:addq    |   0:-       BUS_LOAD  MEM[112] accepted 1
+  332:  124:call_pal| 120:halt    | 116:bne     |   0:-       | 112:addq    r0=4480  BUS_LOAD  MEM[120] accepted 1
+  333:  128:call_pal| 124:call_pal| 120:halt    | 116:bne     |   0:-       BUS_LOAD  MEM[120] accepted 1
+  334:   40:addq    |   0:-       |   0:-       |   0:-       | 116:bne     BUS_LOAD  MEM[32] accepted 1
+  335:   44:cmple   |  40:addq    |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[40] accepted 1
+  336:   48:mulq    |  44:cmple   |  40:addq    |   0:-       |   0:-       BUS_LOAD  MEM[40] accepted 1
+  337:   52:addq    |  48:mulq    |  44:cmple   |  40:addq    |   0:-       BUS_LOAD  MEM[48] accepted 1
+  338:   56:mulq    |  52:addq    |  48:mulq    |  44:cmple   |  40:addq    r4=13  BUS_LOAD  MEM[48] accepted 1
+  339:   60:addq    |  56:mulq    |  52:addq    |  48:mulq    |  44:cmple   r5=1  BUS_LOAD  MEM[56] accepted 1
+  340:   64:mulq    |  60:addq    |  56:mulq    |  52:addq    |  48:mulq    r10=0x565fa0c39b103bf8  BUS_LOAD  MEM[56] accepted 1
+  341:   68:addq    |  64:mulq    |  60:addq    |  56:mulq    |  52:addq    r10=0x565fa0c450152f25  BUS_LOAD  MEM[64] accepted 1
+  342:   72:mulq    |  68:addq    |  64:mulq    |  60:addq    |  56:mulq    r11=0xfcc314bca1c90791  BUS_LOAD  MEM[64] accepted 1
+  343:   76:addq    |  72:mulq    |  68:addq    |  64:mulq    |  60:addq    r11=0xfcc314bd56cdfabe  BUS_LOAD  MEM[72] accepted 1
+  344:   80:srl     |  76:addq    |  72:mulq    |  68:addq    |  64:mulq    r12=0x20e76256fa936dc6  BUS_LOAD  MEM[72] accepted 1
+  345:   84:stq     |  80:srl     |  76:addq    |  72:mulq    |  68:addq    r12=0x20e76257af9860f3  BUS_LOAD  MEM[80] accepted 1
+  346:   88:srl     |  84:stq     |  80:srl     |  76:addq    |  72:mulq    r1=0x6cfe5196184ee027  BUS_LOAD  MEM[80] accepted 1
+  347:   92:stq     |  88:srl     |  84:stq     |  80:srl     |  76:addq    r1=0x6cfe5196cd53d354  BUS_LOAD  MEM[88] accepted 1
+  348:    0:-       |  92:stq     |  88:srl     |  84:stq     |  80:srl     r10=1449107652  BUS_STORE MEM[4480] = 1449107652 accepted 1
+  349:   96:srl     |   0:-       |  92:stq     |  88:srl     |  84:stq     BUS_LOAD  MEM[88] accepted 1
+  350:    0:-       |  96:srl     |   0:-       |  92:stq     |  88:srl     r11=-54324035  BUS_STORE MEM[4488] = -54324035 accepted 1
+  351:  100:stq     |   0:-       |  96:srl     |   0:-       |  92:stq     BUS_LOAD  MEM[96] accepted 1
+  352:  104:srl     | 100:stq     |   0:-       |  96:srl     |   0:-       BUS_LOAD  MEM[96] accepted 1
+  353:  108:stq     | 104:srl     | 100:stq     |   0:-       |  96:srl     r12=552034903  BUS_LOAD  MEM[104] accepted 1
+  354:    0:-       | 108:stq     | 104:srl     | 100:stq     |   0:-       BUS_STORE MEM[4496] = 552034903 accepted 1
+  355:  112:addq    |   0:-       | 108:stq     | 104:srl     | 100:stq     BUS_LOAD  MEM[104] accepted 1
+  356:    0:-       | 112:addq    |   0:-       | 108:stq     | 104:srl     r13=1828606358  BUS_STORE MEM[4504] = 1828606358 accepted 1
+  357:  116:bne     |   0:-       | 112:addq    |   0:-       | 108:stq     BUS_LOAD  MEM[112] accepted 1
+  358:  120:halt    | 116:bne     |   0:-       | 112:addq    |   0:-       BUS_LOAD  MEM[112] accepted 1
+  359:  124:call_pal| 120:halt    | 116:bne     |   0:-       | 112:addq    r0=4512  BUS_LOAD  MEM[120] accepted 1
+  360:  128:call_pal| 124:call_pal| 120:halt    | 116:bne     |   0:-       BUS_LOAD  MEM[120] accepted 1
+  361:   40:addq    |   0:-       |   0:-       |   0:-       | 116:bne     BUS_LOAD  MEM[32] accepted 1
+  362:   44:cmple   |  40:addq    |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[40] accepted 1
+  363:   48:mulq    |  44:cmple   |  40:addq    |   0:-       |   0:-       BUS_LOAD  MEM[40] accepted 1
+  364:   52:addq    |  48:mulq    |  44:cmple   |  40:addq    |   0:-       BUS_LOAD  MEM[48] accepted 1
+  365:   56:mulq    |  52:addq    |  48:mulq    |  44:cmple   |  40:addq    r4=14  BUS_LOAD  MEM[48] accepted 1
+  366:   60:addq    |  56:mulq    |  52:addq    |  48:mulq    |  44:cmple   r5=1  BUS_LOAD  MEM[56] accepted 1
+  367:   64:mulq    |  60:addq    |  56:mulq    |  52:addq    |  48:mulq    r10=0xe107a2bd22e19a04  BUS_LOAD  MEM[56] accepted 1
+  368:   68:addq    |  64:mulq    |  60:addq    |  56:mulq    |  52:addq    r10=0xe107a2bdd7e68d31  BUS_LOAD  MEM[64] accepted 1
+  369:   72:mulq    |  68:addq    |  64:mulq    |  60:addq    |  56:mulq    r11=0xa41a0508c89b396d  BUS_LOAD  MEM[64] accepted 1
+  370:   76:addq    |  72:mulq    |  68:addq    |  64:mulq    |  60:addq    r11=0xa41a05097da02c9a  BUS_LOAD  MEM[72] accepted 1
+  371:   80:srl     |  76:addq    |  72:mulq    |  68:addq    |  64:mulq    r12=0x395d14bf25d5f432  BUS_LOAD  MEM[72] accepted 1
+  372:   84:stq     |  80:srl     |  76:addq    |  72:mulq    |  68:addq    r12=0x395d14bfdadae75f  BUS_LOAD  MEM[80] accepted 1
+  373:   88:srl     |  84:stq     |  80:srl     |  76:addq    |  72:mulq    r1=0x91353fedf3b7f8e3  BUS_LOAD  MEM[80] accepted 1
+  374:   92:stq     |  88:srl     |  84:stq     |  80:srl     |  76:addq    r1=0x91353feea8bcec10  BUS_LOAD  MEM[88] accepted 1
+  375:    0:-       |  92:stq     |  88:srl     |  84:stq     |  80:srl     r10=-519593283  BUS_STORE MEM[4512] = -519593283 accepted 1
+  376:   96:srl     |   0:-       |  92:stq     |  88:srl     |  84:stq     BUS_LOAD  MEM[88] accepted 1
+  377:    0:-       |  96:srl     |   0:-       |  92:stq     |  88:srl     r11=-1541798647  BUS_STORE MEM[4520] = -1541798647 accepted 1
+  378:  100:stq     |   0:-       |  96:srl     |   0:-       |  92:stq     BUS_LOAD  MEM[96] accepted 1
+  379:  104:srl     | 100:stq     |   0:-       |  96:srl     |   0:-       BUS_LOAD  MEM[96] accepted 1
+  380:  108:stq     | 104:srl     | 100:stq     |   0:-       |  96:srl     r12=962401471  BUS_LOAD  MEM[104] accepted 1
+  381:    0:-       | 108:stq     | 104:srl     | 100:stq     |   0:-       BUS_STORE MEM[4528] = 962401471 accepted 1
+  382:  112:addq    |   0:-       | 108:stq     | 104:srl     | 100:stq     BUS_LOAD  MEM[104] accepted 1
+  383:    0:-       | 112:addq    |   0:-       | 108:stq     | 104:srl     r13=-1858781202  BUS_STORE MEM[4536] = -1858781202 accepted 1
+  384:  116:bne     |   0:-       | 112:addq    |   0:-       | 108:stq     BUS_LOAD  MEM[112] accepted 1
+  385:  120:halt    | 116:bne     |   0:-       | 112:addq    |   0:-       BUS_LOAD  MEM[112] accepted 1
+  386:  124:call_pal| 120:halt    | 116:bne     |   0:-       | 112:addq    r0=4544  BUS_LOAD  MEM[120] accepted 1
+  387:  128:call_pal| 124:call_pal| 120:halt    | 116:bne     |   0:-       BUS_LOAD  MEM[120] accepted 1
+  388:   40:addq    |   0:-       |   0:-       |   0:-       | 116:bne     BUS_LOAD  MEM[32] accepted 1
+  389:   44:cmple   |  40:addq    |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[40] accepted 1
+  390:   48:mulq    |  44:cmple   |  40:addq    |   0:-       |   0:-       BUS_LOAD  MEM[40] accepted 1
+  391:   52:addq    |  48:mulq    |  44:cmple   |  40:addq    |   0:-       BUS_LOAD  MEM[48] accepted 1
+  392:   56:mulq    |  52:addq    |  48:mulq    |  44:cmple   |  40:addq    r4=15  BUS_LOAD  MEM[48] accepted 1
+  393:   60:addq    |  56:mulq    |  52:addq    |  48:mulq    |  44:cmple   r5=1  BUS_LOAD  MEM[56] accepted 1
+  394:   64:mulq    |  60:addq    |  56:mulq    |  52:addq    |  48:mulq    r10=0x587adb9d60004bd0  BUS_LOAD  MEM[56] accepted 1
+  395:   68:addq    |  64:mulq    |  60:addq    |  56:mulq    |  52:addq    r10=0x587adb9e15053efd  BUS_LOAD  MEM[64] accepted 1
+  396:   72:mulq    |  68:addq    |  64:mulq    |  60:addq    |  56:mulq    r11=0xa402fecf1a6d3009  BUS_LOAD  MEM[64] accepted 1
+  397:   76:addq    |  72:mulq    |  68:addq    |  64:mulq    |  60:addq    r11=0xa402fecfcf722336  BUS_LOAD  MEM[72] accepted 1
+  398:   80:srl     |  76:addq    |  72:mulq    |  68:addq    |  64:mulq    r12=0xc0b9d78c2b21ec5e  BUS_LOAD  MEM[72] accepted 1
+  399:   84:stq     |  80:srl     |  76:addq    |  72:mulq    |  68:addq    r12=0xc0b9d78ce026df8b  BUS_LOAD  MEM[80] accepted 1
+  400:   88:srl     |  84:stq     |  80:srl     |  76:addq    |  72:mulq    r1=0x8d8a4bd23caa7c5f  BUS_LOAD  MEM[80] accepted 1
+  401:   92:stq     |  88:srl     |  84:stq     |  80:srl     |  76:addq    r1=0x8d8a4bd2f1af6f8c  BUS_LOAD  MEM[88] accepted 1
+  402:    0:-       |  92:stq     |  88:srl     |  84:stq     |  80:srl     r10=1484446622  BUS_STORE MEM[4544] = 1484446622 accepted 1
+  403:   96:srl     |   0:-       |  92:stq     |  88:srl     |  84:stq     BUS_LOAD  MEM[88] accepted 1
+  404:    0:-       |  96:srl     |   0:-       |  92:stq     |  88:srl     r11=-1543307569  BUS_STORE MEM[4552] = -1543307569 accepted 1
+  405:  100:stq     |   0:-       |  96:srl     |   0:-       |  92:stq     BUS_LOAD  MEM[96] accepted 1
+  406:  104:srl     | 100:stq     |   0:-       |  96:srl     |   0:-       BUS_LOAD  MEM[96] accepted 1
+  407:  108:stq     | 104:srl     | 100:stq     |   0:-       |  96:srl     r12=-1061562484  BUS_LOAD  MEM[104] accepted 1
+  408:    0:-       | 108:stq     | 104:srl     | 100:stq     |   0:-       BUS_STORE MEM[4560] = -1061562484 accepted 1
+  409:  112:addq    |   0:-       | 108:stq     | 104:srl     | 100:stq     BUS_LOAD  MEM[104] accepted 1
+  410:    0:-       | 112:addq    |   0:-       | 108:stq     | 104:srl     r13=-1920316462  BUS_STORE MEM[4568] = -1920316462 accepted 1
+  411:  116:bne     |   0:-       | 112:addq    |   0:-       | 108:stq     BUS_LOAD  MEM[112] accepted 1
+  412:  120:halt    | 116:bne     |   0:-       | 112:addq    |   0:-       BUS_LOAD  MEM[112] accepted 1
+  413:  124:call_pal| 120:halt    | 116:bne     |   0:-       | 112:addq    r0=4576  BUS_LOAD  MEM[120] accepted 1
+  414:  128:call_pal| 124:call_pal| 120:halt    | 116:bne     |   0:-       BUS_LOAD  MEM[120] accepted 1
+  415:   40:addq    |   0:-       |   0:-       |   0:-       | 116:bne     BUS_LOAD  MEM[32] accepted 1
+  416:   44:cmple   |  40:addq    |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[40] accepted 1
+  417:   48:mulq    |  44:cmple   |  40:addq    |   0:-       |   0:-       BUS_LOAD  MEM[40] accepted 1
+  418:   52:addq    |  48:mulq    |  44:cmple   |  40:addq    |   0:-       BUS_LOAD  MEM[48] accepted 1
+  419:   56:mulq    |  52:addq    |  48:mulq    |  44:cmple   |  40:addq    r4=16  BUS_LOAD  MEM[48] accepted 1
+  420:   60:addq    |  56:mulq    |  52:addq    |  48:mulq    |  44:cmple   r5=0  BUS_LOAD  MEM[56] accepted 1
+  421:   64:mulq    |  60:addq    |  56:mulq    |  52:addq    |  48:mulq    r10=0xcd3501d8fb517d5c  BUS_LOAD  MEM[56] accepted 1
+  422:   68:addq    |  64:mulq    |  60:addq    |  56:mulq    |  52:addq    r10=0xcd3501d9b0567089  BUS_LOAD  MEM[64] accepted 1
+  423:   72:mulq    |  68:addq    |  64:mulq    |  60:addq    |  56:mulq    r11=0x5944073a4ffb6765  BUS_LOAD  MEM[64] accepted 1
+  424:   76:addq    |  72:mulq    |  68:addq    |  64:mulq    |  60:addq    r11=0x5944073b5005a92  BUS_LOAD  MEM[72] accepted 1
+  425:   80:srl     |  76:addq    |  72:mulq    |  68:addq    |  64:mulq    r12=0xaa7f3f171fde24a  BUS_LOAD  MEM[72] accepted 1
+  426:   84:stq     |  80:srl     |  76:addq    |  72:mulq    |  68:addq    r12=0xaa7f3f22702d577  BUS_LOAD  MEM[80] accepted 1
+  427:   88:srl     |  84:stq     |  80:srl     |  76:addq    |  72:mulq    r1=0x6940c9135ec69b  BUS_LOAD  MEM[80] accepted 1
+  428:   92:stq     |  88:srl     |  84:stq     |  80:srl     |  76:addq    r1=0x6940c91b863b9c8  BUS_LOAD  MEM[88] accepted 1
+  429:    0:-       |  92:stq     |  88:srl     |  84:stq     |  80:srl     r10=-852164135  BUS_STORE MEM[4576] = -852164135 accepted 1
+  430:   96:srl     |   0:-       |  92:stq     |  88:srl     |  84:stq     BUS_LOAD  MEM[88] accepted 1
+  431:    0:-       |  96:srl     |   0:-       |  92:stq     |  88:srl     r11=1497630523  BUS_STORE MEM[4584] = 1497630523 accepted 1
+  432:  100:stq     |   0:-       |  96:srl     |   0:-       |  92:stq     BUS_LOAD  MEM[96] accepted 1
+  433:  104:srl     | 100:stq     |   0:-       |  96:srl     |   0:-       BUS_LOAD  MEM[96] accepted 1
+  434:  108:stq     | 104:srl     | 100:stq     |   0:-       |  96:srl     r12=178779122  BUS_LOAD  MEM[104] accepted 1
+  435:    0:-       | 108:stq     | 104:srl     | 100:stq     |   0:-       BUS_STORE MEM[4592] = 178779122 accepted 1
+  436:  112:addq    |   0:-       | 108:stq     | 104:srl     | 100:stq     BUS_LOAD  MEM[104] accepted 1
+  437:    0:-       | 112:addq    |   0:-       | 108:stq     | 104:srl     r13=110365841  BUS_STORE MEM[4600] = 110365841 accepted 1
+  438:  116:bne     |   0:-       | 112:addq    |   0:-       | 108:stq     BUS_LOAD  MEM[112] accepted 1
+  439:  120:halt    | 116:bne     |   0:-       | 112:addq    |   0:-       BUS_LOAD  MEM[112] accepted 1
+  440:  124:call_pal| 120:halt    | 116:bne     |   0:-       | 112:addq    r0=4608  BUS_LOAD  MEM[120] accepted 1
+  441:  128:call_pal| 124:call_pal| 120:halt    | 116:bne     |   0:-       BUS_LOAD  MEM[120] accepted 1
+  442:  132:call_pal| 128:call_pal| 124:-       | 120:halt    | 116:bne     BUS_LOAD  MEM[128] accepted 1
+  443:  136:call_pal| 132:call_pal| 128:-       | 124:-       | 120:halt    BUS_LOAD  MEM[128] accepted 1

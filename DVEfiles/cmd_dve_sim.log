@@ -1,0 +1,27 @@
+set ucliGUI::state
+set ucliGUI::state
+ucliCore::getToolPID
+synopsys::env hasTB
+trigger_hier_stack_context_switch 0
+synUtils::setDVEInitPhase 1
+synopsys::dump -type VPD -file /home/zyuxuan/classes/eecs470/projects/project3/inter.vpd -locking
+synopsys::dump -autoflush on -fid VPD0
+set ::dve_fid VPD0
+synUtils::setDVEInitPhase 0
+ucliCore::getToolPID
+synUtils::sendTool -active _icl_setToolSocket /tmp/smlnpdCovmb
+synUtils::sendTool -active {_icl_start_rpc -version "K-2015.09_Full64" -sync_file /tmp/vcs_dve_rpc.zyuxuan.24362}
+synUtils::sendTool -active {_icl_createSharedMemory /tmp/vcs_dve_general.zyuxuan.24362}
+ucliGUI::vpdAddHierarchy -scope testbench -depth 1 -file /home/zyuxuan/classes/eecs470/projects/project3/inter.vpd; synopsys::dump -flush VPD0
+ucliGUI::getSignalValues -scope testbench -radix {binary binary hexadecimal hexadecimal symbolic hexadecimal hexadecimal hexadecimal hexadecimal hexadecimal hexadecimal hexadecimal hexadecimal hexadecimal hexadecimal binary hexadecimal hexadecimal hexadecimal binary hexadecimal hexadecimal binary hexadecimal hexadecimal binary hexadecimal hexadecimal binary hexadecimal hexadecimal binary } -list {clock reset {clock_count[31:0]} {instr_count[31:0]} {wb_fileno[31:0]} {proc2mem_command[1:0]} {proc2mem_addr[63:0]} {proc2mem_data[63:0]} {mem2proc_response[3:0]} {mem2proc_data[63:0]} {mem2proc_tag[3:0]} {pipeline_completed_insts[3:0]} pipeline_error_status {pipeline_commit_wr_idx[4:0]} {pipeline_commit_wr_data[63:0]} pipeline_commit_wr_en {pipeline_commit_NPC[63:0]} {if_NPC_out[63:0]} {if_IR_out[31:0]} if_valid_inst_out {if_id_NPC[63:0]} {if_id_IR[31:0]} if_id_valid_inst {id_ex_NPC[63:0]} {id_ex_IR[31:0]} id_ex_valid_inst {ex_mem_NPC[63:0]} {ex_mem_IR[31:0]} ex_mem_valid_inst {mem_wb_NPC[63:0]} {mem_wb_IR[31:0]} mem_wb_valid_inst }
+config endofsim noexit
+config onfail enable all
+config syscaddplainmembers
+config syscaddsourcenames
+config syscaddstructtypes
+synopsys::listing -disable
+if [catch {gui_sim_terminate}] {gui_sim_terminate -kill}
+synopsys::finish
+set ucliGUI::state
+set ucliGUI::state
+ucli_exit

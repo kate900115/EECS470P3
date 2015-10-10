@@ -1,0 +1,590 @@
+                                        
+                           Design Compiler Graphical 
+                                 DC Ultra (TM)
+                                  DFTMAX (TM)
+                              Power Compiler (TM)
+                                 DesignWare (R)
+                                 DC Expert (TM)
+                               Design Vision (TM)
+                               HDL Compiler (TM)
+                               VHDL Compiler (TM)
+                                  DFT Compiler
+                               Design Compiler(R)
+                                        
+                 Version K-2015.06 for linux64 - May 28, 2015 
+                                        
+                    Copyright (c) 1988 - 2015 Synopsys, Inc.
+   This software and the associated documentation are proprietary to Synopsys,
+ Inc. This software may only be used in accordance with the terms and conditions
+ of a written license agreement with Synopsys, Inc. All other use, reproduction,
+            or distribution of this software is strictly prohibited.
+Initializing...
+#/***********************************************************/
+#/*   FILE        : defaults.tcl                            */
+#/*   Description : Default Synopsys Design Compiler Script */
+#/*   Usage       : dc_shell -tcl_mode -f default.tcl       */
+#/*   You'll need to minimally set design_name & read files */
+#/***********************************************************/
+set search_path [ list "./" "/afs/umich.edu/class/eecs470/lib/synopsys/" ]
+./ /afs/umich.edu/class/eecs470/lib/synopsys/
+set target_library "lec25dscc25_TT.db"
+lec25dscc25_TT.db
+set link_library [concat  "*" $target_library]
+* lec25dscc25_TT.db
+#/***********************************************************/
+#/* Set some flags to suppress warnings we don't care about */
+set suppress_errors [concat $suppress_errors "UID-401"]
+UID-401
+suppress_message {"VER-130"}
+#/***********************************************************/
+#/* The following five lines must be updated for every      */
+#/* new design                                              */
+#/***********************************************************/
+read_file -f sverilog [list "../sys_defs.vh" "../verilog/pipeline.v" "../verilog/if_stage.v" "../verilog/id_stage.v" "../verilog/ex_stage.v" "../verilog/mem_stage.v" "../verilog/wb_stage.v" "../verilog/regfile.v"]
+Loading db file '/afs/umich.edu/class/eecs470/lib/synopsys/lec25dscc25_TT.db'
+Loading db file '/usr/caen/synopsys-synth-2015.06/libraries/syn/gtech.db'
+Loading db file '/usr/caen/synopsys-synth-2015.06/libraries/syn/standard.sldb'
+  Loading link library 'lec25dscc25_TT'
+  Loading link library 'gtech'
+Loading sverilog files: '/home/zyuxuan/classes/eecs470/projects/project3/sys_defs.vh' '/home/zyuxuan/classes/eecs470/projects/project3/verilog/pipeline.v' '/home/zyuxuan/classes/eecs470/projects/project3/verilog/if_stage.v' '/home/zyuxuan/classes/eecs470/projects/project3/verilog/id_stage.v' '/home/zyuxuan/classes/eecs470/projects/project3/verilog/ex_stage.v' '/home/zyuxuan/classes/eecs470/projects/project3/verilog/mem_stage.v' '/home/zyuxuan/classes/eecs470/projects/project3/verilog/wb_stage.v' '/home/zyuxuan/classes/eecs470/projects/project3/verilog/regfile.v' 
+Detecting input file type automatically (-rtl or -netlist).
+Reading with Presto HDL Compiler (equivalent to -rtl option).
+Running PRESTO HDLC
+Compiling source file /home/zyuxuan/classes/eecs470/projects/project3/sys_defs.vh
+Compiling source file /home/zyuxuan/classes/eecs470/projects/project3/verilog/pipeline.v
+Compiling source file /home/zyuxuan/classes/eecs470/projects/project3/verilog/if_stage.v
+Compiling source file /home/zyuxuan/classes/eecs470/projects/project3/verilog/id_stage.v
+Compiling source file /home/zyuxuan/classes/eecs470/projects/project3/verilog/ex_stage.v
+Compiling source file /home/zyuxuan/classes/eecs470/projects/project3/verilog/mem_stage.v
+Compiling source file /home/zyuxuan/classes/eecs470/projects/project3/verilog/wb_stage.v
+Compiling source file /home/zyuxuan/classes/eecs470/projects/project3/verilog/regfile.v
+
+Inferred memory devices in process
+	in routine pipeline line 189 in file
+		'/home/zyuxuan/classes/eecs470/projects/project3/verilog/pipeline.v'.
+================================================================================
+|    Register Name     |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+================================================================================
+| if_id_valid_inst_reg | Flip-flop |   1   |  N  | N  | N  | N  | Y  | N  | N  |
+|    if_id_NPC_reg     | Flip-flop |  64   |  Y  | N  | N  | N  | Y  | N  | N  |
+|     if_id_IR_reg     | Flip-flop |  14   |  Y  | N  | N  | N  | Y  | N  | N  |
+|     if_id_IR_reg     | Flip-flop |  18   |  Y  | N  | N  | N  | N  | Y  | N  |
+================================================================================
+
+Inferred memory devices in process
+	in routine pipeline line 260 in file
+		'/home/zyuxuan/classes/eecs470/projects/project3/verilog/pipeline.v'.
+===================================================================================
+|      Register Name      |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===================================================================================
+|  id_ex_valid_inst_reg   | Flip-flop |   1   |  N  | N  | N  | N  | Y  | N  | N  |
+|      id_ex_NPC_reg      | Flip-flop |  64   |  Y  | N  | N  | N  | Y  | N  | N  |
+|      id_ex_IR_reg       | Flip-flop |  14   |  Y  | N  | N  | N  | Y  | N  | N  |
+|      id_ex_IR_reg       | Flip-flop |  18   |  Y  | N  | N  | N  | N  | Y  | N  |
+|     id_ex_rega_reg      | Flip-flop |  64   |  Y  | N  | N  | N  | Y  | N  | N  |
+|     id_ex_regb_reg      | Flip-flop |  64   |  Y  | N  | N  | N  | Y  | N  | N  |
+|  id_ex_opa_select_reg   | Flip-flop |   3   |  Y  | N  | N  | N  | Y  | N  | N  |
+|  id_ex_opb_select_reg   | Flip-flop |   3   |  Y  | N  | N  | N  | Y  | N  | N  |
+| id_ex_dest_reg_idx_reg  | Flip-flop |   5   |  Y  | N  | N  | N  | N  | Y  | N  |
+|   id_ex_alu_func_reg    | Flip-flop |   5   |  Y  | N  | N  | N  | Y  | N  | N  |
+|    id_ex_rd_mem_reg     | Flip-flop |   1   |  N  | N  | N  | N  | Y  | N  | N  |
+|    id_ex_wr_mem_reg     | Flip-flop |   1   |  N  | N  | N  | N  | Y  | N  | N  |
+|  id_ex_cond_branch_reg  | Flip-flop |   1   |  N  | N  | N  | N  | Y  | N  | N  |
+| id_ex_uncond_branch_reg | Flip-flop |   1   |  N  | N  | N  | N  | Y  | N  | N  |
+|     id_ex_halt_reg      | Flip-flop |   1   |  N  | N  | N  | N  | Y  | N  | N  |
+|    id_ex_illegal_reg    | Flip-flop |   1   |  N  | N  | N  | N  | Y  | N  | N  |
+===================================================================================
+
+Inferred memory devices in process
+	in routine pipeline line 356 in file
+		'/home/zyuxuan/classes/eecs470/projects/project3/verilog/pipeline.v'.
+===================================================================================
+|      Register Name      |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===================================================================================
+| ex_mem_take_branch_reg  | Flip-flop |   1   |  N  | N  | N  | N  | Y  | N  | N  |
+|     ex_mem_NPC_reg      | Flip-flop |  64   |  Y  | N  | N  | N  | Y  | N  | N  |
+|      ex_mem_IR_reg      | Flip-flop |  14   |  Y  | N  | N  | N  | Y  | N  | N  |
+|      ex_mem_IR_reg      | Flip-flop |  18   |  Y  | N  | N  | N  | N  | Y  | N  |
+| ex_mem_dest_reg_idx_reg | Flip-flop |   5   |  Y  | N  | N  | N  | N  | Y  | N  |
+|    ex_mem_rd_mem_reg    | Flip-flop |   1   |  N  | N  | N  | N  | Y  | N  | N  |
+|    ex_mem_wr_mem_reg    | Flip-flop |   1   |  N  | N  | N  | N  | Y  | N  | N  |
+|     ex_mem_halt_reg     | Flip-flop |   1   |  N  | N  | N  | N  | Y  | N  | N  |
+|   ex_mem_illegal_reg    | Flip-flop |   1   |  N  | N  | N  | N  | Y  | N  | N  |
+|  ex_mem_valid_inst_reg  | Flip-flop |   1   |  N  | N  | N  | N  | Y  | N  | N  |
+|     ex_mem_rega_reg     | Flip-flop |  64   |  Y  | N  | N  | N  | Y  | N  | N  |
+|  ex_mem_alu_result_reg  | Flip-flop |  64   |  Y  | N  | N  | N  | Y  | N  | N  |
+===================================================================================
+
+Inferred memory devices in process
+	in routine pipeline line 420 in file
+		'/home/zyuxuan/classes/eecs470/projects/project3/verilog/pipeline.v'.
+===================================================================================
+|      Register Name      |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===================================================================================
+|    mem_wb_result_reg    | Flip-flop |  64   |  Y  | N  | N  | N  | Y  | N  | N  |
+|     mem_wb_NPC_reg      | Flip-flop |  64   |  Y  | N  | N  | N  | Y  | N  | N  |
+|      mem_wb_IR_reg      | Flip-flop |  14   |  Y  | N  | N  | N  | Y  | N  | N  |
+|      mem_wb_IR_reg      | Flip-flop |  18   |  Y  | N  | N  | N  | N  | Y  | N  |
+|     mem_wb_halt_reg     | Flip-flop |   1   |  N  | N  | N  | N  | Y  | N  | N  |
+|   mem_wb_illegal_reg    | Flip-flop |   1   |  N  | N  | N  | N  | Y  | N  | N  |
+|  mem_wb_valid_inst_reg  | Flip-flop |   1   |  N  | N  | N  | N  | Y  | N  | N  |
+| mem_wb_dest_reg_idx_reg | Flip-flop |   5   |  Y  | N  | N  | N  | N  | Y  | N  |
+| mem_wb_take_branch_reg  | Flip-flop |   1   |  N  | N  | N  | N  | Y  | N  | N  |
+===================================================================================
+
+Inferred memory devices in process
+	in routine if_stage line 64 in file
+		'/home/zyuxuan/classes/eecs470/projects/project3/verilog/if_stage.v'.
+===========================================================================================
+|          Register Name          |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===========================================================================================
+|         branch_dely_reg         | Flip-flop |   1   |  N  | N  | N  | N  | N  | N  | N  |
+|           PC_reg_reg            | Flip-flop |  64   |  Y  | N  | N  | N  | Y  | N  | N  |
+|      if_valid_inst_out_reg      | Flip-flop |   1   |  N  | N  | N  | N  | N  | Y  | N  |
+| structure_hazard_stall_dely_reg | Flip-flop |   1   |  N  | N  | N  | N  | Y  | N  | N  |
+|        ex_stall_dely_reg        | Flip-flop |   1   |  N  | N  | N  | N  | Y  | N  | N  |
+===========================================================================================
+
+Statistics for case statements in always block at line 48 in file
+	'/home/zyuxuan/classes/eecs470/projects/project3/verilog/id_stage.v'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            66            |    auto/auto     |
+|            68            |    auto/auto     |
+|           100            |    auto/auto     |
+|           102            |    auto/auto     |
+|           113            |    auto/auto     |
+|           123            |    auto/auto     |
+|           130            |    auto/auto     |
+|           142            |     no/auto      |
+|           174            |    auto/auto     |
+|           195            |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 308 in file
+	'/home/zyuxuan/classes/eecs470/projects/project3/verilog/id_stage.v'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|           309            |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 42 in file
+	'/home/zyuxuan/classes/eecs470/projects/project3/verilog/ex_stage.v'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            43            |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 85 in file
+	'/home/zyuxuan/classes/eecs470/projects/project3/verilog/ex_stage.v'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|            86            |    auto/auto     |
+===============================================
+
+Statistics for case statements in always block at line 135 in file
+	'/home/zyuxuan/classes/eecs470/projects/project3/verilog/ex_stage.v'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|           136            |     no/auto      |
+===============================================
+
+Statistics for case statements in always block at line 149 in file
+	'/home/zyuxuan/classes/eecs470/projects/project3/verilog/ex_stage.v'
+===============================================
+|           Line           |  full/ parallel  |
+===============================================
+|           153            |     no/auto      |
+===============================================
+
+Inferred memory devices in process
+	in routine ex_stage line 135 in file
+		'/home/zyuxuan/classes/eecs470/projects/project3/verilog/ex_stage.v'.
+===========================================================================
+|    Register Name    | Type  | Width | Bus | MB | AR | AS | SR | SS | ST |
+===========================================================================
+|   opa_mux_out_reg   | Latch |  64   |  Y  | N  | N  | N  | -  | -  | -  |
+===========================================================================
+Warning:  /home/zyuxuan/classes/eecs470/projects/project3/verilog/ex_stage.v:135: Netlist for always_comb block contains a latch. (ELAB-974)
+
+Inferred memory devices in process
+	in routine regfile line 53 in file
+		'/home/zyuxuan/classes/eecs470/projects/project3/verilog/regfile.v'.
+===============================================================================
+|    Register Name    |   Type    | Width | Bus | MB | AR | AS | SR | SS | ST |
+===============================================================================
+|    registers_reg    | Flip-flop | 2048  |  Y  | N  | N  | N  | N  | N  | N  |
+===============================================================================
+Statistics for MUX_OPs
+===========================================================
+| block name/line  | Inputs | Outputs | # sel inputs | MB |
+===========================================================
+|    regfile/25    |   32   |   64    |      5       | N  |
+|    regfile/26    |   32   |   64    |      5       | N  |
+===========================================================
+Presto compilation completed successfully.
+Current design is now '/home/zyuxuan/classes/eecs470/projects/project3/verilog/pipeline.db:pipeline'
+Loaded 10 designs.
+Current design is 'pipeline'.
+pipeline if_stage decoder id_stage alu brcond ex_stage mem_stage wb_stage regfile
+set design_name pipeline
+pipeline
+set clock_name clock
+clock
+set CLK_PERIOD 30
+30
+#/***********************************************************/
+#/* The rest of this file may be left alone for most small  */
+#/* to moderate sized designs.  You may need to alter it    */
+#/* when synthesizing your final project.                   */
+#/***********************************************************/
+set SYN_DIR ./
+./
+#/***********************************************************/
+#/* Set some flags for optimisation */
+set compile_top_all_paths "true"
+true
+set auto_wire_load_selection "false"
+false
+set compile_seqmap_synchronous_extraction "true"
+true
+#/***********************************************************/
+#/*  Clk Periods/uncertainty/transition                     */
+set CLK_TRANSITION 0.1
+0.1
+set CLK_UNCERTAINTY 0.1
+0.1
+set CLK_LATENCY 0.1
+0.1
+#/* Input/output Delay values */
+set AVG_INPUT_DELAY 0.1
+0.1
+set AVG_OUTPUT_DELAY 0.1
+0.1
+#/* Critical Range (ns) */
+set CRIT_RANGE 1.0
+1.0
+#/***********************************************************/
+#/* Design Constrains: Not all used                         */
+set MAX_TRANSITION 1.0
+1.0
+set FAST_TRANSITION 0.1
+0.1
+set MAX_FANOUT 32
+32
+set MID_FANOUT 8
+8
+set LOW_FANOUT 1
+1
+set HIGH_DRIVE 0
+0
+set HIGH_LOAD 1.0
+1.0
+set AVG_LOAD 0.1
+0.1
+set AVG_FANOUT_LOAD 10
+10
+#/***********************************************************/
+#/*BASIC_INPUT = cb18os120_tsmc_max/nd02d1/A1
+#BASIC_OUTPUT = cb18os120_tsmc_max/nd02d1/ZN*/
+set DRIVING_CELL dffacs1
+dffacs1
+#/* DONT_USE_LIST = {   } */
+#/*************operation cons**************/
+#/*OP_WCASE = WCCOM;
+#OP_BCASE = BCCOM;*/
+set WIRE_LOAD "tsmcwire"
+tsmcwire
+set LOGICLIB lec25dscc25_TT
+lec25dscc25_TT
+#/*****************************/
+#/* Sourcing the file that sets the Search path and the libraries(target,link) */
+set sys_clk $clock_name
+clock
+set netlist_file [format "%s%s"  [format "%s%s"  $SYN_DIR $design_name] ".vg"]
+./pipeline.vg
+set ddc_file [format "%s%s"  [format "%s%s"  $SYN_DIR $design_name] ".ddc"]
+./pipeline.ddc
+set rep_file [format "%s%s"  [format "%s%s"  $SYN_DIR $design_name] ".rep"]
+./pipeline.rep
+set dc_shell_status [ set chk_file [format "%s%s"  [format "%s%s"  $SYN_DIR $design_name] ".chk"] ]
+./pipeline.chk
+#/* if we didnt find errors at this point, run */
+if {  $dc_shell_status != [list] } {
+   current_design $design_name
+  link
+  set_wire_load_model -name $WIRE_LOAD -lib $LOGICLIB $design_name
+  set_wire_load_mode top
+  set_fix_multiple_port_nets -outputs -buffer_constants
+  create_clock -period $CLK_PERIOD -name $sys_clk [find port $sys_clk]
+  set_clock_uncertainty $CLK_UNCERTAINTY $sys_clk
+  set_fix_hold $sys_clk
+  group_path -from [all_inputs] -name input_grp
+  group_path -to [all_outputs] -name output_grp
+  set_driving_cell  -lib_cell $DRIVING_CELL [all_inputs]
+  remove_driving_cell [find port $sys_clk]
+  set_fanout_load $AVG_FANOUT_LOAD [all_outputs]
+  set_load $AVG_LOAD [all_outputs]
+  set_input_delay $AVG_INPUT_DELAY -clock $sys_clk [all_inputs]
+  remove_input_delay -clock $sys_clk [find port $sys_clk]
+  set_output_delay $AVG_OUTPUT_DELAY -clock $sys_clk [all_outputs]
+  set_critical_range $CRIT_RANGE [current_design]
+  set_max_delay $CLK_PERIOD [all_outputs]
+  set MAX_FANOUT $MAX_FANOUT
+  set MAX_TRANSITION $MAX_TRANSITION
+  uniquify
+  ungroup -all -flatten
+  redirect $chk_file { check_design }
+  compile -map_effort medium
+  write -hier -format verilog -output $netlist_file $design_name
+  write -hier -format ddc -output $ddc_file $design_name
+  redirect $rep_file { report_design -nosplit }
+  redirect -append $rep_file { report_area }
+  redirect -append $rep_file { report_timing -max_paths 2 -input_pins -nets -transition_time -nosplit }
+  redirect -append $rep_file { report_constraint -max_delay -verbose -nosplit }
+  remove_design -all
+  read_file -format verilog $netlist_file
+  current_design $design_name
+  redirect -append $rep_file { report_reference -nosplit }
+  quit
+} else {
+   quit
+}
+Current design is 'pipeline'.
+
+  Linking design 'pipeline'
+  Using the following designs and libraries:
+  --------------------------------------------------------------------------
+  * (10 designs)              /home/zyuxuan/classes/eecs470/projects/project3/verilog/pipeline.db, etc
+  lec25dscc25_TT (library)    /afs/umich.edu/class/eecs470/lib/synopsys/lec25dscc25_TT.db
+
+Current design is 'pipeline'.
+Information: Updating graph... (UID-83)
+Warning: Design 'pipeline' contains 3 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+Information: Evaluating DesignWare library utilization. (UISN-27)
+
+============================================================================
+| DesignWare Building Block Library  |         Version         | Available |
+============================================================================
+| Basic DW Building Blocks           | K-2015.06-DWBB_201506.0 |     *     |
+| Licensed DW Building Blocks        |                         |           |
+============================================================================
+
+
+Information: There are 106 potential problems in your design. Please run 'check_design' for more information. (LINT-99)
+
+
+
+  Beginning Pass 1 Mapping
+  ------------------------
+  Processing 'pipeline'
+
+  Updating timing information
+Information: Updating design information... (UID-85)
+
+  Beginning Implementation Selection
+  ----------------------------------
+  Processing 'pipeline_DW01_cmp6_0'
+  Processing 'pipeline_DW01_ash_0'
+  Processing 'pipeline_DW01_sub_0'
+  Processing 'pipeline_DW01_ash_1'
+  Processing 'pipeline_DW01_sub_1'
+  Processing 'pipeline_DW01_add_0'
+  Processing 'pipeline_DW01_cmp6_1'
+  Processing 'pipeline_DW01_cmp6_2'
+  Processing 'pipeline_DW01_sub_2'
+  Processing 'pipeline_DW01_add_1'
+  Processing 'pipeline_DW01_cmp6_3'
+  Processing 'pipeline_DW_rash_0'
+  Processing 'pipeline_DW01_cmp6_4'
+  Processing 'pipeline_DW01_cmp6_5'
+  Processing 'pipeline_DW01_cmp6_6'
+  Processing 'pipeline_DW01_cmp6_7'
+  Processing 'pipeline_DW01_cmp6_8'
+  Processing 'pipeline_DW01_cmp6_9'
+  Processing 'pipeline_DW01_cmp6_10'
+  Processing 'pipeline_DW01_cmp6_11'
+  Processing 'pipeline_DW02_mult_0'
+  Processing 'pipeline_DW01_add_2'
+
+  Beginning Mapping Optimizations  (Medium effort)
+  -------------------------------
+  Mapping Optimization (Phase 1)
+
+                                  TOTAL                                                  
+   ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
+  --------- --------- --------- --------- --------- ------------------------- -----------
+    0:01:10 2430866.2      0.03       0.0     896.2                                0.00  
+    0:01:10 2430866.2      0.03       0.0     896.2                                0.00  
+    0:01:23 2328285.6      0.00       0.0     262.7                                0.00  
+    0:01:23 2328285.6      0.00       0.0     262.7                                0.00  
+    0:01:23 2328285.6      0.00       0.0     262.7                                0.00  
+    0:01:24 2328285.6      0.00       0.0     262.7                                0.00  
+    0:01:24 2328285.6      0.00       0.0     262.7                                0.00  
+    0:01:38 1532420.1      2.06      10.1       6.3                                0.00  
+    0:01:42 1526587.0      1.77       8.3       6.3                                0.00  
+    0:01:44 1527057.7      1.51       5.0       6.3                                0.00  
+    0:01:45 1527473.5      1.55       5.3       6.3                                0.00  
+    0:01:46 1527163.8      1.40       5.1       6.3                                0.00  
+    0:01:46 1527197.0      1.40       5.2       6.3                                0.00  
+    0:01:47 1527379.5      1.39       5.2       6.3                                0.00  
+    0:01:47 1527415.9      1.39       4.2       6.3                                0.00  
+    0:01:48 1527440.8      1.28       4.2       6.3                                0.00  
+    0:01:48 1527901.1      1.97       7.9       6.3                                0.00  
+    0:01:49 1527981.4      1.28       3.9       6.3                                0.00  
+    0:01:49 1528429.6      1.02       3.1       6.3                                0.00  
+    0:01:50 1529186.2      0.93       2.6       6.3                                0.00  
+    0:01:50 1529479.0      0.90       2.4       6.3                                0.00  
+    0:01:50 1530138.7      0.72       1.6       6.3                                0.00  
+    0:01:51 1530362.6      0.46       1.0       6.3                                0.00  
+    0:01:51 1530553.9      0.44       1.0       6.3                                0.00  
+    0:01:52 1531238.2      0.40       0.9       6.3                                0.00  
+    0:01:52 1531613.4      0.37       0.7       6.3                                0.00  
+    0:01:52 1531613.4      0.37       0.7       6.3                                0.00  
+    0:01:52 1531613.4      0.37       0.7       6.3                                0.00  
+    0:01:52 1531961.8      0.37       0.7       0.0                                0.00  
+    0:01:53 1531961.8      0.37       0.7       0.0                                0.00  
+    0:01:53 1531961.8      0.37       0.7       0.0                                0.00  
+    0:01:53 1531961.8      0.37       0.7       0.0                                0.00  
+    0:01:54 1534662.9      0.00       0.0       0.0                                0.00  
+
+
+
+  Beginning Delay Optimization Phase
+  ----------------------------------
+
+                                  TOTAL                                                  
+   ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
+  --------- --------- --------- --------- --------- ------------------------- -----------
+    0:01:54 1534662.9      0.00       0.0       0.0                                0.00  
+    0:01:54 1534662.9      0.00       0.0       0.0                                0.00  
+    0:02:09 1490578.3      0.00       0.0    2464.8                                0.00  
+    0:02:12 1488615.2      0.00       0.0    2833.4                                0.00  
+
+
+  Beginning Design Rule Fixing  (min_path)  (max_transition)  (max_fanout)
+  ----------------------------
+
+                                  TOTAL                                                  
+   ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
+  --------- --------- --------- --------- --------- ------------------------- -----------
+    0:02:13 1488615.2      0.00       0.0    2833.4                               -4.27  
+    0:02:13 1491366.8      0.00       0.0    2124.7 net63456                      -4.27  
+    0:02:14 1494118.3      0.00       0.0    1629.0 net63456                      -4.27  
+    0:02:15 1495616.9      0.00       0.0    1430.9 id_ex_IR[1]                   -4.27  
+    0:02:16 1497836.5      0.00       0.0     811.1 n1015                         -4.27  
+    0:02:16 1499170.6      0.00       0.0     484.1 id_ex_IR[10]                  -4.27  
+    0:02:17 1501432.3      0.00       0.0       0.0 id_stage_0/regf_0/registers_reg[31][28]/DIN     -2.37  
+    0:02:17 1502975.6      0.00       0.0       0.0                                0.00  
+
+
+  Beginning Critical Range Optimization
+  -------------------------------------
+
+                                  TOTAL                                                  
+   ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
+  --------- --------- --------- --------- --------- ------------------------- -----------
+    0:02:17 1502975.6      0.00       0.0       0.0                                0.00  
+
+
+  Beginning Area-Recovery Phase  (cleanup)
+  -----------------------------
+
+                                  TOTAL                                                  
+   ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
+  --------- --------- --------- --------- --------- ------------------------- -----------
+    0:02:17 1502975.6      0.00       0.0       0.0                                0.00  
+    0:02:17 1502975.6      0.00       0.0       0.0                                0.00  
+    0:02:19 1489522.4      0.13       0.1       0.0                                0.00  
+    0:02:20 1482660.1      0.09       0.1       0.0                                0.00  
+    0:02:22 1479427.5      0.10       0.1       0.0                                0.00  
+    0:02:22 1477848.7      0.10       0.1       0.0                                0.00  
+    0:02:23 1477138.6      0.10       0.1       0.0                                0.00  
+    0:02:24 1476536.6      0.10       0.1       0.0                                0.00  
+    0:02:24 1476102.0      0.10       0.1       0.0                                0.00  
+    0:02:24 1475700.6      0.10       0.1       0.0                                0.00  
+    0:02:25 1475332.8      0.10       0.1       0.0                                0.00  
+    0:02:25 1475090.5      0.10       0.1       0.0                                0.00  
+    0:02:25 1474889.9      0.10       0.1       0.0                                0.00  
+    0:02:26 1474689.3      0.10       0.1       0.0                                0.00  
+    0:02:26 1474023.9      0.10       0.1       0.0                                0.00  
+    0:02:26 1473823.3      0.10       0.1       0.0                                0.00  
+    0:02:26 1473656.1      0.10       0.1       0.0                                0.00  
+    0:02:26 1473488.9      0.10       0.1       0.0                                0.00  
+    0:02:26 1473488.9      0.10       0.1       0.0                                0.00  
+    0:02:27 1474077.8      0.00       0.0       0.0                                0.00  
+    0:02:28 1468089.4      0.19       0.4       0.0                                0.00  
+    0:02:28 1467882.0      0.22       0.4       0.0                                0.00  
+    0:02:29 1467752.1      0.22       0.4       0.0                                0.00  
+    0:02:29 1467752.1      0.22       0.4       0.0                                0.00  
+    0:02:29 1467752.1      0.22       0.4       0.0                                0.00  
+    0:02:29 1467752.1      0.22       0.4       0.0                                0.00  
+    0:02:29 1467752.1      0.22       0.4       0.0                                0.00  
+    0:02:29 1467752.1      0.22       0.4       0.0                                0.00  
+    0:02:30 1468848.0      0.00       0.0       0.0                                0.00  
+
+
+  Beginning Critical Range Optimization
+  -------------------------------------
+
+                                  TOTAL                                                  
+   ELAPSED            WORST NEG   SETUP    DESIGN                              MIN DELAY 
+    TIME      AREA      SLACK     COST    RULE COST         ENDPOINT             COST    
+  --------- --------- --------- --------- --------- ------------------------- -----------
+    0:02:30 1468848.0      0.00       0.0       0.0                                0.00  
+    0:02:31 1469014.2      0.00       0.0       0.0                                0.00  
+Loading db file '/afs/umich.edu/class/eecs470/lib/synopsys/lec25dscc25_TT.db'
+
+
+Note: Symbol # after min delay cost means estimated hold TNS across all active scenarios 
+
+
+  Optimization Complete
+  ---------------------
+Warning: Design 'pipeline' contains 1 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+     Net 'clock': 2864 load(s), 1 driver(s)
+Writing verilog file '/home/zyuxuan/classes/eecs470/projects/project3/synth/pipeline.vg'.
+Warning: Verilog 'assign' or 'tran' statements are written out. (VO-4)
+Warning: Verilog writer has added 64 nets to module pipeline using SYNOPSYS_UNCONNECTED_ as prefix.  Please use the change_names command to make the correct changes before invoking the verilog writer.  (VO-11)
+Writing ddc file './pipeline.ddc'.
+Removing design 'pipeline'
+Removing design 'pipeline_DW01_cmp6_0'
+Removing design 'pipeline_DW01_ash_1'
+Removing design 'pipeline_DW01_sub_1'
+Removing design 'pipeline_DW01_add_0'
+Removing design 'pipeline_DW01_sub_2'
+Removing design 'pipeline_DW01_add_1'
+Removing design 'pipeline_DW01_cmp6_3'
+Removing design 'pipeline_DW_rash_0'
+Removing design 'pipeline_DW02_mult_0'
+Removing library 'lec25dscc25_TT'
+Removing library 'gtech'
+Removing library 'standard.sldb'
+Loading db file '/afs/umich.edu/class/eecs470/lib/synopsys/lec25dscc25_TT.db'
+Loading db file '/usr/caen/synopsys-synth-2015.06/libraries/syn/gtech.db'
+Loading db file '/usr/caen/synopsys-synth-2015.06/libraries/syn/standard.sldb'
+  Loading link library 'lec25dscc25_TT'
+  Loading link library 'gtech'
+Loading verilog file '/home/zyuxuan/classes/eecs470/projects/project3/synth/pipeline.vg'
+Detecting input file type automatically (-rtl or -netlist).
+Running DC verilog reader
+Performing 'read' command.
+Compiling source file /home/zyuxuan/classes/eecs470/projects/project3/synth/pipeline.vg
+Reading with netlist reader (equivalent to -netlist option).
+Verilog netlist reader completed successfully.
+Current design is now '/home/zyuxuan/classes/eecs470/projects/project3/synth/pipeline_DW01_cmp6_0.db:pipeline_DW01_cmp6_0'
+Loaded 10 designs.
+Current design is 'pipeline_DW01_cmp6_0'.
+Current design is 'pipeline'.
+
+Thank you...

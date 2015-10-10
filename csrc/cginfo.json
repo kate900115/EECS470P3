@@ -1,0 +1,227 @@
+{
+    "MlibObjs": {},
+    "CurCompileUdps": {},
+    "PEModules": [],
+    "PrevCompiledModules": {
+        "mem": {
+            "FSbWZ_d": {
+                "mode": 4,
+                "bytes": 17880,
+                "checksum": 4294967295,
+                "mod": "mem",
+                "out": "FSbWZ_d.o",
+                "archive": "archive.1/_4098_archive_1.a"
+            }
+        },
+        "p_ff": {
+            "p_ff": {
+                "mode": 4,
+                "bytes": 0,
+                "mod": "p_ff",
+                "out": "objs/udps/F8ezs.o"
+            }
+        },
+        "p_sr": {
+            "p_sr": {
+                "mode": 4,
+                "bytes": 0,
+                "mod": "p_sr",
+                "out": "objs/udps/PjGxs.o"
+            }
+        },
+        "p_mux21": {
+            "p_mux21": {
+                "mode": 4,
+                "bytes": 0,
+                "mod": "p_mux21",
+                "out": "objs/udps/hUcmi.o"
+            }
+        },
+        "p_latch": {
+            "p_latch": {
+                "mode": 4,
+                "bytes": 0,
+                "mod": "p_latch",
+                "out": "objs/udps/guAtk.o"
+            }
+        },
+        "p_rs": {
+            "p_rs": {
+                "mode": 4,
+                "bytes": 0,
+                "mod": "p_rs",
+                "out": "objs/udps/MzHq6.o"
+            }
+        },
+        "std": {
+            "reYIK_d": {
+                "mode": 4,
+                "bytes": 28470,
+                "checksum": 4294967295,
+                "mod": "std",
+                "out": "reYIK_d.o",
+                "archive": "archive.1/_prev_archive_1.a"
+            }
+        },
+        "testbench": {
+            "iAVhC_d": {
+                "mode": 4,
+                "bytes": 42655,
+                "checksum": 4294967295,
+                "mod": "testbench",
+                "out": "iAVhC_d.o",
+                "archive": "archive.1/_4098_archive_1.a"
+            }
+        },
+        "p_ffr": {
+            "p_ffr": {
+                "mode": 4,
+                "bytes": 0,
+                "mod": "p_ffr",
+                "out": "objs/udps/GLrQJ.o"
+            }
+        },
+        "...MASTER...": {
+            "amcQw_d": {
+                "mode": 4,
+                "bytes": 43785,
+                "checksum": 4294967295,
+                "mod": "...MASTER...",
+                "out": "objs/amcQw_d.o"
+            }
+        },
+        "pipeline": {
+            "yGssz_d": {
+                "mode": 4,
+                "bytes": 1317446,
+                "checksum": 4294967295,
+                "mod": "pipeline",
+                "out": "yGssz_d.o",
+                "archive": "archive.1/_4098_archive_1.a"
+            }
+        },
+        "p_latchs": {
+            "p_latchs": {
+                "mode": 4,
+                "bytes": 0,
+                "mod": "p_latchs",
+                "out": "objs/udps/aKVa7.o"
+            }
+        },
+        "p_ffrs": {
+            "p_ffrs": {
+                "mode": 4,
+                "bytes": 0,
+                "mod": "p_ffrs",
+                "out": "objs/udps/dKp3B.o"
+            }
+        }
+    },
+    "NameTable": {
+        "_vcs_unit__466272505": [
+            "_vcs_unit__466272505",
+            "Qc0cL",
+            "module"
+        ],
+        "...MASTER...": [
+            "SIM",
+            "amcQw",
+            "module"
+        ],
+        "std": [
+            "std",
+            "reYIK",
+            "module"
+        ],
+        "testbench": [
+            "testbench",
+            "iAVhC",
+            "module"
+        ],
+        "mem": [
+            "mem",
+            "FSbWZ",
+            "module"
+        ],
+        "pipeline": [
+            "pipeline",
+            "yGssz",
+            "module"
+        ]
+    },
+    "CompileStrategy": "fullobj",
+    "CurCompileModules": [
+        "...MASTER...",
+        "_vcs_unit__466272505",
+        "testbench",
+        "mem",
+        "pipeline"
+    ],
+    "SIMBData": {
+        "out": "amcQwB.o",
+        "bytes": 62123
+    },
+    "stat": {
+        "Frontend(%)": 61.23761598809223,
+        "ru_self_cgstart": {
+            "ru_maxrss_kb": 54216,
+            "ru_utime_sec": 0.089688000000000004,
+            "ru_stime_sec": 0.050514000000000003,
+            "ru_nivcsw": 75,
+            "ru_minflt": 12416,
+            "ru_majflt": 744,
+            "ru_nvcsw": 387
+        },
+        "ru_childs_cgstart": {
+            "ru_maxrss_kb": 0,
+            "ru_utime_sec": 0.0,
+            "ru_stime_sec": 0.0,
+            "ru_nivcsw": 0,
+            "ru_minflt": 0,
+            "ru_majflt": 0,
+            "ru_nvcsw": 0
+        },
+        "mopSpeed": 257983.82977224287,
+        "CodeGen(%)": 38.76238401190777,
+        "mop/quad": 3.5055050263283869,
+        "totalObjSize": 262156,
+        "ru_self_end": {
+            "ru_maxrss_kb": 64444,
+            "ru_utime_sec": 0.14645900000000001,
+            "ru_stime_sec": 0.060245,
+            "ru_nivcsw": 97,
+            "ru_minflt": 15448,
+            "ru_majflt": 791,
+            "ru_nvcsw": 453
+        },
+        "nMops": 14646,
+        "nQuads": 4178,
+        "ru_childs_end": {
+            "ru_maxrss_kb": 0,
+            "ru_utime_sec": 0.0,
+            "ru_stime_sec": 0.0,
+            "ru_nivcsw": 0,
+            "ru_minflt": 0,
+            "ru_majflt": 0,
+            "ru_nvcsw": 0
+        },
+        "quadSpeed": 73593.912384844371,
+        "outputSizePerQuad": 62.0
+    },
+    "LVLData": [
+        "SIM"
+    ],
+    "CompileProcesses": [
+        "cgproc.4098.json"
+    ],
+    "Misc": {
+        "cwd": "/home/zyuxuan/classes/eecs470/projects/project3",
+        "csrc_abs": "/home/zyuxuan/classes/eecs470/projects/project3/csrc",
+        "csrc": "csrc",
+        "daidir": "/home/zyuxuan/classes/eecs470/projects/project3/simv.daidir",
+        "daidir_abs": "/home/zyuxuan/classes/eecs470/projects/project3/simv.daidir",
+        "default_output_dir": "csrc",
+        "archive_dir": "archive.1"
+    },
+    "CompileStatus": "Successful"
+}

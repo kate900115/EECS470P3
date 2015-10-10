@@ -1,0 +1,336 @@
+                                                                            D-MEM Bus &
+Cycle:      IF      |     ID      |     EX      |     MEM     |     WB      Reg Result
+    0:    4:br      |   0:-       |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[0] accepted 1
+    1:    8:ldqu    |   4:br      |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[0] accepted 1
+    2:   12:call_pal|   8:ldqu    |   4:br      |   0:-       |   0:-       BUS_LOAD  MEM[8] accepted 1
+    3:   16:call_pal|  12:call_pal|   8:-       |   4:br      |   0:-       BUS_LOAD  MEM[8] accepted 1
+    4:  300:lda     |   0:-       |   0:-       |   0:-       |   4:br      BUS_LOAD  MEM[296] accepted 1
+    5:  304:lda     | 300:lda     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[296] accepted 1
+    6:  308:lda     | 304:lda     | 300:lda     |   0:-       |   0:-       BUS_LOAD  MEM[304] accepted 1
+    7:  312:lda     | 308:lda     | 304:lda     | 300:lda     |   0:-       BUS_LOAD  MEM[304] accepted 1
+    8:  316:ldq     | 312:lda     | 308:lda     | 304:lda     | 300:lda     r5=0  BUS_LOAD  MEM[312] accepted 1
+    9:  320:mulq    | 316:ldq     | 312:lda     | 308:lda     | 304:lda     r6=9999  BUS_LOAD  MEM[312] accepted 1
+   10:  324:ldq     | 320:mulq    | 316:ldq     | 312:lda     | 308:lda     r0=8  BUS_LOAD  MEM[320] accepted 1
+   11:    0:-       | 320:mulq    |   0:-       | 316:ldq     | 312:lda     r1=152  BUS_LOAD  MEM[8] accepted 1
+   12:  324:ldq     |   0:-       | 320:mulq    |   0:-       | 316:ldq     r2=3  BUS_LOAD  MEM[320] accepted 1
+   13:  328:addq    | 324:ldq     |   0:-       | 320:mulq    |   0:-       BUS_LOAD  MEM[320] accepted 1
+   14:  332:stq     | 328:addq    | 324:ldq     |   0:-       | 320:mulq    r2=29997  BUS_LOAD  MEM[328] accepted 1
+   15:    0:-       | 328:addq    |   0:-       | 324:ldq     |   0:-       BUS_LOAD  MEM[152] accepted 1
+   16:  332:stq     |   0:-       | 328:addq    |   0:-       | 324:ldq     r3=1  BUS_LOAD  MEM[328] accepted 1
+   17:  336:addq    | 332:stq     |   0:-       | 328:addq    |   0:-       BUS_LOAD  MEM[328] accepted 1
+   18:  340:addq    | 336:addq    | 332:stq     |   0:-       | 328:addq    r2=29998  BUS_LOAD  MEM[336] accepted 1
+   19:    0:-       | 340:addq    | 336:addq    | 332:stq     |   0:-       BUS_STORE MEM[152] = 29998 accepted 1
+   20:  344:addq    |   0:-       | 340:addq    | 336:addq    | 332:stq     BUS_LOAD  MEM[336] accepted 1
+   21:  348:cmpult  | 344:addq    |   0:-       | 340:addq    | 336:addq    r0=16  BUS_LOAD  MEM[344] accepted 1
+   22:  352:bne     | 348:cmpult  | 344:addq    |   0:-       | 340:addq    r1=160  BUS_LOAD  MEM[344] accepted 1
+   23:  356:halt    | 352:bne     | 348:cmpult  | 344:addq    |   0:-       BUS_LOAD  MEM[352] accepted 1
+   24:  360:ldqu    | 356:halt    | 352:bne     | 348:cmpult  | 344:addq    r5=1  BUS_LOAD  MEM[352] accepted 1
+   25:  364:call_pal| 360:ldqu    | 356:halt    | 352:bne     | 348:cmpult  r4=1  BUS_LOAD  MEM[360] accepted 1
+   26:  316:ldq     |   0:-       |   0:-       |   0:-       | 352:bne     BUS_LOAD  MEM[312] accepted 1
+   27:  320:mulq    | 316:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[312] accepted 1
+   28:  324:ldq     | 320:mulq    | 316:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[320] accepted 1
+   29:    0:-       | 320:mulq    |   0:-       | 316:ldq     |   0:-       BUS_LOAD  MEM[16] accepted 1
+   30:  324:ldq     |   0:-       | 320:mulq    |   0:-       | 316:ldq     r2=1  BUS_LOAD  MEM[320] accepted 1
+   31:  328:addq    | 324:ldq     |   0:-       | 320:mulq    |   0:-       BUS_LOAD  MEM[320] accepted 1
+   32:  332:stq     | 328:addq    | 324:ldq     |   0:-       | 320:mulq    r2=9999  BUS_LOAD  MEM[328] accepted 1
+   33:    0:-       | 328:addq    |   0:-       | 324:ldq     |   0:-       BUS_LOAD  MEM[160] accepted 1
+   34:  332:stq     |   0:-       | 328:addq    |   0:-       | 324:ldq     r3=4  BUS_LOAD  MEM[328] accepted 1
+   35:  336:addq    | 332:stq     |   0:-       | 328:addq    |   0:-       BUS_LOAD  MEM[328] accepted 1
+   36:  340:addq    | 336:addq    | 332:stq     |   0:-       | 328:addq    r2=10003  BUS_LOAD  MEM[336] accepted 1
+   37:    0:-       | 340:addq    | 336:addq    | 332:stq     |   0:-       BUS_STORE MEM[160] = 10003 accepted 1
+   38:  344:addq    |   0:-       | 340:addq    | 336:addq    | 332:stq     BUS_LOAD  MEM[336] accepted 1
+   39:  348:cmpult  | 344:addq    |   0:-       | 340:addq    | 336:addq    r0=24  BUS_LOAD  MEM[344] accepted 1
+   40:  352:bne     | 348:cmpult  | 344:addq    |   0:-       | 340:addq    r1=168  BUS_LOAD  MEM[344] accepted 1
+   41:  356:halt    | 352:bne     | 348:cmpult  | 344:addq    |   0:-       BUS_LOAD  MEM[352] accepted 1
+   42:  360:ldqu    | 356:halt    | 352:bne     | 348:cmpult  | 344:addq    r5=2  BUS_LOAD  MEM[352] accepted 1
+   43:  364:call_pal| 360:ldqu    | 356:halt    | 352:bne     | 348:cmpult  r4=1  BUS_LOAD  MEM[360] accepted 1
+   44:  316:ldq     |   0:-       |   0:-       |   0:-       | 352:bne     BUS_LOAD  MEM[312] accepted 1
+   45:  320:mulq    | 316:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[312] accepted 1
+   46:  324:ldq     | 320:mulq    | 316:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[320] accepted 1
+   47:    0:-       | 320:mulq    |   0:-       | 316:ldq     |   0:-       BUS_LOAD  MEM[24] accepted 1
+   48:  324:ldq     |   0:-       | 320:mulq    |   0:-       | 316:ldq     r2=4  BUS_LOAD  MEM[320] accepted 1
+   49:  328:addq    | 324:ldq     |   0:-       | 320:mulq    |   0:-       BUS_LOAD  MEM[320] accepted 1
+   50:  332:stq     | 328:addq    | 324:ldq     |   0:-       | 320:mulq    r2=39996  BUS_LOAD  MEM[328] accepted 1
+   51:    0:-       | 328:addq    |   0:-       | 324:ldq     |   0:-       BUS_LOAD  MEM[168] accepted 1
+   52:  332:stq     |   0:-       | 328:addq    |   0:-       | 324:ldq     r3=1  BUS_LOAD  MEM[328] accepted 1
+   53:  336:addq    | 332:stq     |   0:-       | 328:addq    |   0:-       BUS_LOAD  MEM[328] accepted 1
+   54:  340:addq    | 336:addq    | 332:stq     |   0:-       | 328:addq    r2=39997  BUS_LOAD  MEM[336] accepted 1
+   55:    0:-       | 340:addq    | 336:addq    | 332:stq     |   0:-       BUS_STORE MEM[168] = 39997 accepted 1
+   56:  344:addq    |   0:-       | 340:addq    | 336:addq    | 332:stq     BUS_LOAD  MEM[336] accepted 1
+   57:  348:cmpult  | 344:addq    |   0:-       | 340:addq    | 336:addq    r0=32  BUS_LOAD  MEM[344] accepted 1
+   58:  352:bne     | 348:cmpult  | 344:addq    |   0:-       | 340:addq    r1=176  BUS_LOAD  MEM[344] accepted 1
+   59:  356:halt    | 352:bne     | 348:cmpult  | 344:addq    |   0:-       BUS_LOAD  MEM[352] accepted 1
+   60:  360:ldqu    | 356:halt    | 352:bne     | 348:cmpult  | 344:addq    r5=3  BUS_LOAD  MEM[352] accepted 1
+   61:  364:call_pal| 360:ldqu    | 356:halt    | 352:bne     | 348:cmpult  r4=1  BUS_LOAD  MEM[360] accepted 1
+   62:  316:ldq     |   0:-       |   0:-       |   0:-       | 352:bne     BUS_LOAD  MEM[312] accepted 1
+   63:  320:mulq    | 316:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[312] accepted 1
+   64:  324:ldq     | 320:mulq    | 316:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[320] accepted 1
+   65:    0:-       | 320:mulq    |   0:-       | 316:ldq     |   0:-       BUS_LOAD  MEM[32] accepted 1
+   66:  324:ldq     |   0:-       | 320:mulq    |   0:-       | 316:ldq     r2=1  BUS_LOAD  MEM[320] accepted 1
+   67:  328:addq    | 324:ldq     |   0:-       | 320:mulq    |   0:-       BUS_LOAD  MEM[320] accepted 1
+   68:  332:stq     | 328:addq    | 324:ldq     |   0:-       | 320:mulq    r2=9999  BUS_LOAD  MEM[328] accepted 1
+   69:    0:-       | 328:addq    |   0:-       | 324:ldq     |   0:-       BUS_LOAD  MEM[176] accepted 1
+   70:  332:stq     |   0:-       | 328:addq    |   0:-       | 324:ldq     r3=4  BUS_LOAD  MEM[328] accepted 1
+   71:  336:addq    | 332:stq     |   0:-       | 328:addq    |   0:-       BUS_LOAD  MEM[328] accepted 1
+   72:  340:addq    | 336:addq    | 332:stq     |   0:-       | 328:addq    r2=10003  BUS_LOAD  MEM[336] accepted 1
+   73:    0:-       | 340:addq    | 336:addq    | 332:stq     |   0:-       BUS_STORE MEM[176] = 10003 accepted 1
+   74:  344:addq    |   0:-       | 340:addq    | 336:addq    | 332:stq     BUS_LOAD  MEM[336] accepted 1
+   75:  348:cmpult  | 344:addq    |   0:-       | 340:addq    | 336:addq    r0=40  BUS_LOAD  MEM[344] accepted 1
+   76:  352:bne     | 348:cmpult  | 344:addq    |   0:-       | 340:addq    r1=184  BUS_LOAD  MEM[344] accepted 1
+   77:  356:halt    | 352:bne     | 348:cmpult  | 344:addq    |   0:-       BUS_LOAD  MEM[352] accepted 1
+   78:  360:ldqu    | 356:halt    | 352:bne     | 348:cmpult  | 344:addq    r5=4  BUS_LOAD  MEM[352] accepted 1
+   79:  364:call_pal| 360:ldqu    | 356:halt    | 352:bne     | 348:cmpult  r4=1  BUS_LOAD  MEM[360] accepted 1
+   80:  316:ldq     |   0:-       |   0:-       |   0:-       | 352:bne     BUS_LOAD  MEM[312] accepted 1
+   81:  320:mulq    | 316:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[312] accepted 1
+   82:  324:ldq     | 320:mulq    | 316:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[320] accepted 1
+   83:    0:-       | 320:mulq    |   0:-       | 316:ldq     |   0:-       BUS_LOAD  MEM[40] accepted 1
+   84:  324:ldq     |   0:-       | 320:mulq    |   0:-       | 316:ldq     r2=5  BUS_LOAD  MEM[320] accepted 1
+   85:  328:addq    | 324:ldq     |   0:-       | 320:mulq    |   0:-       BUS_LOAD  MEM[320] accepted 1
+   86:  332:stq     | 328:addq    | 324:ldq     |   0:-       | 320:mulq    r2=49995  BUS_LOAD  MEM[328] accepted 1
+   87:    0:-       | 328:addq    |   0:-       | 324:ldq     |   0:-       BUS_LOAD  MEM[184] accepted 1
+   88:  332:stq     |   0:-       | 328:addq    |   0:-       | 324:ldq     r3=2  BUS_LOAD  MEM[328] accepted 1
+   89:  336:addq    | 332:stq     |   0:-       | 328:addq    |   0:-       BUS_LOAD  MEM[328] accepted 1
+   90:  340:addq    | 336:addq    | 332:stq     |   0:-       | 328:addq    r2=49997  BUS_LOAD  MEM[336] accepted 1
+   91:    0:-       | 340:addq    | 336:addq    | 332:stq     |   0:-       BUS_STORE MEM[184] = 49997 accepted 1
+   92:  344:addq    |   0:-       | 340:addq    | 336:addq    | 332:stq     BUS_LOAD  MEM[336] accepted 1
+   93:  348:cmpult  | 344:addq    |   0:-       | 340:addq    | 336:addq    r0=48  BUS_LOAD  MEM[344] accepted 1
+   94:  352:bne     | 348:cmpult  | 344:addq    |   0:-       | 340:addq    r1=192  BUS_LOAD  MEM[344] accepted 1
+   95:  356:halt    | 352:bne     | 348:cmpult  | 344:addq    |   0:-       BUS_LOAD  MEM[352] accepted 1
+   96:  360:ldqu    | 356:halt    | 352:bne     | 348:cmpult  | 344:addq    r5=5  BUS_LOAD  MEM[352] accepted 1
+   97:  364:call_pal| 360:ldqu    | 356:halt    | 352:bne     | 348:cmpult  r4=1  BUS_LOAD  MEM[360] accepted 1
+   98:  316:ldq     |   0:-       |   0:-       |   0:-       | 352:bne     BUS_LOAD  MEM[312] accepted 1
+   99:  320:mulq    | 316:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[312] accepted 1
+  100:  324:ldq     | 320:mulq    | 316:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[320] accepted 1
+  101:    0:-       | 320:mulq    |   0:-       | 316:ldq     |   0:-       BUS_LOAD  MEM[48] accepted 1
+  102:  324:ldq     |   0:-       | 320:mulq    |   0:-       | 316:ldq     r2=9  BUS_LOAD  MEM[320] accepted 1
+  103:  328:addq    | 324:ldq     |   0:-       | 320:mulq    |   0:-       BUS_LOAD  MEM[320] accepted 1
+  104:  332:stq     | 328:addq    | 324:ldq     |   0:-       | 320:mulq    r2=89991  BUS_LOAD  MEM[328] accepted 1
+  105:    0:-       | 328:addq    |   0:-       | 324:ldq     |   0:-       BUS_LOAD  MEM[192] accepted 1
+  106:  332:stq     |   0:-       | 328:addq    |   0:-       | 324:ldq     r3=1  BUS_LOAD  MEM[328] accepted 1
+  107:  336:addq    | 332:stq     |   0:-       | 328:addq    |   0:-       BUS_LOAD  MEM[328] accepted 1
+  108:  340:addq    | 336:addq    | 332:stq     |   0:-       | 328:addq    r2=89992  BUS_LOAD  MEM[336] accepted 1
+  109:    0:-       | 340:addq    | 336:addq    | 332:stq     |   0:-       BUS_STORE MEM[192] = 89992 accepted 1
+  110:  344:addq    |   0:-       | 340:addq    | 336:addq    | 332:stq     BUS_LOAD  MEM[336] accepted 1
+  111:  348:cmpult  | 344:addq    |   0:-       | 340:addq    | 336:addq    r0=56  BUS_LOAD  MEM[344] accepted 1
+  112:  352:bne     | 348:cmpult  | 344:addq    |   0:-       | 340:addq    r1=200  BUS_LOAD  MEM[344] accepted 1
+  113:  356:halt    | 352:bne     | 348:cmpult  | 344:addq    |   0:-       BUS_LOAD  MEM[352] accepted 1
+  114:  360:ldqu    | 356:halt    | 352:bne     | 348:cmpult  | 344:addq    r5=6  BUS_LOAD  MEM[352] accepted 1
+  115:  364:call_pal| 360:ldqu    | 356:halt    | 352:bne     | 348:cmpult  r4=1  BUS_LOAD  MEM[360] accepted 1
+  116:  316:ldq     |   0:-       |   0:-       |   0:-       | 352:bne     BUS_LOAD  MEM[312] accepted 1
+  117:  320:mulq    | 316:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[312] accepted 1
+  118:  324:ldq     | 320:mulq    | 316:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[320] accepted 1
+  119:    0:-       | 320:mulq    |   0:-       | 316:ldq     |   0:-       BUS_LOAD  MEM[56] accepted 1
+  120:  324:ldq     |   0:-       | 320:mulq    |   0:-       | 316:ldq     r2=2  BUS_LOAD  MEM[320] accepted 1
+  121:  328:addq    | 324:ldq     |   0:-       | 320:mulq    |   0:-       BUS_LOAD  MEM[320] accepted 1
+  122:  332:stq     | 328:addq    | 324:ldq     |   0:-       | 320:mulq    r2=19998  BUS_LOAD  MEM[328] accepted 1
+  123:    0:-       | 328:addq    |   0:-       | 324:ldq     |   0:-       BUS_LOAD  MEM[200] accepted 1
+  124:  332:stq     |   0:-       | 328:addq    |   0:-       | 324:ldq     r3=3  BUS_LOAD  MEM[328] accepted 1
+  125:  336:addq    | 332:stq     |   0:-       | 328:addq    |   0:-       BUS_LOAD  MEM[328] accepted 1
+  126:  340:addq    | 336:addq    | 332:stq     |   0:-       | 328:addq    r2=20001  BUS_LOAD  MEM[336] accepted 1
+  127:    0:-       | 340:addq    | 336:addq    | 332:stq     |   0:-       BUS_STORE MEM[200] = 20001 accepted 1
+  128:  344:addq    |   0:-       | 340:addq    | 336:addq    | 332:stq     BUS_LOAD  MEM[336] accepted 1
+  129:  348:cmpult  | 344:addq    |   0:-       | 340:addq    | 336:addq    r0=64  BUS_LOAD  MEM[344] accepted 1
+  130:  352:bne     | 348:cmpult  | 344:addq    |   0:-       | 340:addq    r1=208  BUS_LOAD  MEM[344] accepted 1
+  131:  356:halt    | 352:bne     | 348:cmpult  | 344:addq    |   0:-       BUS_LOAD  MEM[352] accepted 1
+  132:  360:ldqu    | 356:halt    | 352:bne     | 348:cmpult  | 344:addq    r5=7  BUS_LOAD  MEM[352] accepted 1
+  133:  364:call_pal| 360:ldqu    | 356:halt    | 352:bne     | 348:cmpult  r4=1  BUS_LOAD  MEM[360] accepted 1
+  134:  316:ldq     |   0:-       |   0:-       |   0:-       | 352:bne     BUS_LOAD  MEM[312] accepted 1
+  135:  320:mulq    | 316:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[312] accepted 1
+  136:  324:ldq     | 320:mulq    | 316:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[320] accepted 1
+  137:    0:-       | 320:mulq    |   0:-       | 316:ldq     |   0:-       BUS_LOAD  MEM[64] accepted 1
+  138:  324:ldq     |   0:-       | 320:mulq    |   0:-       | 316:ldq     r2=6  BUS_LOAD  MEM[320] accepted 1
+  139:  328:addq    | 324:ldq     |   0:-       | 320:mulq    |   0:-       BUS_LOAD  MEM[320] accepted 1
+  140:  332:stq     | 328:addq    | 324:ldq     |   0:-       | 320:mulq    r2=59994  BUS_LOAD  MEM[328] accepted 1
+  141:    0:-       | 328:addq    |   0:-       | 324:ldq     |   0:-       BUS_LOAD  MEM[208] accepted 1
+  142:  332:stq     |   0:-       | 328:addq    |   0:-       | 324:ldq     r3=5  BUS_LOAD  MEM[328] accepted 1
+  143:  336:addq    | 332:stq     |   0:-       | 328:addq    |   0:-       BUS_LOAD  MEM[328] accepted 1
+  144:  340:addq    | 336:addq    | 332:stq     |   0:-       | 328:addq    r2=59999  BUS_LOAD  MEM[336] accepted 1
+  145:    0:-       | 340:addq    | 336:addq    | 332:stq     |   0:-       BUS_STORE MEM[208] = 59999 accepted 1
+  146:  344:addq    |   0:-       | 340:addq    | 336:addq    | 332:stq     BUS_LOAD  MEM[336] accepted 1
+  147:  348:cmpult  | 344:addq    |   0:-       | 340:addq    | 336:addq    r0=72  BUS_LOAD  MEM[344] accepted 1
+  148:  352:bne     | 348:cmpult  | 344:addq    |   0:-       | 340:addq    r1=216  BUS_LOAD  MEM[344] accepted 1
+  149:  356:halt    | 352:bne     | 348:cmpult  | 344:addq    |   0:-       BUS_LOAD  MEM[352] accepted 1
+  150:  360:ldqu    | 356:halt    | 352:bne     | 348:cmpult  | 344:addq    r5=8  BUS_LOAD  MEM[352] accepted 1
+  151:  364:call_pal| 360:ldqu    | 356:halt    | 352:bne     | 348:cmpult  r4=1  BUS_LOAD  MEM[360] accepted 1
+  152:  316:ldq     |   0:-       |   0:-       |   0:-       | 352:bne     BUS_LOAD  MEM[312] accepted 1
+  153:  320:mulq    | 316:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[312] accepted 1
+  154:  324:ldq     | 320:mulq    | 316:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[320] accepted 1
+  155:    0:-       | 320:mulq    |   0:-       | 316:ldq     |   0:-       BUS_LOAD  MEM[72] accepted 1
+  156:  324:ldq     |   0:-       | 320:mulq    |   0:-       | 316:ldq     r2=5  BUS_LOAD  MEM[320] accepted 1
+  157:  328:addq    | 324:ldq     |   0:-       | 320:mulq    |   0:-       BUS_LOAD  MEM[320] accepted 1
+  158:  332:stq     | 328:addq    | 324:ldq     |   0:-       | 320:mulq    r2=49995  BUS_LOAD  MEM[328] accepted 1
+  159:    0:-       | 328:addq    |   0:-       | 324:ldq     |   0:-       BUS_LOAD  MEM[216] accepted 1
+  160:  332:stq     |   0:-       | 328:addq    |   0:-       | 324:ldq     r3=6  BUS_LOAD  MEM[328] accepted 1
+  161:  336:addq    | 332:stq     |   0:-       | 328:addq    |   0:-       BUS_LOAD  MEM[328] accepted 1
+  162:  340:addq    | 336:addq    | 332:stq     |   0:-       | 328:addq    r2=50001  BUS_LOAD  MEM[336] accepted 1
+  163:    0:-       | 340:addq    | 336:addq    | 332:stq     |   0:-       BUS_STORE MEM[216] = 50001 accepted 1
+  164:  344:addq    |   0:-       | 340:addq    | 336:addq    | 332:stq     BUS_LOAD  MEM[336] accepted 1
+  165:  348:cmpult  | 344:addq    |   0:-       | 340:addq    | 336:addq    r0=80  BUS_LOAD  MEM[344] accepted 1
+  166:  352:bne     | 348:cmpult  | 344:addq    |   0:-       | 340:addq    r1=224  BUS_LOAD  MEM[344] accepted 1
+  167:  356:halt    | 352:bne     | 348:cmpult  | 344:addq    |   0:-       BUS_LOAD  MEM[352] accepted 1
+  168:  360:ldqu    | 356:halt    | 352:bne     | 348:cmpult  | 344:addq    r5=9  BUS_LOAD  MEM[352] accepted 1
+  169:  364:call_pal| 360:ldqu    | 356:halt    | 352:bne     | 348:cmpult  r4=1  BUS_LOAD  MEM[360] accepted 1
+  170:  316:ldq     |   0:-       |   0:-       |   0:-       | 352:bne     BUS_LOAD  MEM[312] accepted 1
+  171:  320:mulq    | 316:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[312] accepted 1
+  172:  324:ldq     | 320:mulq    | 316:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[320] accepted 1
+  173:    0:-       | 320:mulq    |   0:-       | 316:ldq     |   0:-       BUS_LOAD  MEM[80] accepted 1
+  174:  324:ldq     |   0:-       | 320:mulq    |   0:-       | 316:ldq     r2=3  BUS_LOAD  MEM[320] accepted 1
+  175:  328:addq    | 324:ldq     |   0:-       | 320:mulq    |   0:-       BUS_LOAD  MEM[320] accepted 1
+  176:  332:stq     | 328:addq    | 324:ldq     |   0:-       | 320:mulq    r2=29997  BUS_LOAD  MEM[328] accepted 1
+  177:    0:-       | 328:addq    |   0:-       | 324:ldq     |   0:-       BUS_LOAD  MEM[224] accepted 1
+  178:  332:stq     |   0:-       | 328:addq    |   0:-       | 324:ldq     r3=2  BUS_LOAD  MEM[328] accepted 1
+  179:  336:addq    | 332:stq     |   0:-       | 328:addq    |   0:-       BUS_LOAD  MEM[328] accepted 1
+  180:  340:addq    | 336:addq    | 332:stq     |   0:-       | 328:addq    r2=29999  BUS_LOAD  MEM[336] accepted 1
+  181:    0:-       | 340:addq    | 336:addq    | 332:stq     |   0:-       BUS_STORE MEM[224] = 29999 accepted 1
+  182:  344:addq    |   0:-       | 340:addq    | 336:addq    | 332:stq     BUS_LOAD  MEM[336] accepted 1
+  183:  348:cmpult  | 344:addq    |   0:-       | 340:addq    | 336:addq    r0=88  BUS_LOAD  MEM[344] accepted 1
+  184:  352:bne     | 348:cmpult  | 344:addq    |   0:-       | 340:addq    r1=232  BUS_LOAD  MEM[344] accepted 1
+  185:  356:halt    | 352:bne     | 348:cmpult  | 344:addq    |   0:-       BUS_LOAD  MEM[352] accepted 1
+  186:  360:ldqu    | 356:halt    | 352:bne     | 348:cmpult  | 344:addq    r5=10  BUS_LOAD  MEM[352] accepted 1
+  187:  364:call_pal| 360:ldqu    | 356:halt    | 352:bne     | 348:cmpult  r4=1  BUS_LOAD  MEM[360] accepted 1
+  188:  316:ldq     |   0:-       |   0:-       |   0:-       | 352:bne     BUS_LOAD  MEM[312] accepted 1
+  189:  320:mulq    | 316:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[312] accepted 1
+  190:  324:ldq     | 320:mulq    | 316:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[320] accepted 1
+  191:    0:-       | 320:mulq    |   0:-       | 316:ldq     |   0:-       BUS_LOAD  MEM[88] accepted 1
+  192:  324:ldq     |   0:-       | 320:mulq    |   0:-       | 316:ldq     r2=5  BUS_LOAD  MEM[320] accepted 1
+  193:  328:addq    | 324:ldq     |   0:-       | 320:mulq    |   0:-       BUS_LOAD  MEM[320] accepted 1
+  194:  332:stq     | 328:addq    | 324:ldq     |   0:-       | 320:mulq    r2=49995  BUS_LOAD  MEM[328] accepted 1
+  195:    0:-       | 328:addq    |   0:-       | 324:ldq     |   0:-       BUS_LOAD  MEM[232] accepted 1
+  196:  332:stq     |   0:-       | 328:addq    |   0:-       | 324:ldq     r3=3  BUS_LOAD  MEM[328] accepted 1
+  197:  336:addq    | 332:stq     |   0:-       | 328:addq    |   0:-       BUS_LOAD  MEM[328] accepted 1
+  198:  340:addq    | 336:addq    | 332:stq     |   0:-       | 328:addq    r2=49998  BUS_LOAD  MEM[336] accepted 1
+  199:    0:-       | 340:addq    | 336:addq    | 332:stq     |   0:-       BUS_STORE MEM[232] = 49998 accepted 1
+  200:  344:addq    |   0:-       | 340:addq    | 336:addq    | 332:stq     BUS_LOAD  MEM[336] accepted 1
+  201:  348:cmpult  | 344:addq    |   0:-       | 340:addq    | 336:addq    r0=96  BUS_LOAD  MEM[344] accepted 1
+  202:  352:bne     | 348:cmpult  | 344:addq    |   0:-       | 340:addq    r1=240  BUS_LOAD  MEM[344] accepted 1
+  203:  356:halt    | 352:bne     | 348:cmpult  | 344:addq    |   0:-       BUS_LOAD  MEM[352] accepted 1
+  204:  360:ldqu    | 356:halt    | 352:bne     | 348:cmpult  | 344:addq    r5=11  BUS_LOAD  MEM[352] accepted 1
+  205:  364:call_pal| 360:ldqu    | 356:halt    | 352:bne     | 348:cmpult  r4=1  BUS_LOAD  MEM[360] accepted 1
+  206:  316:ldq     |   0:-       |   0:-       |   0:-       | 352:bne     BUS_LOAD  MEM[312] accepted 1
+  207:  320:mulq    | 316:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[312] accepted 1
+  208:  324:ldq     | 320:mulq    | 316:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[320] accepted 1
+  209:    0:-       | 320:mulq    |   0:-       | 316:ldq     |   0:-       BUS_LOAD  MEM[96] accepted 1
+  210:  324:ldq     |   0:-       | 320:mulq    |   0:-       | 316:ldq     r2=8  BUS_LOAD  MEM[320] accepted 1
+  211:  328:addq    | 324:ldq     |   0:-       | 320:mulq    |   0:-       BUS_LOAD  MEM[320] accepted 1
+  212:  332:stq     | 328:addq    | 324:ldq     |   0:-       | 320:mulq    r2=79992  BUS_LOAD  MEM[328] accepted 1
+  213:    0:-       | 328:addq    |   0:-       | 324:ldq     |   0:-       BUS_LOAD  MEM[240] accepted 1
+  214:  332:stq     |   0:-       | 328:addq    |   0:-       | 324:ldq     r3=7  BUS_LOAD  MEM[328] accepted 1
+  215:  336:addq    | 332:stq     |   0:-       | 328:addq    |   0:-       BUS_LOAD  MEM[328] accepted 1
+  216:  340:addq    | 336:addq    | 332:stq     |   0:-       | 328:addq    r2=79999  BUS_LOAD  MEM[336] accepted 1
+  217:    0:-       | 340:addq    | 336:addq    | 332:stq     |   0:-       BUS_STORE MEM[240] = 79999 accepted 1
+  218:  344:addq    |   0:-       | 340:addq    | 336:addq    | 332:stq     BUS_LOAD  MEM[336] accepted 1
+  219:  348:cmpult  | 344:addq    |   0:-       | 340:addq    | 336:addq    r0=104  BUS_LOAD  MEM[344] accepted 1
+  220:  352:bne     | 348:cmpult  | 344:addq    |   0:-       | 340:addq    r1=248  BUS_LOAD  MEM[344] accepted 1
+  221:  356:halt    | 352:bne     | 348:cmpult  | 344:addq    |   0:-       BUS_LOAD  MEM[352] accepted 1
+  222:  360:ldqu    | 356:halt    | 352:bne     | 348:cmpult  | 344:addq    r5=12  BUS_LOAD  MEM[352] accepted 1
+  223:  364:call_pal| 360:ldqu    | 356:halt    | 352:bne     | 348:cmpult  r4=1  BUS_LOAD  MEM[360] accepted 1
+  224:  316:ldq     |   0:-       |   0:-       |   0:-       | 352:bne     BUS_LOAD  MEM[312] accepted 1
+  225:  320:mulq    | 316:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[312] accepted 1
+  226:  324:ldq     | 320:mulq    | 316:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[320] accepted 1
+  227:    0:-       | 320:mulq    |   0:-       | 316:ldq     |   0:-       BUS_LOAD  MEM[104] accepted 1
+  228:  324:ldq     |   0:-       | 320:mulq    |   0:-       | 316:ldq     r2=9  BUS_LOAD  MEM[320] accepted 1
+  229:  328:addq    | 324:ldq     |   0:-       | 320:mulq    |   0:-       BUS_LOAD  MEM[320] accepted 1
+  230:  332:stq     | 328:addq    | 324:ldq     |   0:-       | 320:mulq    r2=89991  BUS_LOAD  MEM[328] accepted 1
+  231:    0:-       | 328:addq    |   0:-       | 324:ldq     |   0:-       BUS_LOAD  MEM[248] accepted 1
+  232:  332:stq     |   0:-       | 328:addq    |   0:-       | 324:ldq     r3=3  BUS_LOAD  MEM[328] accepted 1
+  233:  336:addq    | 332:stq     |   0:-       | 328:addq    |   0:-       BUS_LOAD  MEM[328] accepted 1
+  234:  340:addq    | 336:addq    | 332:stq     |   0:-       | 328:addq    r2=89994  BUS_LOAD  MEM[336] accepted 1
+  235:    0:-       | 340:addq    | 336:addq    | 332:stq     |   0:-       BUS_STORE MEM[248] = 89994 accepted 1
+  236:  344:addq    |   0:-       | 340:addq    | 336:addq    | 332:stq     BUS_LOAD  MEM[336] accepted 1
+  237:  348:cmpult  | 344:addq    |   0:-       | 340:addq    | 336:addq    r0=112  BUS_LOAD  MEM[344] accepted 1
+  238:  352:bne     | 348:cmpult  | 344:addq    |   0:-       | 340:addq    r1=256  BUS_LOAD  MEM[344] accepted 1
+  239:  356:halt    | 352:bne     | 348:cmpult  | 344:addq    |   0:-       BUS_LOAD  MEM[352] accepted 1
+  240:  360:ldqu    | 356:halt    | 352:bne     | 348:cmpult  | 344:addq    r5=13  BUS_LOAD  MEM[352] accepted 1
+  241:  364:call_pal| 360:ldqu    | 356:halt    | 352:bne     | 348:cmpult  r4=1  BUS_LOAD  MEM[360] accepted 1
+  242:  316:ldq     |   0:-       |   0:-       |   0:-       | 352:bne     BUS_LOAD  MEM[312] accepted 1
+  243:  320:mulq    | 316:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[312] accepted 1
+  244:  324:ldq     | 320:mulq    | 316:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[320] accepted 1
+  245:    0:-       | 320:mulq    |   0:-       | 316:ldq     |   0:-       BUS_LOAD  MEM[112] accepted 1
+  246:  324:ldq     |   0:-       | 320:mulq    |   0:-       | 316:ldq     r2=7  BUS_LOAD  MEM[320] accepted 1
+  247:  328:addq    | 324:ldq     |   0:-       | 320:mulq    |   0:-       BUS_LOAD  MEM[320] accepted 1
+  248:  332:stq     | 328:addq    | 324:ldq     |   0:-       | 320:mulq    r2=69993  BUS_LOAD  MEM[328] accepted 1
+  249:    0:-       | 328:addq    |   0:-       | 324:ldq     |   0:-       BUS_LOAD  MEM[256] accepted 1
+  250:  332:stq     |   0:-       | 328:addq    |   0:-       | 324:ldq     r3=0  BUS_LOAD  MEM[328] accepted 1
+  251:  336:addq    | 332:stq     |   0:-       | 328:addq    |   0:-       BUS_LOAD  MEM[328] accepted 1
+  252:  340:addq    | 336:addq    | 332:stq     |   0:-       | 328:addq    r2=69993  BUS_LOAD  MEM[336] accepted 1
+  253:    0:-       | 340:addq    | 336:addq    | 332:stq     |   0:-       BUS_STORE MEM[256] = 69993 accepted 1
+  254:  344:addq    |   0:-       | 340:addq    | 336:addq    | 332:stq     BUS_LOAD  MEM[336] accepted 1
+  255:  348:cmpult  | 344:addq    |   0:-       | 340:addq    | 336:addq    r0=120  BUS_LOAD  MEM[344] accepted 1
+  256:  352:bne     | 348:cmpult  | 344:addq    |   0:-       | 340:addq    r1=264  BUS_LOAD  MEM[344] accepted 1
+  257:  356:halt    | 352:bne     | 348:cmpult  | 344:addq    |   0:-       BUS_LOAD  MEM[352] accepted 1
+  258:  360:ldqu    | 356:halt    | 352:bne     | 348:cmpult  | 344:addq    r5=14  BUS_LOAD  MEM[352] accepted 1
+  259:  364:call_pal| 360:ldqu    | 356:halt    | 352:bne     | 348:cmpult  r4=1  BUS_LOAD  MEM[360] accepted 1
+  260:  316:ldq     |   0:-       |   0:-       |   0:-       | 352:bne     BUS_LOAD  MEM[312] accepted 1
+  261:  320:mulq    | 316:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[312] accepted 1
+  262:  324:ldq     | 320:mulq    | 316:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[320] accepted 1
+  263:    0:-       | 320:mulq    |   0:-       | 316:ldq     |   0:-       BUS_LOAD  MEM[120] accepted 1
+  264:  324:ldq     |   0:-       | 320:mulq    |   0:-       | 316:ldq     r2=9  BUS_LOAD  MEM[320] accepted 1
+  265:  328:addq    | 324:ldq     |   0:-       | 320:mulq    |   0:-       BUS_LOAD  MEM[320] accepted 1
+  266:  332:stq     | 328:addq    | 324:ldq     |   0:-       | 320:mulq    r2=89991  BUS_LOAD  MEM[328] accepted 1
+  267:    0:-       | 328:addq    |   0:-       | 324:ldq     |   0:-       BUS_LOAD  MEM[264] accepted 1
+  268:  332:stq     |   0:-       | 328:addq    |   0:-       | 324:ldq     r3=9  BUS_LOAD  MEM[328] accepted 1
+  269:  336:addq    | 332:stq     |   0:-       | 328:addq    |   0:-       BUS_LOAD  MEM[328] accepted 1
+  270:  340:addq    | 336:addq    | 332:stq     |   0:-       | 328:addq    r2=90000  BUS_LOAD  MEM[336] accepted 1
+  271:    0:-       | 340:addq    | 336:addq    | 332:stq     |   0:-       BUS_STORE MEM[264] = 90000 accepted 1
+  272:  344:addq    |   0:-       | 340:addq    | 336:addq    | 332:stq     BUS_LOAD  MEM[336] accepted 1
+  273:  348:cmpult  | 344:addq    |   0:-       | 340:addq    | 336:addq    r0=128  BUS_LOAD  MEM[344] accepted 1
+  274:  352:bne     | 348:cmpult  | 344:addq    |   0:-       | 340:addq    r1=272  BUS_LOAD  MEM[344] accepted 1
+  275:  356:halt    | 352:bne     | 348:cmpult  | 344:addq    |   0:-       BUS_LOAD  MEM[352] accepted 1
+  276:  360:ldqu    | 356:halt    | 352:bne     | 348:cmpult  | 344:addq    r5=15  BUS_LOAD  MEM[352] accepted 1
+  277:  364:call_pal| 360:ldqu    | 356:halt    | 352:bne     | 348:cmpult  r4=1  BUS_LOAD  MEM[360] accepted 1
+  278:  316:ldq     |   0:-       |   0:-       |   0:-       | 352:bne     BUS_LOAD  MEM[312] accepted 1
+  279:  320:mulq    | 316:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[312] accepted 1
+  280:  324:ldq     | 320:mulq    | 316:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[320] accepted 1
+  281:    0:-       | 320:mulq    |   0:-       | 316:ldq     |   0:-       BUS_LOAD  MEM[128] accepted 1
+  282:  324:ldq     |   0:-       | 320:mulq    |   0:-       | 316:ldq     r2=3  BUS_LOAD  MEM[320] accepted 1
+  283:  328:addq    | 324:ldq     |   0:-       | 320:mulq    |   0:-       BUS_LOAD  MEM[320] accepted 1
+  284:  332:stq     | 328:addq    | 324:ldq     |   0:-       | 320:mulq    r2=29997  BUS_LOAD  MEM[328] accepted 1
+  285:    0:-       | 328:addq    |   0:-       | 324:ldq     |   0:-       BUS_LOAD  MEM[272] accepted 1
+  286:  332:stq     |   0:-       | 328:addq    |   0:-       | 324:ldq     r3=5  BUS_LOAD  MEM[328] accepted 1
+  287:  336:addq    | 332:stq     |   0:-       | 328:addq    |   0:-       BUS_LOAD  MEM[328] accepted 1
+  288:  340:addq    | 336:addq    | 332:stq     |   0:-       | 328:addq    r2=30002  BUS_LOAD  MEM[336] accepted 1
+  289:    0:-       | 340:addq    | 336:addq    | 332:stq     |   0:-       BUS_STORE MEM[272] = 30002 accepted 1
+  290:  344:addq    |   0:-       | 340:addq    | 336:addq    | 332:stq     BUS_LOAD  MEM[336] accepted 1
+  291:  348:cmpult  | 344:addq    |   0:-       | 340:addq    | 336:addq    r0=136  BUS_LOAD  MEM[344] accepted 1
+  292:  352:bne     | 348:cmpult  | 344:addq    |   0:-       | 340:addq    r1=280  BUS_LOAD  MEM[344] accepted 1
+  293:  356:halt    | 352:bne     | 348:cmpult  | 344:addq    |   0:-       BUS_LOAD  MEM[352] accepted 1
+  294:  360:ldqu    | 356:halt    | 352:bne     | 348:cmpult  | 344:addq    r5=16  BUS_LOAD  MEM[352] accepted 1
+  295:  364:call_pal| 360:ldqu    | 356:halt    | 352:bne     | 348:cmpult  r4=1  BUS_LOAD  MEM[360] accepted 1
+  296:  316:ldq     |   0:-       |   0:-       |   0:-       | 352:bne     BUS_LOAD  MEM[312] accepted 1
+  297:  320:mulq    | 316:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[312] accepted 1
+  298:  324:ldq     | 320:mulq    | 316:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[320] accepted 1
+  299:    0:-       | 320:mulq    |   0:-       | 316:ldq     |   0:-       BUS_LOAD  MEM[136] accepted 1
+  300:  324:ldq     |   0:-       | 320:mulq    |   0:-       | 316:ldq     r2=2  BUS_LOAD  MEM[320] accepted 1
+  301:  328:addq    | 324:ldq     |   0:-       | 320:mulq    |   0:-       BUS_LOAD  MEM[320] accepted 1
+  302:  332:stq     | 328:addq    | 324:ldq     |   0:-       | 320:mulq    r2=19998  BUS_LOAD  MEM[328] accepted 1
+  303:    0:-       | 328:addq    |   0:-       | 324:ldq     |   0:-       BUS_LOAD  MEM[280] accepted 1
+  304:  332:stq     |   0:-       | 328:addq    |   0:-       | 324:ldq     r3=0  BUS_LOAD  MEM[328] accepted 1
+  305:  336:addq    | 332:stq     |   0:-       | 328:addq    |   0:-       BUS_LOAD  MEM[328] accepted 1
+  306:  340:addq    | 336:addq    | 332:stq     |   0:-       | 328:addq    r2=19998  BUS_LOAD  MEM[336] accepted 1
+  307:    0:-       | 340:addq    | 336:addq    | 332:stq     |   0:-       BUS_STORE MEM[280] = 19998 accepted 1
+  308:  344:addq    |   0:-       | 340:addq    | 336:addq    | 332:stq     BUS_LOAD  MEM[336] accepted 1
+  309:  348:cmpult  | 344:addq    |   0:-       | 340:addq    | 336:addq    r0=144  BUS_LOAD  MEM[344] accepted 1
+  310:  352:bne     | 348:cmpult  | 344:addq    |   0:-       | 340:addq    r1=288  BUS_LOAD  MEM[344] accepted 1
+  311:  356:halt    | 352:bne     | 348:cmpult  | 344:addq    |   0:-       BUS_LOAD  MEM[352] accepted 1
+  312:  360:ldqu    | 356:halt    | 352:bne     | 348:cmpult  | 344:addq    r5=17  BUS_LOAD  MEM[352] accepted 1
+  313:  364:call_pal| 360:ldqu    | 356:halt    | 352:bne     | 348:cmpult  r4=1  BUS_LOAD  MEM[360] accepted 1
+  314:  316:ldq     |   0:-       |   0:-       |   0:-       | 352:bne     BUS_LOAD  MEM[312] accepted 1
+  315:  320:mulq    | 316:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[312] accepted 1
+  316:  324:ldq     | 320:mulq    | 316:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[320] accepted 1
+  317:    0:-       | 320:mulq    |   0:-       | 316:ldq     |   0:-       BUS_LOAD  MEM[144] accepted 1
+  318:  324:ldq     |   0:-       | 320:mulq    |   0:-       | 316:ldq     r2=3  BUS_LOAD  MEM[320] accepted 1
+  319:  328:addq    | 324:ldq     |   0:-       | 320:mulq    |   0:-       BUS_LOAD  MEM[320] accepted 1
+  320:  332:stq     | 328:addq    | 324:ldq     |   0:-       | 320:mulq    r2=29997  BUS_LOAD  MEM[328] accepted 1
+  321:    0:-       | 328:addq    |   0:-       | 324:ldq     |   0:-       BUS_LOAD  MEM[288] accepted 1
+  322:  332:stq     |   0:-       | 328:addq    |   0:-       | 324:ldq     r3=4  BUS_LOAD  MEM[328] accepted 1
+  323:  336:addq    | 332:stq     |   0:-       | 328:addq    |   0:-       BUS_LOAD  MEM[328] accepted 1
+  324:  340:addq    | 336:addq    | 332:stq     |   0:-       | 328:addq    r2=30001  BUS_LOAD  MEM[336] accepted 1
+  325:    0:-       | 340:addq    | 336:addq    | 332:stq     |   0:-       BUS_STORE MEM[288] = 30001 accepted 1
+  326:  344:addq    |   0:-       | 340:addq    | 336:addq    | 332:stq     BUS_LOAD  MEM[336] accepted 1
+  327:  348:cmpult  | 344:addq    |   0:-       | 340:addq    | 336:addq    r0=152  BUS_LOAD  MEM[344] accepted 1
+  328:  352:bne     | 348:cmpult  | 344:addq    |   0:-       | 340:addq    r1=296  BUS_LOAD  MEM[344] accepted 1
+  329:  356:halt    | 352:bne     | 348:cmpult  | 344:addq    |   0:-       BUS_LOAD  MEM[352] accepted 1
+  330:  360:ldqu    | 356:halt    | 352:bne     | 348:cmpult  | 344:addq    r5=18  BUS_LOAD  MEM[352] accepted 1
+  331:  364:call_pal| 360:ldqu    | 356:halt    | 352:bne     | 348:cmpult  r4=0  BUS_LOAD  MEM[360] accepted 1
+  332:  368:call_pal| 364:call_pal| 360:-       | 356:halt    | 352:bne     BUS_LOAD  MEM[360] accepted 1
+  333:  372:call_pal| 368:call_pal| 364:-       | 360:-       | 356:halt    BUS_LOAD  MEM[368] accepted 1

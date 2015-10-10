@@ -1,0 +1,1645 @@
+Information: Updating design information... (UID-85)
+Warning: Design 'pipeline' contains 1 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+ 
+****************************************
+Report : design
+Design : pipeline
+Version: K-2015.06
+Date   : Sat Oct 10 17:25:31 2015
+****************************************
+
+Design allows ideal nets on clock nets.
+
+Library(s) Used:
+
+    lec25dscc25_TT (File: /afs/umich.edu/class/eecs470/lib/synopsys/lec25dscc25_TT.db)
+
+Local Link Library:
+
+    {lec25dscc25_TT.db}
+
+Flip-Flop Types:
+
+    No flip-flop types specified.
+
+Latch Types:
+
+    No latch types specified.
+
+Operating Conditions:
+
+
+    Operating Condition Name : nom_pvt
+    Library : lec25dscc25_TT
+    Process :   1.00
+    Temperature :  25.00
+    Voltage :   2.50
+    Interconnect Model : balanced_tree
+
+Wire Loading Model:
+
+    Selected manually by the user.
+
+Name           :   tsmcwire
+Location       :   lec25dscc25_TT
+Resistance     :   0.2642
+Capacitance    :   0.000132782
+Area           :   0.27
+Slope          :   0.74
+Fanout   Length   Points Average Cap Std Deviation
+--------------------------------------------------------------
+     1     0.89
+     2     1.48
+     3     2.44
+     4     3.18
+     5     3.92
+
+
+
+Wire Loading Model Mode: top.
+
+Timing Ranges:
+
+    No timing ranges specified.
+
+Pin Input Delays:
+
+    None specified.
+
+Pin Output Delays:
+
+    None specified.
+
+Disabled Timing Arcs:
+
+    No arcs disabled.
+
+Required Licenses:
+
+    None Required
+
+Design Parameters:
+
+    None specified.
+1
+ 
+****************************************
+Report : area
+Design : pipeline
+Version: K-2015.06
+Date   : Sat Oct 10 17:25:31 2015
+****************************************
+
+Library(s) Used:
+
+    lec25dscc25_TT (File: /afs/umich.edu/class/eecs470/lib/synopsys/lec25dscc25_TT.db)
+
+Number of ports:                         2406
+Number of nets:                         18372
+Number of cells:                        14566
+Number of combinational cells:          11613
+Number of sequential cells:              2944
+Number of macros/black boxes:               0
+Number of buf/inv:                       1967
+Number of references:                      92
+
+Combinational area:             909397.856663
+Buf/Inv area:                    70502.402107
+Noncombinational area:          550384.043114
+Macro/Black Box area:                0.000000
+Net Interconnect area:            9232.288154
+
+Total cell area:               1459781.899776
+Total area:                    1469014.187930
+1
+ 
+****************************************
+Report : timing
+        -path full
+        -delay max
+        -input_pins
+        -nets
+        -max_paths 2
+        -transition_time
+Design : pipeline
+Version: K-2015.06
+Date   : Sat Oct 10 17:25:31 2015
+****************************************
+
+ # A fanout number of 1000 was used for high fanout net computations.
+
+Operating Conditions: nom_pvt   Library: lec25dscc25_TT
+Wire Load Model Mode: top
+
+  Startpoint: id_ex_opb_select_reg[0]
+              (rising edge-triggered flip-flop clocked by clock)
+  Endpoint: id_ex_rega_reg[63]
+            (rising edge-triggered flip-flop clocked by clock)
+  Path Group: clock
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  pipeline           tsmcwire              lec25dscc25_TT
+
+  Point                                       Fanout     Trans      Incr       Path
+  ------------------------------------------------------------------------------------
+  clock clock (rise edge)                                           0.00       0.00
+  clock network delay (ideal)                                       0.00       0.00
+  id_ex_opb_select_reg[0]/CLK (dffcs2)                    0.00      0.00 #     0.00 r
+  id_ex_opb_select_reg[0]/QN (dffcs2)                     0.20      0.19       0.19 f
+  n577 (net)                                    3                   0.00       0.19 f
+  id_ex_opb_select_reg[0]/Q (dffcs2)                      0.11      0.05       0.24 r
+  id_ex_opb_select[0] (net)                     2                   0.00       0.24 r
+  U2346/DIN3 (nnd3s2)                                     0.11      0.00       0.25 r
+  U2346/Q (nnd3s2)                                        0.18      0.08       0.33 f
+  n1505 (net)                                   1                   0.00       0.33 f
+  U3212/DIN (i1s9)                                        0.18      0.00       0.33 f
+  U3212/Q (i1s9)                                          0.10      0.17       0.50 r
+  n5038 (net)                                  24                   0.00       0.50 r
+  U3816/DIN2 (or5s1)                                      0.10      0.00       0.50 r
+  U3816/Q (or5s1)                                         0.20      0.19       0.69 r
+  n1988 (net)                                   1                   0.00       0.69 r
+  U3321/DIN1 (and2s2)                                     0.20      0.00       0.69 r
+  U3321/Q (and2s2)                                        0.27      0.18       0.87 r
+  n2990 (net)                                   3                   0.00       0.87 r
+  U3216/DIN (i1s3)                                        0.27      0.00       0.87 r
+  U3216/Q (i1s3)                                          0.14      0.06       0.93 f
+  n5035 (net)                                   3                   0.00       0.93 f
+  U3214/DIN3 (aoi21s3)                                    0.14      0.00       0.94 f
+  U3214/Q (aoi21s3)                                       0.24      0.04       0.98 r
+  n1519 (net)                                   1                   0.00       0.98 r
+  U3762/DIN5 (oai221s2)                                   0.24      0.00       0.98 r
+  U3762/Q (oai221s2)                                      0.50      0.18       1.16 f
+  ex_stage_0/opb_mux_out[60] (net)              4                   0.00       1.16 f
+  ex_stage_0/alu_0/mult_56/B[60] (pipeline_DW02_mult_0)             0.00       1.16 f
+  ex_stage_0/alu_0/mult_56/B[60] (net)                              0.00       1.16 f
+  ex_stage_0/alu_0/mult_56/U14/DIN1 (and2s1)              0.50      0.00       1.16 f
+  ex_stage_0/alu_0/mult_56/U14/Q (and2s1)                 0.17      0.27       1.43 f
+  ex_stage_0/alu_0/mult_56/ab[1][60] (net)      2                   0.00       1.43 f
+  ex_stage_0/alu_0/mult_56/U32/DIN2 (and2s1)              0.17      0.00       1.43 f
+  ex_stage_0/alu_0/mult_56/U32/Q (and2s1)                 0.24      0.27       1.69 f
+  ex_stage_0/alu_0/mult_56/n7 (net)             1                   0.00       1.69 f
+  ex_stage_0/alu_0/mult_56/S2_2_60/BIN (fadd1s2)          0.24      0.01       1.70 f
+  ex_stage_0/alu_0/mult_56/S2_2_60/OUTS (fadd1s2)         0.22      0.51       2.21 r
+  ex_stage_0/alu_0/mult_56/SUMB[2][60] (net)     1                  0.00       2.21 r
+  ex_stage_0/alu_0/mult_56/S2_3_59/CIN (fadd1s2)          0.22      0.00       2.21 r
+  ex_stage_0/alu_0/mult_56/S2_3_59/OUTS (fadd1s2)         0.20      0.40       2.62 f
+  ex_stage_0/alu_0/mult_56/SUMB[3][59] (net)     1                  0.00       2.62 f
+  ex_stage_0/alu_0/mult_56/S2_4_58/CIN (fadd1s2)          0.20      0.00       2.62 f
+  ex_stage_0/alu_0/mult_56/S2_4_58/OUTS (fadd1s2)         0.22      0.49       3.11 r
+  ex_stage_0/alu_0/mult_56/SUMB[4][58] (net)     1                  0.00       3.11 r
+  ex_stage_0/alu_0/mult_56/S2_5_57/CIN (fadd1s2)          0.22      0.00       3.12 r
+  ex_stage_0/alu_0/mult_56/S2_5_57/OUTS (fadd1s2)         0.20      0.40       3.52 f
+  ex_stage_0/alu_0/mult_56/SUMB[5][57] (net)     1                  0.00       3.52 f
+  ex_stage_0/alu_0/mult_56/S2_6_56/CIN (fadd1s2)          0.20      0.00       3.53 f
+  ex_stage_0/alu_0/mult_56/S2_6_56/OUTS (fadd1s2)         0.22      0.49       4.02 r
+  ex_stage_0/alu_0/mult_56/SUMB[6][56] (net)     1                  0.00       4.02 r
+  ex_stage_0/alu_0/mult_56/S2_7_55/CIN (fadd1s2)          0.22      0.00       4.02 r
+  ex_stage_0/alu_0/mult_56/S2_7_55/OUTS (fadd1s2)         0.20      0.40       4.43 f
+  ex_stage_0/alu_0/mult_56/SUMB[7][55] (net)     1                  0.00       4.43 f
+  ex_stage_0/alu_0/mult_56/S2_8_54/CIN (fadd1s2)          0.20      0.00       4.43 f
+  ex_stage_0/alu_0/mult_56/S2_8_54/OUTS (fadd1s2)         0.22      0.49       4.92 r
+  ex_stage_0/alu_0/mult_56/SUMB[8][54] (net)     1                  0.00       4.92 r
+  ex_stage_0/alu_0/mult_56/S2_9_53/CIN (fadd1s2)          0.22      0.00       4.93 r
+  ex_stage_0/alu_0/mult_56/S2_9_53/OUTS (fadd1s2)         0.20      0.40       5.33 f
+  ex_stage_0/alu_0/mult_56/SUMB[9][53] (net)     1                  0.00       5.33 f
+  ex_stage_0/alu_0/mult_56/S2_10_52/CIN (fadd1s2)         0.20      0.00       5.33 f
+  ex_stage_0/alu_0/mult_56/S2_10_52/OUTS (fadd1s2)        0.22      0.49       5.83 r
+  ex_stage_0/alu_0/mult_56/SUMB[10][52] (net)     1                 0.00       5.83 r
+  ex_stage_0/alu_0/mult_56/S2_11_51/CIN (fadd1s2)         0.22      0.00       5.83 r
+  ex_stage_0/alu_0/mult_56/S2_11_51/OUTS (fadd1s2)        0.20      0.40       6.24 f
+  ex_stage_0/alu_0/mult_56/SUMB[11][51] (net)     1                 0.00       6.24 f
+  ex_stage_0/alu_0/mult_56/S2_12_50/CIN (fadd1s2)         0.20      0.00       6.24 f
+  ex_stage_0/alu_0/mult_56/S2_12_50/OUTS (fadd1s2)        0.22      0.49       6.73 r
+  ex_stage_0/alu_0/mult_56/SUMB[12][50] (net)     1                 0.00       6.73 r
+  ex_stage_0/alu_0/mult_56/S2_13_49/CIN (fadd1s2)         0.22      0.00       6.74 r
+  ex_stage_0/alu_0/mult_56/S2_13_49/OUTS (fadd1s2)        0.20      0.40       7.14 f
+  ex_stage_0/alu_0/mult_56/SUMB[13][49] (net)     1                 0.00       7.14 f
+  ex_stage_0/alu_0/mult_56/S2_14_48/CIN (fadd1s2)         0.20      0.00       7.14 f
+  ex_stage_0/alu_0/mult_56/S2_14_48/OUTS (fadd1s2)        0.22      0.49       7.64 r
+  ex_stage_0/alu_0/mult_56/SUMB[14][48] (net)     1                 0.00       7.64 r
+  ex_stage_0/alu_0/mult_56/S2_15_47/CIN (fadd1s2)         0.22      0.00       7.64 r
+  ex_stage_0/alu_0/mult_56/S2_15_47/OUTS (fadd1s2)        0.20      0.40       8.05 f
+  ex_stage_0/alu_0/mult_56/SUMB[15][47] (net)     1                 0.00       8.05 f
+  ex_stage_0/alu_0/mult_56/S2_16_46/CIN (fadd1s2)         0.20      0.00       8.05 f
+  ex_stage_0/alu_0/mult_56/S2_16_46/OUTS (fadd1s2)        0.22      0.49       8.54 r
+  ex_stage_0/alu_0/mult_56/SUMB[16][46] (net)     1                 0.00       8.54 r
+  ex_stage_0/alu_0/mult_56/S2_17_45/CIN (fadd1s2)         0.22      0.00       8.55 r
+  ex_stage_0/alu_0/mult_56/S2_17_45/OUTS (fadd1s2)        0.20      0.40       8.95 f
+  ex_stage_0/alu_0/mult_56/SUMB[17][45] (net)     1                 0.00       8.95 f
+  ex_stage_0/alu_0/mult_56/S2_18_44/CIN (fadd1s2)         0.20      0.00       8.95 f
+  ex_stage_0/alu_0/mult_56/S2_18_44/OUTS (fadd1s2)        0.22      0.49       9.45 r
+  ex_stage_0/alu_0/mult_56/SUMB[18][44] (net)     1                 0.00       9.45 r
+  ex_stage_0/alu_0/mult_56/S2_19_43/CIN (fadd1s2)         0.22      0.00       9.45 r
+  ex_stage_0/alu_0/mult_56/S2_19_43/OUTS (fadd1s2)        0.20      0.40       9.85 f
+  ex_stage_0/alu_0/mult_56/SUMB[19][43] (net)     1                 0.00       9.85 f
+  ex_stage_0/alu_0/mult_56/S2_20_42/CIN (fadd1s2)         0.20      0.00       9.86 f
+  ex_stage_0/alu_0/mult_56/S2_20_42/OUTS (fadd1s2)        0.22      0.49      10.35 r
+  ex_stage_0/alu_0/mult_56/SUMB[20][42] (net)     1                 0.00      10.35 r
+  ex_stage_0/alu_0/mult_56/S2_21_41/CIN (fadd1s2)         0.22      0.00      10.36 r
+  ex_stage_0/alu_0/mult_56/S2_21_41/OUTS (fadd1s2)        0.20      0.40      10.76 f
+  ex_stage_0/alu_0/mult_56/SUMB[21][41] (net)     1                 0.00      10.76 f
+  ex_stage_0/alu_0/mult_56/S2_22_40/CIN (fadd1s2)         0.20      0.00      10.76 f
+  ex_stage_0/alu_0/mult_56/S2_22_40/OUTC (fadd1s2)        0.20      0.29      11.06 f
+  ex_stage_0/alu_0/mult_56/CARRYB[22][40] (net)     1               0.00      11.06 f
+  ex_stage_0/alu_0/mult_56/S2_23_40/BIN (fadd1s1)         0.20      0.00      11.06 f
+  ex_stage_0/alu_0/mult_56/S2_23_40/OUTS (fadd1s1)        0.27      0.51      11.57 r
+  ex_stage_0/alu_0/mult_56/SUMB[23][40] (net)     1                 0.00      11.57 r
+  ex_stage_0/alu_0/mult_56/S2_24_39/CIN (fadd1s1)         0.27      0.00      11.57 r
+  ex_stage_0/alu_0/mult_56/S2_24_39/OUTS (fadd1s1)        0.26      0.43      12.01 f
+  ex_stage_0/alu_0/mult_56/SUMB[24][39] (net)     1                 0.00      12.01 f
+  ex_stage_0/alu_0/mult_56/S2_25_38/CIN (fadd1s2)         0.26      0.00      12.01 f
+  ex_stage_0/alu_0/mult_56/S2_25_38/OUTS (fadd1s2)        0.22      0.50      12.52 r
+  ex_stage_0/alu_0/mult_56/SUMB[25][38] (net)     1                 0.00      12.52 r
+  ex_stage_0/alu_0/mult_56/S2_26_37/CIN (fadd1s2)         0.22      0.00      12.52 r
+  ex_stage_0/alu_0/mult_56/S2_26_37/OUTS (fadd1s2)        0.18      0.39      12.91 f
+  ex_stage_0/alu_0/mult_56/SUMB[26][37] (net)     1                 0.00      12.91 f
+  ex_stage_0/alu_0/mult_56/S2_27_36/CIN (fadd1s1)         0.18      0.00      12.91 f
+  ex_stage_0/alu_0/mult_56/S2_27_36/OUTS (fadd1s1)        0.27      0.47      13.39 r
+  ex_stage_0/alu_0/mult_56/SUMB[27][36] (net)     1                 0.00      13.39 r
+  ex_stage_0/alu_0/mult_56/S2_28_35/CIN (fadd1s1)         0.27      0.00      13.39 r
+  ex_stage_0/alu_0/mult_56/S2_28_35/OUTS (fadd1s1)        0.26      0.43      13.82 f
+  ex_stage_0/alu_0/mult_56/SUMB[28][35] (net)     1                 0.00      13.82 f
+  ex_stage_0/alu_0/mult_56/S2_29_34/CIN (fadd1s2)         0.26      0.00      13.83 f
+  ex_stage_0/alu_0/mult_56/S2_29_34/OUTS (fadd1s2)        0.22      0.50      14.33 r
+  ex_stage_0/alu_0/mult_56/SUMB[29][34] (net)     1                 0.00      14.33 r
+  ex_stage_0/alu_0/mult_56/S2_30_33/CIN (fadd1s2)         0.22      0.00      14.33 r
+  ex_stage_0/alu_0/mult_56/S2_30_33/OUTS (fadd1s2)        0.18      0.39      14.72 f
+  ex_stage_0/alu_0/mult_56/SUMB[30][33] (net)     1                 0.00      14.72 f
+  ex_stage_0/alu_0/mult_56/S2_31_32/CIN (fadd1s1)         0.18      0.00      14.73 f
+  ex_stage_0/alu_0/mult_56/S2_31_32/OUTS (fadd1s1)        0.27      0.47      15.20 r
+  ex_stage_0/alu_0/mult_56/SUMB[31][32] (net)     1                 0.00      15.20 r
+  ex_stage_0/alu_0/mult_56/S2_32_31/CIN (fadd1s1)         0.27      0.00      15.20 r
+  ex_stage_0/alu_0/mult_56/S2_32_31/OUTS (fadd1s1)        0.26      0.43      15.64 f
+  ex_stage_0/alu_0/mult_56/SUMB[32][31] (net)     1                 0.00      15.64 f
+  ex_stage_0/alu_0/mult_56/S2_33_30/CIN (fadd1s2)         0.26      0.00      15.64 f
+  ex_stage_0/alu_0/mult_56/S2_33_30/OUTS (fadd1s2)        0.22      0.50      16.14 r
+  ex_stage_0/alu_0/mult_56/SUMB[33][30] (net)     1                 0.00      16.14 r
+  ex_stage_0/alu_0/mult_56/S2_34_29/CIN (fadd1s2)         0.22      0.00      16.15 r
+  ex_stage_0/alu_0/mult_56/S2_34_29/OUTS (fadd1s2)        0.18      0.39      16.54 f
+  ex_stage_0/alu_0/mult_56/SUMB[34][29] (net)     1                 0.00      16.54 f
+  ex_stage_0/alu_0/mult_56/S2_35_28/CIN (fadd1s1)         0.18      0.00      16.54 f
+  ex_stage_0/alu_0/mult_56/S2_35_28/OUTS (fadd1s1)        0.27      0.47      17.02 r
+  ex_stage_0/alu_0/mult_56/SUMB[35][28] (net)     1                 0.00      17.02 r
+  ex_stage_0/alu_0/mult_56/S2_36_27/CIN (fadd1s1)         0.27      0.00      17.02 r
+  ex_stage_0/alu_0/mult_56/S2_36_27/OUTS (fadd1s1)        0.26      0.43      17.45 f
+  ex_stage_0/alu_0/mult_56/SUMB[36][27] (net)     1                 0.00      17.45 f
+  ex_stage_0/alu_0/mult_56/S2_37_26/CIN (fadd1s2)         0.26      0.00      17.46 f
+  ex_stage_0/alu_0/mult_56/S2_37_26/OUTS (fadd1s2)        0.22      0.50      17.96 r
+  ex_stage_0/alu_0/mult_56/SUMB[37][26] (net)     1                 0.00      17.96 r
+  ex_stage_0/alu_0/mult_56/S2_38_25/CIN (fadd1s2)         0.22      0.00      17.96 r
+  ex_stage_0/alu_0/mult_56/S2_38_25/OUTS (fadd1s2)        0.18      0.39      18.35 f
+  ex_stage_0/alu_0/mult_56/SUMB[38][25] (net)     1                 0.00      18.35 f
+  ex_stage_0/alu_0/mult_56/S2_39_24/CIN (fadd1s1)         0.18      0.00      18.36 f
+  ex_stage_0/alu_0/mult_56/S2_39_24/OUTS (fadd1s1)        0.27      0.47      18.83 r
+  ex_stage_0/alu_0/mult_56/SUMB[39][24] (net)     1                 0.00      18.83 r
+  ex_stage_0/alu_0/mult_56/S2_40_23/CIN (fadd1s1)         0.27      0.00      18.83 r
+  ex_stage_0/alu_0/mult_56/S2_40_23/OUTS (fadd1s1)        0.26      0.43      19.27 f
+  ex_stage_0/alu_0/mult_56/SUMB[40][23] (net)     1                 0.00      19.27 f
+  ex_stage_0/alu_0/mult_56/S2_41_22/CIN (fadd1s2)         0.26      0.00      19.27 f
+  ex_stage_0/alu_0/mult_56/S2_41_22/OUTS (fadd1s2)        0.22      0.50      19.77 r
+  ex_stage_0/alu_0/mult_56/SUMB[41][22] (net)     1                 0.00      19.77 r
+  ex_stage_0/alu_0/mult_56/S2_42_21/CIN (fadd1s2)         0.22      0.00      19.78 r
+  ex_stage_0/alu_0/mult_56/S2_42_21/OUTS (fadd1s2)        0.18      0.39      20.17 f
+  ex_stage_0/alu_0/mult_56/SUMB[42][21] (net)     1                 0.00      20.17 f
+  ex_stage_0/alu_0/mult_56/S2_43_20/CIN (fadd1s1)         0.18      0.00      20.17 f
+  ex_stage_0/alu_0/mult_56/S2_43_20/OUTS (fadd1s1)        0.32      0.49      20.67 r
+  ex_stage_0/alu_0/mult_56/SUMB[43][20] (net)     1                 0.00      20.67 r
+  ex_stage_0/alu_0/mult_56/S2_44_19/CIN (fadd1s2)         0.32      0.00      20.67 r
+  ex_stage_0/alu_0/mult_56/S2_44_19/OUTS (fadd1s2)        0.20      0.41      21.08 f
+  ex_stage_0/alu_0/mult_56/SUMB[44][19] (net)     1                 0.00      21.08 f
+  ex_stage_0/alu_0/mult_56/S2_45_18/CIN (fadd1s2)         0.20      0.00      21.09 f
+  ex_stage_0/alu_0/mult_56/S2_45_18/OUTS (fadd1s2)        0.22      0.49      21.58 r
+  ex_stage_0/alu_0/mult_56/SUMB[45][18] (net)     1                 0.00      21.58 r
+  ex_stage_0/alu_0/mult_56/S2_46_17/CIN (fadd1s2)         0.22      0.00      21.59 r
+  ex_stage_0/alu_0/mult_56/S2_46_17/OUTS (fadd1s2)        0.18      0.39      21.98 f
+  ex_stage_0/alu_0/mult_56/SUMB[46][17] (net)     1                 0.00      21.98 f
+  ex_stage_0/alu_0/mult_56/S2_47_16/CIN (fadd1s1)         0.18      0.00      21.98 f
+  ex_stage_0/alu_0/mult_56/S2_47_16/OUTS (fadd1s1)        0.27      0.47      22.45 r
+  ex_stage_0/alu_0/mult_56/SUMB[47][16] (net)     1                 0.00      22.45 r
+  ex_stage_0/alu_0/mult_56/S2_48_15/CIN (fadd1s1)         0.27      0.00      22.45 r
+  ex_stage_0/alu_0/mult_56/S2_48_15/OUTS (fadd1s1)        0.26      0.43      22.89 f
+  ex_stage_0/alu_0/mult_56/SUMB[48][15] (net)     1                 0.00      22.89 f
+  ex_stage_0/alu_0/mult_56/S2_49_14/CIN (fadd1s2)         0.26      0.00      22.89 f
+  ex_stage_0/alu_0/mult_56/S2_49_14/OUTS (fadd1s2)        0.22      0.50      23.40 r
+  ex_stage_0/alu_0/mult_56/SUMB[49][14] (net)     1                 0.00      23.40 r
+  ex_stage_0/alu_0/mult_56/S2_50_13/CIN (fadd1s2)         0.22      0.00      23.40 r
+  ex_stage_0/alu_0/mult_56/S2_50_13/OUTS (fadd1s2)        0.18      0.39      23.79 f
+  ex_stage_0/alu_0/mult_56/SUMB[50][13] (net)     1                 0.00      23.79 f
+  ex_stage_0/alu_0/mult_56/S2_51_12/CIN (fadd1s1)         0.18      0.00      23.79 f
+  ex_stage_0/alu_0/mult_56/S2_51_12/OUTS (fadd1s1)        0.27      0.47      24.27 r
+  ex_stage_0/alu_0/mult_56/SUMB[51][12] (net)     1                 0.00      24.27 r
+  ex_stage_0/alu_0/mult_56/S2_52_11/CIN (fadd1s1)         0.27      0.00      24.27 r
+  ex_stage_0/alu_0/mult_56/S2_52_11/OUTS (fadd1s1)        0.26      0.43      24.70 f
+  ex_stage_0/alu_0/mult_56/SUMB[52][11] (net)     1                 0.00      24.70 f
+  ex_stage_0/alu_0/mult_56/S2_53_10/CIN (fadd1s2)         0.26      0.00      24.71 f
+  ex_stage_0/alu_0/mult_56/S2_53_10/OUTS (fadd1s2)        0.22      0.50      25.21 r
+  ex_stage_0/alu_0/mult_56/SUMB[53][10] (net)     1                 0.00      25.21 r
+  ex_stage_0/alu_0/mult_56/S2_54_9/CIN (fadd1s2)          0.22      0.00      25.21 r
+  ex_stage_0/alu_0/mult_56/S2_54_9/OUTS (fadd1s2)         0.22      0.42      25.64 f
+  ex_stage_0/alu_0/mult_56/SUMB[54][9] (net)     1                  0.00      25.64 f
+  ex_stage_0/alu_0/mult_56/S2_55_8/CIN (fadd1s3)          0.22      0.01      25.64 f
+  ex_stage_0/alu_0/mult_56/S2_55_8/OUTS (fadd1s3)         0.18      0.48      26.12 r
+  ex_stage_0/alu_0/mult_56/SUMB[55][8] (net)     1                  0.00      26.12 r
+  ex_stage_0/alu_0/mult_56/U116/DIN1 (xor2s3)             0.18      0.01      26.12 r
+  ex_stage_0/alu_0/mult_56/U116/Q (xor2s3)                0.15      0.20      26.32 r
+  ex_stage_0/alu_0/mult_56/SUMB[56][7] (net)     1                  0.00      26.32 r
+  ex_stage_0/alu_0/mult_56/S2_57_6/DIN3 (xor3s1)          0.15      0.01      26.33 r
+  ex_stage_0/alu_0/mult_56/S2_57_6/Q (xor3s1)             0.29      0.39      26.73 r
+  ex_stage_0/alu_0/mult_56/SUMB[57][6] (net)     1                  0.00      26.73 r
+  ex_stage_0/alu_0/mult_56/S2_58_5/DIN3 (xor3s2)          0.29      0.01      26.74 r
+  ex_stage_0/alu_0/mult_56/S2_58_5/Q (xor3s2)             0.20      0.35      27.08 r
+  ex_stage_0/alu_0/mult_56/SUMB[58][5] (net)     1                  0.00      27.08 r
+  ex_stage_0/alu_0/mult_56/S2_59_4/DIN3 (xor3s1)          0.20      0.01      27.09 r
+  ex_stage_0/alu_0/mult_56/S2_59_4/Q (xor3s1)             0.18      0.35      27.44 r
+  ex_stage_0/alu_0/mult_56/SUMB[59][4] (net)     1                  0.00      27.44 r
+  ex_stage_0/alu_0/mult_56/U114/DIN2 (xor3s2)             0.18      0.00      27.44 r
+  ex_stage_0/alu_0/mult_56/U114/Q (xor3s2)                0.23      0.22      27.66 r
+  ex_stage_0/alu_0/mult_56/SUMB[60][3] (net)     1                  0.00      27.66 r
+  ex_stage_0/alu_0/mult_56/S2_61_2/DIN3 (xor3s1)          0.23      0.01      27.67 r
+  ex_stage_0/alu_0/mult_56/S2_61_2/Q (xor3s1)             0.29      0.40      28.07 r
+  ex_stage_0/alu_0/mult_56/SUMB[61][2] (net)     1                  0.00      28.07 r
+  ex_stage_0/alu_0/mult_56/S2_62_1/DIN3 (xor3s2)          0.29      0.01      28.08 r
+  ex_stage_0/alu_0/mult_56/S2_62_1/Q (xor3s2)             0.23      0.36      28.45 r
+  ex_stage_0/alu_0/mult_56/SUMB[62][1] (net)     1                  0.00      28.45 r
+  ex_stage_0/alu_0/mult_56/S4_0/DIN3 (xor3s2)             0.23      0.01      28.46 r
+  ex_stage_0/alu_0/mult_56/S4_0/Q (xor3s2)                0.18      0.33      28.78 r
+  ex_stage_0/alu_0/mult_56/PRODUCT[63] (net)     1                  0.00      28.78 r
+  ex_stage_0/alu_0/mult_56/PRODUCT[63] (pipeline_DW02_mult_0)       0.00      28.78 r
+  ex_stage_0/alu_0/N987 (net)                                       0.00      28.78 r
+  U3213/DIN1 (nnd2s3)                                     0.18      0.01      28.79 r
+  U3213/Q (nnd2s3)                                        0.29      0.04      28.83 f
+  n3358 (net)                                   1                   0.00      28.83 f
+  U3306/DIN2 (and3s2)                                     0.29      0.00      28.83 f
+  U3306/Q (and3s2)                                        0.11      0.20      29.03 f
+  n1460 (net)                                   1                   0.00      29.03 f
+  U1184/DIN3 (and4s3)                                     0.11      0.00      29.03 f
+  U1184/Q (and4s3)                                        0.12      0.14      29.17 f
+  n1130 (net)                                   3                   0.00      29.17 f
+  U3829/DIN1 (oai22s3)                                    0.12      0.00      29.17 f
+  U3829/Q (oai22s3)                                       0.32      0.09      29.26 r
+  n1448 (net)                                   1                   0.00      29.26 r
+  U4426/DIN1 (aoi22s2)                                    0.32      0.00      29.26 r
+  U4426/Q (aoi22s2)                                       0.74      0.10      29.36 f
+  n1446 (net)                                   1                   0.00      29.36 f
+  U4425/DIN4 (oai22s2)                                    0.74      0.00      29.36 f
+  U4425/Q (oai22s2)                                       0.49      0.22      29.58 r
+  N384 (net)                                    1                   0.00      29.58 r
+  id_ex_rega_reg[63]/CLRB (dffcs1)                        0.49      0.00      29.58 r
+  data arrival time                                                           29.58
+
+  clock clock (rise edge)                                          30.00      30.00
+  clock network delay (ideal)                                       0.00      30.00
+  clock uncertainty                                                -0.10      29.90
+  id_ex_rega_reg[63]/CLK (dffcs1)                                   0.00      29.90 r
+  library setup time                                               -0.32      29.58
+  data required time                                                          29.58
+  ------------------------------------------------------------------------------------
+  data required time                                                          29.58
+  data arrival time                                                          -29.58
+  ------------------------------------------------------------------------------------
+  slack (MET)                                                                  0.00
+
+
+  Startpoint: id_ex_opb_select_reg[2]
+              (rising edge-triggered flip-flop clocked by clock)
+  Endpoint: id_ex_rega_reg[62]
+            (rising edge-triggered flip-flop clocked by clock)
+  Path Group: clock
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  pipeline           tsmcwire              lec25dscc25_TT
+
+  Point                                       Fanout     Trans      Incr       Path
+  ------------------------------------------------------------------------------------
+  clock clock (rise edge)                                           0.00       0.00
+  clock network delay (ideal)                                       0.00       0.00
+  id_ex_opb_select_reg[2]/CLK (dffcs2)                    0.00      0.00 #     0.00 r
+  id_ex_opb_select_reg[2]/QN (dffcs2)                     0.20      0.19       0.19 f
+  n575 (net)                                    4                   0.00       0.19 f
+  U4010/DIN1 (and2s2)                                     0.20      0.00       0.19 f
+  U4010/Q (and2s2)                                        0.11      0.15       0.34 f
+  n3356 (net)                                   1                   0.00       0.34 f
+  U4011/DIN1 (nnd2s3)                                     0.11      0.01       0.35 f
+  U4011/Q (nnd2s3)                                        0.24      0.09       0.43 r
+  n5041 (net)                                   3                   0.00       0.43 r
+  U3307/DIN (i1s4)                                        0.24      0.01       0.44 r
+  U3307/Q (i1s4)                                          0.14      0.06       0.50 f
+  n5040 (net)                                   6                   0.00       0.50 f
+  U3816/DIN1 (or5s1)                                      0.14      0.00       0.50 f
+  U3816/Q (or5s1)                                         0.16      0.23       0.73 f
+  n1988 (net)                                   1                   0.00       0.73 f
+  U3321/DIN1 (and2s2)                                     0.16      0.00       0.73 f
+  U3321/Q (and2s2)                                        0.20      0.19       0.92 f
+  n2990 (net)                                   3                   0.00       0.92 f
+  U3218/DIN (ib1s6)                                       0.20      0.01       0.94 f
+  U3218/Q (ib1s6)                                         0.12      0.09       1.02 r
+  n5033 (net)                                  22                   0.00       1.02 r
+  U3217/DIN3 (aoi21s3)                                    0.12      0.00       1.02 r
+  U3217/Q (aoi21s3)                                       0.33      0.06       1.09 f
+  n1555 (net)                                   1                   0.00       1.09 f
+  U3763/DIN5 (oai221s2)                                   0.33      0.00       1.09 f
+  U3763/Q (oai221s2)                                      0.70      0.22       1.31 r
+  ex_stage_0/opb_mux_out[57] (net)              2                   0.00       1.31 r
+  U3230/DIN (nb1s2)                                       0.70      0.00       1.31 r
+  U3230/Q (nb1s2)                                         0.27      0.21       1.52 r
+  n3321 (net)                                   5                   0.00       1.52 r
+  ex_stage_0/alu_0/mult_56/B[57] (pipeline_DW02_mult_0)             0.00       1.52 r
+  ex_stage_0/alu_0/mult_56/B[57] (net)                              0.00       1.52 r
+  ex_stage_0/alu_0/mult_56/U9/DIN (ib1s6)                 0.27      0.01       1.53 r
+  ex_stage_0/alu_0/mult_56/U9/Q (ib1s6)                   0.06      0.03       1.56 f
+  ex_stage_0/alu_0/mult_56/n298 (net)           7                   0.00       1.56 f
+  ex_stage_0/alu_0/mult_56/U2441/DIN1 (nor2s1)            0.06      0.00       1.57 f
+  ex_stage_0/alu_0/mult_56/U2441/Q (nor2s1)               0.47      0.13       1.69 r
+  ex_stage_0/alu_0/mult_56/ab[0][57] (net)      2                   0.00       1.69 r
+  ex_stage_0/alu_0/mult_56/U159/DIN2 (xor2s1)             0.47      0.00       1.69 r
+  ex_stage_0/alu_0/mult_56/U159/Q (xor2s1)                0.22      0.21       1.91 r
+  ex_stage_0/alu_0/mult_56/SUMB[1][56] (net)     1                  0.00       1.91 r
+  ex_stage_0/alu_0/mult_56/S2_2_55/CIN (fadd1s2)          0.22      0.00       1.91 r
+  ex_stage_0/alu_0/mult_56/S2_2_55/OUTS (fadd1s2)         0.20      0.40       2.32 f
+  ex_stage_0/alu_0/mult_56/SUMB[2][55] (net)     1                  0.00       2.32 f
+  ex_stage_0/alu_0/mult_56/S2_3_54/CIN (fadd1s2)          0.20      0.00       2.32 f
+  ex_stage_0/alu_0/mult_56/S2_3_54/OUTS (fadd1s2)         0.22      0.49       2.81 r
+  ex_stage_0/alu_0/mult_56/SUMB[3][54] (net)     1                  0.00       2.81 r
+  ex_stage_0/alu_0/mult_56/S2_4_53/CIN (fadd1s2)          0.22      0.00       2.82 r
+  ex_stage_0/alu_0/mult_56/S2_4_53/OUTS (fadd1s2)         0.20      0.40       3.22 f
+  ex_stage_0/alu_0/mult_56/SUMB[4][53] (net)     1                  0.00       3.22 f
+  ex_stage_0/alu_0/mult_56/S2_5_52/CIN (fadd1s2)          0.20      0.00       3.22 f
+  ex_stage_0/alu_0/mult_56/S2_5_52/OUTS (fadd1s2)         0.22      0.49       3.72 r
+  ex_stage_0/alu_0/mult_56/SUMB[5][52] (net)     1                  0.00       3.72 r
+  ex_stage_0/alu_0/mult_56/S2_6_51/CIN (fadd1s2)          0.22      0.00       3.72 r
+  ex_stage_0/alu_0/mult_56/S2_6_51/OUTS (fadd1s2)         0.20      0.40       4.12 f
+  ex_stage_0/alu_0/mult_56/SUMB[6][51] (net)     1                  0.00       4.12 f
+  ex_stage_0/alu_0/mult_56/S2_7_50/CIN (fadd1s2)          0.20      0.00       4.13 f
+  ex_stage_0/alu_0/mult_56/S2_7_50/OUTS (fadd1s2)         0.22      0.49       4.62 r
+  ex_stage_0/alu_0/mult_56/SUMB[7][50] (net)     1                  0.00       4.62 r
+  ex_stage_0/alu_0/mult_56/S2_8_49/CIN (fadd1s2)          0.22      0.00       4.63 r
+  ex_stage_0/alu_0/mult_56/S2_8_49/OUTS (fadd1s2)         0.18      0.39       5.02 f
+  ex_stage_0/alu_0/mult_56/SUMB[8][49] (net)     1                  0.00       5.02 f
+  ex_stage_0/alu_0/mult_56/S2_9_48/CIN (fadd1s1)          0.18      0.00       5.02 f
+  ex_stage_0/alu_0/mult_56/S2_9_48/OUTS (fadd1s1)         0.32      0.49       5.51 r
+  ex_stage_0/alu_0/mult_56/SUMB[9][48] (net)     1                  0.00       5.51 r
+  ex_stage_0/alu_0/mult_56/S2_10_47/CIN (fadd1s2)         0.32      0.00       5.52 r
+  ex_stage_0/alu_0/mult_56/S2_10_47/OUTS (fadd1s2)        0.20      0.41       5.93 f
+  ex_stage_0/alu_0/mult_56/SUMB[10][47] (net)     1                 0.00       5.93 f
+  ex_stage_0/alu_0/mult_56/S2_11_46/CIN (fadd1s2)         0.20      0.00       5.94 f
+  ex_stage_0/alu_0/mult_56/S2_11_46/OUTS (fadd1s2)        0.22      0.49       6.43 r
+  ex_stage_0/alu_0/mult_56/SUMB[11][46] (net)     1                 0.00       6.43 r
+  ex_stage_0/alu_0/mult_56/S2_12_45/CIN (fadd1s2)         0.22      0.00       6.43 r
+  ex_stage_0/alu_0/mult_56/S2_12_45/OUTS (fadd1s2)        0.20      0.40       6.84 f
+  ex_stage_0/alu_0/mult_56/SUMB[12][45] (net)     1                 0.00       6.84 f
+  ex_stage_0/alu_0/mult_56/S2_13_44/CIN (fadd1s2)         0.20      0.00       6.84 f
+  ex_stage_0/alu_0/mult_56/S2_13_44/OUTS (fadd1s2)        0.22      0.49       7.33 r
+  ex_stage_0/alu_0/mult_56/SUMB[13][44] (net)     1                 0.00       7.33 r
+  ex_stage_0/alu_0/mult_56/S2_14_43/CIN (fadd1s2)         0.22      0.00       7.34 r
+  ex_stage_0/alu_0/mult_56/S2_14_43/OUTS (fadd1s2)        0.20      0.40       7.74 f
+  ex_stage_0/alu_0/mult_56/SUMB[14][43] (net)     1                 0.00       7.74 f
+  ex_stage_0/alu_0/mult_56/S2_15_42/CIN (fadd1s2)         0.20      0.00       7.75 f
+  ex_stage_0/alu_0/mult_56/S2_15_42/OUTS (fadd1s2)        0.22      0.49       8.24 r
+  ex_stage_0/alu_0/mult_56/SUMB[15][42] (net)     1                 0.00       8.24 r
+  ex_stage_0/alu_0/mult_56/S2_16_41/CIN (fadd1s2)         0.22      0.00       8.24 r
+  ex_stage_0/alu_0/mult_56/S2_16_41/OUTS (fadd1s2)        0.20      0.40       8.65 f
+  ex_stage_0/alu_0/mult_56/SUMB[16][41] (net)     1                 0.00       8.65 f
+  ex_stage_0/alu_0/mult_56/S2_17_40/CIN (fadd1s2)         0.20      0.00       8.65 f
+  ex_stage_0/alu_0/mult_56/S2_17_40/OUTS (fadd1s2)        0.22      0.49       9.14 r
+  ex_stage_0/alu_0/mult_56/SUMB[17][40] (net)     1                 0.00       9.14 r
+  ex_stage_0/alu_0/mult_56/S2_18_39/CIN (fadd1s2)         0.22      0.00       9.15 r
+  ex_stage_0/alu_0/mult_56/S2_18_39/OUTS (fadd1s2)        0.20      0.40       9.55 f
+  ex_stage_0/alu_0/mult_56/SUMB[18][39] (net)     1                 0.00       9.55 f
+  ex_stage_0/alu_0/mult_56/S2_19_38/CIN (fadd1s2)         0.20      0.00       9.56 f
+  ex_stage_0/alu_0/mult_56/S2_19_38/OUTS (fadd1s2)        0.22      0.49      10.05 r
+  ex_stage_0/alu_0/mult_56/SUMB[19][38] (net)     1                 0.00      10.05 r
+  ex_stage_0/alu_0/mult_56/S2_20_37/CIN (fadd1s2)         0.22      0.00      10.05 r
+  ex_stage_0/alu_0/mult_56/S2_20_37/OUTS (fadd1s2)        0.20      0.40      10.46 f
+  ex_stage_0/alu_0/mult_56/SUMB[20][37] (net)     1                 0.00      10.46 f
+  ex_stage_0/alu_0/mult_56/S2_21_36/CIN (fadd1s2)         0.20      0.00      10.46 f
+  ex_stage_0/alu_0/mult_56/S2_21_36/OUTS (fadd1s2)        0.22      0.49      10.95 r
+  ex_stage_0/alu_0/mult_56/SUMB[21][36] (net)     1                 0.00      10.95 r
+  ex_stage_0/alu_0/mult_56/S2_22_35/CIN (fadd1s2)         0.22      0.00      10.96 r
+  ex_stage_0/alu_0/mult_56/S2_22_35/OUTS (fadd1s2)        0.20      0.40      11.36 f
+  ex_stage_0/alu_0/mult_56/SUMB[22][35] (net)     1                 0.00      11.36 f
+  ex_stage_0/alu_0/mult_56/S2_23_34/CIN (fadd1s2)         0.20      0.00      11.37 f
+  ex_stage_0/alu_0/mult_56/S2_23_34/OUTS (fadd1s2)        0.22      0.49      11.86 r
+  ex_stage_0/alu_0/mult_56/SUMB[23][34] (net)     1                 0.00      11.86 r
+  ex_stage_0/alu_0/mult_56/S2_24_33/CIN (fadd1s2)         0.22      0.00      11.86 r
+  ex_stage_0/alu_0/mult_56/S2_24_33/OUTS (fadd1s2)        0.20      0.40      12.27 f
+  ex_stage_0/alu_0/mult_56/SUMB[24][33] (net)     1                 0.00      12.27 f
+  ex_stage_0/alu_0/mult_56/S2_25_32/CIN (fadd1s2)         0.20      0.00      12.27 f
+  ex_stage_0/alu_0/mult_56/S2_25_32/OUTS (fadd1s2)        0.22      0.49      12.76 r
+  ex_stage_0/alu_0/mult_56/SUMB[25][32] (net)     1                 0.00      12.76 r
+  ex_stage_0/alu_0/mult_56/S2_26_31/CIN (fadd1s2)         0.22      0.00      12.77 r
+  ex_stage_0/alu_0/mult_56/S2_26_31/OUTS (fadd1s2)        0.20      0.40      13.17 f
+  ex_stage_0/alu_0/mult_56/SUMB[26][31] (net)     1                 0.00      13.17 f
+  ex_stage_0/alu_0/mult_56/S2_27_30/CIN (fadd1s2)         0.20      0.00      13.18 f
+  ex_stage_0/alu_0/mult_56/S2_27_30/OUTS (fadd1s2)        0.22      0.49      13.67 r
+  ex_stage_0/alu_0/mult_56/SUMB[27][30] (net)     1                 0.00      13.67 r
+  ex_stage_0/alu_0/mult_56/S2_28_29/CIN (fadd1s2)         0.22      0.00      13.67 r
+  ex_stage_0/alu_0/mult_56/S2_28_29/OUTS (fadd1s2)        0.20      0.40      14.08 f
+  ex_stage_0/alu_0/mult_56/SUMB[28][29] (net)     1                 0.00      14.08 f
+  ex_stage_0/alu_0/mult_56/S2_29_28/CIN (fadd1s2)         0.20      0.00      14.08 f
+  ex_stage_0/alu_0/mult_56/S2_29_28/OUTS (fadd1s2)        0.22      0.49      14.57 r
+  ex_stage_0/alu_0/mult_56/SUMB[29][28] (net)     1                 0.00      14.57 r
+  ex_stage_0/alu_0/mult_56/S2_30_27/CIN (fadd1s2)         0.22      0.00      14.58 r
+  ex_stage_0/alu_0/mult_56/S2_30_27/OUTS (fadd1s2)        0.20      0.40      14.98 f
+  ex_stage_0/alu_0/mult_56/SUMB[30][27] (net)     1                 0.00      14.98 f
+  ex_stage_0/alu_0/mult_56/S2_31_26/CIN (fadd1s2)         0.20      0.00      14.98 f
+  ex_stage_0/alu_0/mult_56/S2_31_26/OUTS (fadd1s2)        0.22      0.49      15.48 r
+  ex_stage_0/alu_0/mult_56/SUMB[31][26] (net)     1                 0.00      15.48 r
+  ex_stage_0/alu_0/mult_56/S2_32_25/CIN (fadd1s2)         0.22      0.00      15.48 r
+  ex_stage_0/alu_0/mult_56/S2_32_25/OUTS (fadd1s2)        0.20      0.40      15.89 f
+  ex_stage_0/alu_0/mult_56/SUMB[32][25] (net)     1                 0.00      15.89 f
+  ex_stage_0/alu_0/mult_56/S2_33_24/CIN (fadd1s2)         0.20      0.00      15.89 f
+  ex_stage_0/alu_0/mult_56/S2_33_24/OUTS (fadd1s2)        0.22      0.49      16.38 r
+  ex_stage_0/alu_0/mult_56/SUMB[33][24] (net)     1                 0.00      16.38 r
+  ex_stage_0/alu_0/mult_56/S2_34_23/CIN (fadd1s2)         0.22      0.00      16.39 r
+  ex_stage_0/alu_0/mult_56/S2_34_23/OUTS (fadd1s2)        0.20      0.40      16.79 f
+  ex_stage_0/alu_0/mult_56/SUMB[34][23] (net)     1                 0.00      16.79 f
+  ex_stage_0/alu_0/mult_56/S2_35_22/CIN (fadd1s2)         0.20      0.00      16.79 f
+  ex_stage_0/alu_0/mult_56/S2_35_22/OUTS (fadd1s2)        0.22      0.49      17.29 r
+  ex_stage_0/alu_0/mult_56/SUMB[35][22] (net)     1                 0.00      17.29 r
+  ex_stage_0/alu_0/mult_56/S2_36_21/CIN (fadd1s2)         0.22      0.00      17.29 r
+  ex_stage_0/alu_0/mult_56/S2_36_21/OUTS (fadd1s2)        0.20      0.40      17.70 f
+  ex_stage_0/alu_0/mult_56/SUMB[36][21] (net)     1                 0.00      17.70 f
+  ex_stage_0/alu_0/mult_56/S2_37_20/CIN (fadd1s2)         0.20      0.00      17.70 f
+  ex_stage_0/alu_0/mult_56/S2_37_20/OUTS (fadd1s2)        0.22      0.49      18.19 r
+  ex_stage_0/alu_0/mult_56/SUMB[37][20] (net)     1                 0.00      18.19 r
+  ex_stage_0/alu_0/mult_56/S2_38_19/CIN (fadd1s2)         0.22      0.00      18.20 r
+  ex_stage_0/alu_0/mult_56/S2_38_19/OUTS (fadd1s2)        0.20      0.40      18.60 f
+  ex_stage_0/alu_0/mult_56/SUMB[38][19] (net)     1                 0.00      18.60 f
+  ex_stage_0/alu_0/mult_56/S2_39_18/CIN (fadd1s2)         0.20      0.00      18.60 f
+  ex_stage_0/alu_0/mult_56/S2_39_18/OUTS (fadd1s2)        0.22      0.49      19.10 r
+  ex_stage_0/alu_0/mult_56/SUMB[39][18] (net)     1                 0.00      19.10 r
+  ex_stage_0/alu_0/mult_56/S2_40_17/CIN (fadd1s2)         0.22      0.00      19.10 r
+  ex_stage_0/alu_0/mult_56/S2_40_17/OUTS (fadd1s2)        0.20      0.40      19.50 f
+  ex_stage_0/alu_0/mult_56/SUMB[40][17] (net)     1                 0.00      19.50 f
+  ex_stage_0/alu_0/mult_56/S2_41_16/CIN (fadd1s2)         0.20      0.00      19.51 f
+  ex_stage_0/alu_0/mult_56/S2_41_16/OUTS (fadd1s2)        0.22      0.49      20.00 r
+  ex_stage_0/alu_0/mult_56/SUMB[41][16] (net)     1                 0.00      20.00 r
+  ex_stage_0/alu_0/mult_56/S2_42_15/CIN (fadd1s2)         0.22      0.00      20.01 r
+  ex_stage_0/alu_0/mult_56/S2_42_15/OUTS (fadd1s2)        0.20      0.40      20.41 f
+  ex_stage_0/alu_0/mult_56/SUMB[42][15] (net)     1                 0.00      20.41 f
+  ex_stage_0/alu_0/mult_56/S2_43_14/CIN (fadd1s2)         0.20      0.00      20.41 f
+  ex_stage_0/alu_0/mult_56/S2_43_14/OUTS (fadd1s2)        0.22      0.49      20.91 r
+  ex_stage_0/alu_0/mult_56/SUMB[43][14] (net)     1                 0.00      20.91 r
+  ex_stage_0/alu_0/mult_56/S2_44_13/CIN (fadd1s2)         0.22      0.00      20.91 r
+  ex_stage_0/alu_0/mult_56/S2_44_13/OUTS (fadd1s2)        0.20      0.40      21.31 f
+  ex_stage_0/alu_0/mult_56/SUMB[44][13] (net)     1                 0.00      21.31 f
+  ex_stage_0/alu_0/mult_56/S2_45_12/CIN (fadd1s2)         0.20      0.00      21.32 f
+  ex_stage_0/alu_0/mult_56/S2_45_12/OUTS (fadd1s2)        0.22      0.49      21.81 r
+  ex_stage_0/alu_0/mult_56/SUMB[45][12] (net)     1                 0.00      21.81 r
+  ex_stage_0/alu_0/mult_56/S2_46_11/CIN (fadd1s2)         0.22      0.00      21.82 r
+  ex_stage_0/alu_0/mult_56/S2_46_11/OUTS (fadd1s2)        0.20      0.40      22.22 f
+  ex_stage_0/alu_0/mult_56/SUMB[46][11] (net)     1                 0.00      22.22 f
+  ex_stage_0/alu_0/mult_56/S2_47_10/CIN (fadd1s2)         0.20      0.00      22.22 f
+  ex_stage_0/alu_0/mult_56/S2_47_10/OUTS (fadd1s2)        0.22      0.49      22.72 r
+  ex_stage_0/alu_0/mult_56/SUMB[47][10] (net)     1                 0.00      22.72 r
+  ex_stage_0/alu_0/mult_56/S2_48_9/CIN (fadd1s2)          0.22      0.00      22.72 r
+  ex_stage_0/alu_0/mult_56/S2_48_9/OUTS (fadd1s2)         0.20      0.40      23.12 f
+  ex_stage_0/alu_0/mult_56/SUMB[48][9] (net)     1                  0.00      23.12 f
+  ex_stage_0/alu_0/mult_56/S2_49_8/CIN (fadd1s2)          0.20      0.00      23.13 f
+  ex_stage_0/alu_0/mult_56/S2_49_8/OUTS (fadd1s2)         0.22      0.49      23.62 r
+  ex_stage_0/alu_0/mult_56/SUMB[49][8] (net)     1                  0.00      23.62 r
+  ex_stage_0/alu_0/mult_56/S2_50_7/CIN (fadd1s2)          0.22      0.00      23.63 r
+  ex_stage_0/alu_0/mult_56/S2_50_7/OUTS (fadd1s2)         0.20      0.40      24.03 f
+  ex_stage_0/alu_0/mult_56/SUMB[50][7] (net)     1                  0.00      24.03 f
+  ex_stage_0/alu_0/mult_56/S2_51_6/CIN (fadd1s2)          0.20      0.00      24.03 f
+  ex_stage_0/alu_0/mult_56/S2_51_6/OUTS (fadd1s2)         0.22      0.49      24.53 r
+  ex_stage_0/alu_0/mult_56/SUMB[51][6] (net)     1                  0.00      24.53 r
+  ex_stage_0/alu_0/mult_56/S2_52_5/CIN (fadd1s2)          0.22      0.00      24.53 r
+  ex_stage_0/alu_0/mult_56/S2_52_5/OUTS (fadd1s2)         0.20      0.40      24.93 f
+  ex_stage_0/alu_0/mult_56/SUMB[52][5] (net)     1                  0.00      24.93 f
+  ex_stage_0/alu_0/mult_56/S2_53_4/CIN (fadd1s2)          0.20      0.00      24.94 f
+  ex_stage_0/alu_0/mult_56/S2_53_4/OUTS (fadd1s2)         0.22      0.49      25.43 r
+  ex_stage_0/alu_0/mult_56/SUMB[53][4] (net)     1                  0.00      25.43 r
+  ex_stage_0/alu_0/mult_56/S2_54_3/CIN (fadd1s2)          0.22      0.00      25.43 r
+  ex_stage_0/alu_0/mult_56/S2_54_3/OUTS (fadd1s2)         0.20      0.40      25.84 f
+  ex_stage_0/alu_0/mult_56/SUMB[54][3] (net)     1                  0.00      25.84 f
+  ex_stage_0/alu_0/mult_56/S2_55_2/CIN (fadd1s2)          0.20      0.00      25.84 f
+  ex_stage_0/alu_0/mult_56/S2_55_2/OUTS (fadd1s2)         0.26      0.51      26.35 r
+  ex_stage_0/alu_0/mult_56/SUMB[55][2] (net)     1                  0.00      26.35 r
+  ex_stage_0/alu_0/mult_56/S2_56_1/CIN (fadd1s3)          0.26      0.01      26.36 r
+  ex_stage_0/alu_0/mult_56/S2_56_1/OUTS (fadd1s3)         0.15      0.34      26.70 f
+  ex_stage_0/alu_0/mult_56/SUMB[56][1] (net)     1                  0.00      26.70 f
+  ex_stage_0/alu_0/mult_56/S1_57_0/CIN (fadd1s2)          0.15      0.00      26.71 f
+  ex_stage_0/alu_0/mult_56/S1_57_0/OUTC (fadd1s2)         0.26      0.33      27.03 f
+  ex_stage_0/alu_0/mult_56/CARRYB[57][0] (net)     1                0.00      27.03 f
+  ex_stage_0/alu_0/mult_56/S1_58_0/BIN (fadd1s3)          0.26      0.01      27.04 f
+  ex_stage_0/alu_0/mult_56/S1_58_0/OUTC (fadd1s3)         0.17      0.30      27.34 f
+  ex_stage_0/alu_0/mult_56/CARRYB[58][0] (net)     1                0.00      27.34 f
+  ex_stage_0/alu_0/mult_56/S1_59_0/BIN (fadd1s3)          0.17      0.01      27.35 f
+  ex_stage_0/alu_0/mult_56/S1_59_0/OUTC (fadd1s3)         0.17      0.28      27.63 f
+  ex_stage_0/alu_0/mult_56/CARRYB[59][0] (net)     1                0.00      27.63 f
+  ex_stage_0/alu_0/mult_56/S1_60_0/BIN (fadd1s3)          0.17      0.01      27.64 f
+  ex_stage_0/alu_0/mult_56/S1_60_0/OUTC (fadd1s3)         0.17      0.28      27.92 f
+  ex_stage_0/alu_0/mult_56/CARRYB[60][0] (net)     1                0.00      27.92 f
+  ex_stage_0/alu_0/mult_56/S1_61_0/BIN (fadd1s3)          0.17      0.01      27.93 f
+  ex_stage_0/alu_0/mult_56/S1_61_0/OUTC (fadd1s3)         0.16      0.27      28.20 f
+  ex_stage_0/alu_0/mult_56/CARRYB[61][0] (net)     1                0.00      28.20 f
+  ex_stage_0/alu_0/mult_56/S1_62_0/BIN (fadd1s2)          0.16      0.01      28.20 f
+  ex_stage_0/alu_0/mult_56/S1_62_0/OUTS (fadd1s2)         0.13      0.46      28.66 r
+  ex_stage_0/alu_0/mult_56/PRODUCT[62] (net)     1                  0.00      28.66 r
+  ex_stage_0/alu_0/mult_56/PRODUCT[62] (pipeline_DW02_mult_0)       0.00      28.66 r
+  ex_stage_0/alu_0/N986 (net)                                       0.00      28.66 r
+  U3835/DIN1 (and2s1)                                     0.13      0.00      28.66 r
+  U3835/Q (and2s1)                                        0.20      0.14      28.80 r
+  n3345 (net)                                   1                   0.00      28.80 r
+  U3834/DIN3 (nor3s1)                                     0.20      0.00      28.81 r
+  U3834/Q (nor3s1)                                        0.36      0.12      28.92 f
+  n1484 (net)                                   1                   0.00      28.92 f
+  U1197/DIN3 (and4s3)                                     0.36      0.00      28.93 f
+  U1197/Q (and4s3)                                        0.12      0.17      29.09 f
+  n1131 (net)                                   3                   0.00      29.09 f
+  U3305/DIN1 (oai22s2)                                    0.12      0.00      29.10 f
+  U3305/Q (oai22s2)                                       0.55      0.11      29.21 r
+  n1478 (net)                                   1                   0.00      29.21 r
+  U4429/DIN1 (aoi22s2)                                    0.55      0.00      29.21 r
+  U4429/Q (aoi22s2)                                       0.74      0.11      29.32 f
+  n1477 (net)                                   1                   0.00      29.32 f
+  U4428/DIN4 (oai22s2)                                    0.74      0.00      29.32 f
+  U4428/Q (oai22s2)                                       0.49      0.22      29.54 r
+  N383 (net)                                    1                   0.00      29.54 r
+  id_ex_rega_reg[62]/CLRB (dffcs1)                        0.49      0.00      29.54 r
+  data arrival time                                                           29.54
+
+  clock clock (rise edge)                                          30.00      30.00
+  clock network delay (ideal)                                       0.00      30.00
+  clock uncertainty                                                -0.10      29.90
+  id_ex_rega_reg[62]/CLK (dffcs1)                                   0.00      29.90 r
+  library setup time                                               -0.32      29.58
+  data required time                                                          29.58
+  ------------------------------------------------------------------------------------
+  data required time                                                          29.58
+  data arrival time                                                          -29.54
+  ------------------------------------------------------------------------------------
+  slack (MET)                                                                  0.04
+
+
+  Startpoint: reset (input port clocked by clock)
+  Endpoint: if_stage_0/PC_reg_reg[38]
+            (rising edge-triggered flip-flop clocked by clock)
+  Path Group: input_grp
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  pipeline           tsmcwire              lec25dscc25_TT
+
+  Point                                       Fanout     Trans      Incr       Path
+  ------------------------------------------------------------------------------------
+  clock clock (rise edge)                                           0.00       0.00
+  clock network delay (ideal)                                       0.00       0.00
+  input external delay                                              0.10       0.10 r
+  reset (in)                                              0.30      0.05       0.15 r
+  reset (net)                                   3                   0.00       0.15 r
+  U3628/DIN (nb1s2)                                       0.30      0.00       0.16 r
+  U3628/Q (nb1s2)                                         0.25      0.18       0.34 r
+  n3184 (net)                                  25                   0.00       0.34 r
+  U3309/DIN (ib1s1)                                       0.25      0.00       0.34 r
+  U3309/Q (ib1s1)                                         0.12      0.05       0.39 f
+  n5290 (net)                                   1                   0.00       0.39 f
+  U3495/DIN (hi1s1)                                       0.12      0.00       0.39 f
+  U3495/Q (hi1s1)                                         0.73      0.30       0.69 r
+  n3113 (net)                                   4                   0.00       0.69 r
+  U3478/DIN (ib1s1)                                       0.73      0.00       0.69 r
+  U3478/Q (ib1s1)                                         0.62      0.34       1.03 f
+  n3116 (net)                                  32                   0.00       1.03 f
+  U3480/DIN (hi1s1)                                       0.62      0.00       1.03 f
+  U3480/Q (hi1s1)                                         0.58      0.31       1.34 r
+  n3098 (net)                                   4                   0.00       1.34 r
+  U3481/DIN (hi1s1)                                       0.58      0.00       1.34 r
+  U3481/Q (hi1s1)                                         1.80      0.82       2.16 f
+  n3099 (net)                                  27                   0.00       2.16 f
+  U5480/DIN (ib1s1)                                       1.80      0.00       2.16 f
+  U5480/Q (ib1s1)                                         0.45      0.18       2.35 r
+  n5289 (net)                                   1                   0.00       2.35 r
+  U3880/DIN (ib1s1)                                       0.45      0.00       2.35 r
+  U3880/Q (ib1s1)                                         0.21      0.11       2.45 f
+  n5285 (net)                                   2                   0.00       2.45 f
+  U3873/DIN (ib1s1)                                       0.21      0.00       2.45 f
+  U3873/Q (ib1s1)                                         0.22      0.10       2.56 r
+  n5283 (net)                                   3                   0.00       2.56 r
+  U4166/DIN (ib1s1)                                       0.22      0.00       2.56 r
+  U4166/Q (ib1s1)                                         0.26      0.14       2.70 f
+  n5273 (net)                                  13                   0.00       2.70 f
+  if_stage_0/PC_reg_reg[38]/DIN (dffcs1)                  0.26      0.00       2.70 f
+  data arrival time                                                            2.70
+
+  clock clock (rise edge)                                          30.00      30.00
+  clock network delay (ideal)                                       0.00      30.00
+  clock uncertainty                                                -0.10      29.90
+  if_stage_0/PC_reg_reg[38]/CLK (dffcs1)                            0.00      29.90 r
+  library setup time                                               -0.32      29.58
+  data required time                                                          29.58
+  ------------------------------------------------------------------------------------
+  data required time                                                          29.58
+  data arrival time                                                           -2.70
+  ------------------------------------------------------------------------------------
+  slack (MET)                                                                 26.88
+
+
+  Startpoint: reset (input port clocked by clock)
+  Endpoint: if_stage_0/PC_reg_reg[39]
+            (rising edge-triggered flip-flop clocked by clock)
+  Path Group: input_grp
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  pipeline           tsmcwire              lec25dscc25_TT
+
+  Point                                       Fanout     Trans      Incr       Path
+  ------------------------------------------------------------------------------------
+  clock clock (rise edge)                                           0.00       0.00
+  clock network delay (ideal)                                       0.00       0.00
+  input external delay                                              0.10       0.10 r
+  reset (in)                                              0.30      0.05       0.15 r
+  reset (net)                                   3                   0.00       0.15 r
+  U3628/DIN (nb1s2)                                       0.30      0.00       0.16 r
+  U3628/Q (nb1s2)                                         0.25      0.18       0.34 r
+  n3184 (net)                                  25                   0.00       0.34 r
+  U3309/DIN (ib1s1)                                       0.25      0.00       0.34 r
+  U3309/Q (ib1s1)                                         0.12      0.05       0.39 f
+  n5290 (net)                                   1                   0.00       0.39 f
+  U3495/DIN (hi1s1)                                       0.12      0.00       0.39 f
+  U3495/Q (hi1s1)                                         0.73      0.30       0.69 r
+  n3113 (net)                                   4                   0.00       0.69 r
+  U3478/DIN (ib1s1)                                       0.73      0.00       0.69 r
+  U3478/Q (ib1s1)                                         0.62      0.34       1.03 f
+  n3116 (net)                                  32                   0.00       1.03 f
+  U3480/DIN (hi1s1)                                       0.62      0.00       1.03 f
+  U3480/Q (hi1s1)                                         0.58      0.31       1.34 r
+  n3098 (net)                                   4                   0.00       1.34 r
+  U3481/DIN (hi1s1)                                       0.58      0.00       1.34 r
+  U3481/Q (hi1s1)                                         1.80      0.82       2.16 f
+  n3099 (net)                                  27                   0.00       2.16 f
+  U5480/DIN (ib1s1)                                       1.80      0.00       2.16 f
+  U5480/Q (ib1s1)                                         0.45      0.18       2.35 r
+  n5289 (net)                                   1                   0.00       2.35 r
+  U3880/DIN (ib1s1)                                       0.45      0.00       2.35 r
+  U3880/Q (ib1s1)                                         0.21      0.11       2.45 f
+  n5285 (net)                                   2                   0.00       2.45 f
+  U3873/DIN (ib1s1)                                       0.21      0.00       2.45 f
+  U3873/Q (ib1s1)                                         0.22      0.10       2.56 r
+  n5283 (net)                                   3                   0.00       2.56 r
+  U4166/DIN (ib1s1)                                       0.22      0.00       2.56 r
+  U4166/Q (ib1s1)                                         0.26      0.14       2.70 f
+  n5273 (net)                                  13                   0.00       2.70 f
+  if_stage_0/PC_reg_reg[39]/DIN (dffcs1)                  0.26      0.00       2.70 f
+  data arrival time                                                            2.70
+
+  clock clock (rise edge)                                          30.00      30.00
+  clock network delay (ideal)                                       0.00      30.00
+  clock uncertainty                                                -0.10      29.90
+  if_stage_0/PC_reg_reg[39]/CLK (dffcs1)                            0.00      29.90 r
+  library setup time                                               -0.32      29.58
+  data required time                                                          29.58
+  ------------------------------------------------------------------------------------
+  data required time                                                          29.58
+  data arrival time                                                           -2.70
+  ------------------------------------------------------------------------------------
+  slack (MET)                                                                 26.88
+
+
+  Startpoint: if_stage_0/PC_reg_reg[2]
+              (rising edge-triggered flip-flop clocked by clock)
+  Endpoint: if_NPC_out[63]
+            (output port clocked by clock)
+  Path Group: output_grp
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  pipeline           tsmcwire              lec25dscc25_TT
+
+  Point                                       Fanout     Trans      Incr       Path
+  ------------------------------------------------------------------------------------
+  if_stage_0/PC_reg_reg[2]/CLK (dffcs1)                   0.00      0.00 #     0.00 r
+  if_stage_0/PC_reg_reg[2]/QN (dffcs1)                    0.25      0.18       0.18 r
+  n5194 (net)                                   1                   0.00       0.18 r
+  U4695/DIN (i1s3)                                        0.25      0.00       0.18 r
+  U4695/Q (i1s3)                                          0.58      0.28       0.47 f
+  n5193 (net)                                  31                   0.00       0.47 f
+  if_stage_0/add_48/A[2] (pipeline_DW01_add_1)                      0.00       0.47 f
+  if_stage_0/add_48/A[2] (net)                                      0.00       0.47 f
+  if_stage_0/add_48/U2/DIN (ib1s1)                        0.58      0.00       0.47 f
+  if_stage_0/add_48/U2/Q (ib1s1)                          0.28      0.14       0.61 r
+  if_stage_0/add_48/SUM[2] (net)                2                   0.00       0.61 r
+  if_stage_0/add_48/U1/DIN (ib1s1)                        0.28      0.00       0.61 r
+  if_stage_0/add_48/U1/Q (ib1s1)                          0.16      0.07       0.69 f
+  if_stage_0/add_48/n61 (net)                   2                   0.00       0.69 f
+  if_stage_0/add_48/U38/DIN1 (and2s1)                     0.16      0.00       0.69 f
+  if_stage_0/add_48/U38/Q (and2s1)                        0.17      0.20       0.89 f
+  if_stage_0/add_48/n30 (net)                   2                   0.00       0.89 f
+  if_stage_0/add_48/U3/DIN1 (and2s1)                      0.17      0.00       0.89 f
+  if_stage_0/add_48/U3/Q (and2s1)                         0.17      0.20       1.09 f
+  if_stage_0/add_48/n1 (net)                    2                   0.00       1.09 f
+  if_stage_0/add_48/U39/DIN1 (and2s1)                     0.17      0.00       1.09 f
+  if_stage_0/add_48/U39/Q (and2s1)                        0.17      0.20       1.29 f
+  if_stage_0/add_48/n31 (net)                   2                   0.00       1.29 f
+  if_stage_0/add_48/U40/DIN1 (and2s1)                     0.17      0.00       1.29 f
+  if_stage_0/add_48/U40/Q (and2s1)                        0.17      0.20       1.49 f
+  if_stage_0/add_48/n32 (net)                   2                   0.00       1.49 f
+  if_stage_0/add_48/U4/DIN1 (and2s1)                      0.17      0.00       1.49 f
+  if_stage_0/add_48/U4/Q (and2s1)                         0.17      0.20       1.70 f
+  if_stage_0/add_48/n2 (net)                    2                   0.00       1.70 f
+  if_stage_0/add_48/U41/DIN1 (and2s1)                     0.17      0.00       1.70 f
+  if_stage_0/add_48/U41/Q (and2s1)                        0.17      0.20       1.90 f
+  if_stage_0/add_48/n33 (net)                   2                   0.00       1.90 f
+  if_stage_0/add_48/U5/DIN1 (and2s1)                      0.17      0.00       1.90 f
+  if_stage_0/add_48/U5/Q (and2s1)                         0.17      0.20       2.10 f
+  if_stage_0/add_48/n3 (net)                    2                   0.00       2.10 f
+  if_stage_0/add_48/U6/DIN1 (and2s1)                      0.17      0.00       2.10 f
+  if_stage_0/add_48/U6/Q (and2s1)                         0.17      0.20       2.30 f
+  if_stage_0/add_48/n4 (net)                    2                   0.00       2.30 f
+  if_stage_0/add_48/U42/DIN1 (and2s1)                     0.17      0.00       2.30 f
+  if_stage_0/add_48/U42/Q (and2s1)                        0.17      0.20       2.50 f
+  if_stage_0/add_48/n34 (net)                   2                   0.00       2.50 f
+  if_stage_0/add_48/U7/DIN1 (and2s1)                      0.17      0.00       2.50 f
+  if_stage_0/add_48/U7/Q (and2s1)                         0.17      0.20       2.71 f
+  if_stage_0/add_48/n5 (net)                    2                   0.00       2.71 f
+  if_stage_0/add_48/U8/DIN1 (and2s1)                      0.17      0.00       2.71 f
+  if_stage_0/add_48/U8/Q (and2s1)                         0.17      0.20       2.91 f
+  if_stage_0/add_48/n6 (net)                    2                   0.00       2.91 f
+  if_stage_0/add_48/U43/DIN1 (and2s1)                     0.17      0.00       2.91 f
+  if_stage_0/add_48/U43/Q (and2s1)                        0.17      0.20       3.11 f
+  if_stage_0/add_48/n35 (net)                   2                   0.00       3.11 f
+  if_stage_0/add_48/U9/DIN1 (and2s1)                      0.17      0.00       3.11 f
+  if_stage_0/add_48/U9/Q (and2s1)                         0.17      0.20       3.31 f
+  if_stage_0/add_48/n7 (net)                    2                   0.00       3.31 f
+  if_stage_0/add_48/U44/DIN1 (and2s1)                     0.17      0.00       3.31 f
+  if_stage_0/add_48/U44/Q (and2s1)                        0.17      0.20       3.51 f
+  if_stage_0/add_48/n36 (net)                   2                   0.00       3.51 f
+  if_stage_0/add_48/U45/DIN1 (and2s1)                     0.17      0.00       3.51 f
+  if_stage_0/add_48/U45/Q (and2s1)                        0.17      0.20       3.71 f
+  if_stage_0/add_48/n37 (net)                   2                   0.00       3.71 f
+  if_stage_0/add_48/U10/DIN1 (and2s1)                     0.17      0.00       3.72 f
+  if_stage_0/add_48/U10/Q (and2s1)                        0.17      0.20       3.92 f
+  if_stage_0/add_48/n8 (net)                    2                   0.00       3.92 f
+  if_stage_0/add_48/U46/DIN1 (and2s1)                     0.17      0.00       3.92 f
+  if_stage_0/add_48/U46/Q (and2s1)                        0.17      0.20       4.12 f
+  if_stage_0/add_48/n38 (net)                   2                   0.00       4.12 f
+  if_stage_0/add_48/U11/DIN1 (and2s1)                     0.17      0.00       4.12 f
+  if_stage_0/add_48/U11/Q (and2s1)                        0.17      0.20       4.32 f
+  if_stage_0/add_48/n9 (net)                    2                   0.00       4.32 f
+  if_stage_0/add_48/U47/DIN1 (and2s1)                     0.17      0.00       4.32 f
+  if_stage_0/add_48/U47/Q (and2s1)                        0.17      0.20       4.52 f
+  if_stage_0/add_48/n39 (net)                   2                   0.00       4.52 f
+  if_stage_0/add_48/U12/DIN1 (and2s1)                     0.17      0.00       4.52 f
+  if_stage_0/add_48/U12/Q (and2s1)                        0.17      0.20       4.72 f
+  if_stage_0/add_48/n10 (net)                   2                   0.00       4.72 f
+  if_stage_0/add_48/U13/DIN1 (and2s1)                     0.17      0.00       4.73 f
+  if_stage_0/add_48/U13/Q (and2s1)                        0.17      0.20       4.93 f
+  if_stage_0/add_48/n11 (net)                   2                   0.00       4.93 f
+  if_stage_0/add_48/U48/DIN1 (and2s1)                     0.17      0.00       4.93 f
+  if_stage_0/add_48/U48/Q (and2s1)                        0.17      0.20       5.13 f
+  if_stage_0/add_48/n40 (net)                   2                   0.00       5.13 f
+  if_stage_0/add_48/U49/DIN1 (and2s1)                     0.17      0.00       5.13 f
+  if_stage_0/add_48/U49/Q (and2s1)                        0.17      0.20       5.33 f
+  if_stage_0/add_48/n41 (net)                   2                   0.00       5.33 f
+  if_stage_0/add_48/U14/DIN1 (and2s1)                     0.17      0.00       5.33 f
+  if_stage_0/add_48/U14/Q (and2s1)                        0.17      0.20       5.53 f
+  if_stage_0/add_48/n12 (net)                   2                   0.00       5.53 f
+  if_stage_0/add_48/U15/DIN1 (and2s1)                     0.17      0.00       5.53 f
+  if_stage_0/add_48/U15/Q (and2s1)                        0.17      0.20       5.73 f
+  if_stage_0/add_48/n13 (net)                   2                   0.00       5.73 f
+  if_stage_0/add_48/U50/DIN1 (and2s1)                     0.17      0.00       5.73 f
+  if_stage_0/add_48/U50/Q (and2s1)                        0.17      0.20       5.94 f
+  if_stage_0/add_48/n42 (net)                   2                   0.00       5.94 f
+  if_stage_0/add_48/U51/DIN1 (and2s1)                     0.17      0.00       5.94 f
+  if_stage_0/add_48/U51/Q (and2s1)                        0.17      0.20       6.14 f
+  if_stage_0/add_48/n43 (net)                   2                   0.00       6.14 f
+  if_stage_0/add_48/U16/DIN1 (and2s1)                     0.17      0.00       6.14 f
+  if_stage_0/add_48/U16/Q (and2s1)                        0.17      0.20       6.34 f
+  if_stage_0/add_48/n14 (net)                   2                   0.00       6.34 f
+  if_stage_0/add_48/U17/DIN1 (and2s1)                     0.17      0.00       6.34 f
+  if_stage_0/add_48/U17/Q (and2s1)                        0.17      0.20       6.54 f
+  if_stage_0/add_48/n15 (net)                   2                   0.00       6.54 f
+  if_stage_0/add_48/U52/DIN1 (and2s1)                     0.17      0.00       6.54 f
+  if_stage_0/add_48/U52/Q (and2s1)                        0.17      0.20       6.74 f
+  if_stage_0/add_48/n44 (net)                   2                   0.00       6.74 f
+  if_stage_0/add_48/U53/DIN1 (and2s1)                     0.17      0.00       6.74 f
+  if_stage_0/add_48/U53/Q (and2s1)                        0.17      0.20       6.95 f
+  if_stage_0/add_48/n45 (net)                   2                   0.00       6.95 f
+  if_stage_0/add_48/U18/DIN1 (and2s1)                     0.17      0.00       6.95 f
+  if_stage_0/add_48/U18/Q (and2s1)                        0.17      0.20       7.15 f
+  if_stage_0/add_48/n16 (net)                   2                   0.00       7.15 f
+  if_stage_0/add_48/U19/DIN1 (and2s1)                     0.17      0.00       7.15 f
+  if_stage_0/add_48/U19/Q (and2s1)                        0.17      0.20       7.35 f
+  if_stage_0/add_48/n17 (net)                   2                   0.00       7.35 f
+  if_stage_0/add_48/U54/DIN1 (and2s1)                     0.17      0.00       7.35 f
+  if_stage_0/add_48/U54/Q (and2s1)                        0.17      0.20       7.55 f
+  if_stage_0/add_48/n46 (net)                   2                   0.00       7.55 f
+  if_stage_0/add_48/U55/DIN1 (and2s1)                     0.17      0.00       7.55 f
+  if_stage_0/add_48/U55/Q (and2s1)                        0.17      0.20       7.75 f
+  if_stage_0/add_48/n47 (net)                   2                   0.00       7.75 f
+  if_stage_0/add_48/U20/DIN1 (and2s1)                     0.17      0.00       7.75 f
+  if_stage_0/add_48/U20/Q (and2s1)                        0.17      0.20       7.95 f
+  if_stage_0/add_48/n18 (net)                   2                   0.00       7.95 f
+  if_stage_0/add_48/U21/DIN1 (and2s1)                     0.17      0.00       7.96 f
+  if_stage_0/add_48/U21/Q (and2s1)                        0.17      0.20       8.16 f
+  if_stage_0/add_48/n19 (net)                   2                   0.00       8.16 f
+  if_stage_0/add_48/U56/DIN1 (and2s1)                     0.17      0.00       8.16 f
+  if_stage_0/add_48/U56/Q (and2s1)                        0.17      0.20       8.36 f
+  if_stage_0/add_48/n48 (net)                   2                   0.00       8.36 f
+  if_stage_0/add_48/U57/DIN1 (and2s1)                     0.17      0.00       8.36 f
+  if_stage_0/add_48/U57/Q (and2s1)                        0.17      0.20       8.56 f
+  if_stage_0/add_48/n49 (net)                   2                   0.00       8.56 f
+  if_stage_0/add_48/U22/DIN1 (and2s1)                     0.17      0.00       8.56 f
+  if_stage_0/add_48/U22/Q (and2s1)                        0.17      0.20       8.76 f
+  if_stage_0/add_48/n20 (net)                   2                   0.00       8.76 f
+  if_stage_0/add_48/U23/DIN1 (and2s1)                     0.17      0.00       8.76 f
+  if_stage_0/add_48/U23/Q (and2s1)                        0.17      0.20       8.96 f
+  if_stage_0/add_48/n21 (net)                   2                   0.00       8.96 f
+  if_stage_0/add_48/U58/DIN1 (and2s1)                     0.17      0.00       8.97 f
+  if_stage_0/add_48/U58/Q (and2s1)                        0.17      0.20       9.17 f
+  if_stage_0/add_48/n50 (net)                   2                   0.00       9.17 f
+  if_stage_0/add_48/U59/DIN1 (and2s1)                     0.17      0.00       9.17 f
+  if_stage_0/add_48/U59/Q (and2s1)                        0.17      0.20       9.37 f
+  if_stage_0/add_48/n51 (net)                   2                   0.00       9.37 f
+  if_stage_0/add_48/U24/DIN1 (and2s1)                     0.17      0.00       9.37 f
+  if_stage_0/add_48/U24/Q (and2s1)                        0.17      0.20       9.57 f
+  if_stage_0/add_48/n22 (net)                   2                   0.00       9.57 f
+  if_stage_0/add_48/U25/DIN1 (and2s1)                     0.17      0.00       9.57 f
+  if_stage_0/add_48/U25/Q (and2s1)                        0.17      0.20       9.77 f
+  if_stage_0/add_48/n23 (net)                   2                   0.00       9.77 f
+  if_stage_0/add_48/U60/DIN1 (and2s1)                     0.17      0.00       9.77 f
+  if_stage_0/add_48/U60/Q (and2s1)                        0.17      0.20       9.97 f
+  if_stage_0/add_48/n52 (net)                   2                   0.00       9.97 f
+  if_stage_0/add_48/U61/DIN1 (and2s1)                     0.17      0.00       9.97 f
+  if_stage_0/add_48/U61/Q (and2s1)                        0.17      0.20      10.18 f
+  if_stage_0/add_48/n53 (net)                   2                   0.00      10.18 f
+  if_stage_0/add_48/U26/DIN1 (and2s1)                     0.17      0.00      10.18 f
+  if_stage_0/add_48/U26/Q (and2s1)                        0.17      0.20      10.38 f
+  if_stage_0/add_48/n24 (net)                   2                   0.00      10.38 f
+  if_stage_0/add_48/U27/DIN1 (and2s1)                     0.17      0.00      10.38 f
+  if_stage_0/add_48/U27/Q (and2s1)                        0.17      0.20      10.58 f
+  if_stage_0/add_48/n25 (net)                   2                   0.00      10.58 f
+  if_stage_0/add_48/U62/DIN1 (and2s1)                     0.17      0.00      10.58 f
+  if_stage_0/add_48/U62/Q (and2s1)                        0.17      0.20      10.78 f
+  if_stage_0/add_48/n54 (net)                   2                   0.00      10.78 f
+  if_stage_0/add_48/U63/DIN1 (and2s1)                     0.17      0.00      10.78 f
+  if_stage_0/add_48/U63/Q (and2s1)                        0.17      0.20      10.98 f
+  if_stage_0/add_48/n55 (net)                   2                   0.00      10.98 f
+  if_stage_0/add_48/U28/DIN1 (and2s1)                     0.17      0.00      10.98 f
+  if_stage_0/add_48/U28/Q (and2s1)                        0.17      0.20      11.19 f
+  if_stage_0/add_48/n26 (net)                   2                   0.00      11.19 f
+  if_stage_0/add_48/U29/DIN1 (and2s1)                     0.17      0.00      11.19 f
+  if_stage_0/add_48/U29/Q (and2s1)                        0.17      0.20      11.39 f
+  if_stage_0/add_48/n27 (net)                   2                   0.00      11.39 f
+  if_stage_0/add_48/U64/DIN1 (and2s1)                     0.17      0.00      11.39 f
+  if_stage_0/add_48/U64/Q (and2s1)                        0.17      0.20      11.59 f
+  if_stage_0/add_48/n56 (net)                   2                   0.00      11.59 f
+  if_stage_0/add_48/U65/DIN1 (and2s1)                     0.17      0.00      11.59 f
+  if_stage_0/add_48/U65/Q (and2s1)                        0.17      0.20      11.79 f
+  if_stage_0/add_48/n57 (net)                   2                   0.00      11.79 f
+  if_stage_0/add_48/U30/DIN1 (and2s1)                     0.17      0.00      11.79 f
+  if_stage_0/add_48/U30/Q (and2s1)                        0.17      0.20      11.99 f
+  if_stage_0/add_48/n28 (net)                   2                   0.00      11.99 f
+  if_stage_0/add_48/U31/DIN1 (and2s1)                     0.17      0.00      11.99 f
+  if_stage_0/add_48/U31/Q (and2s1)                        0.17      0.20      12.19 f
+  if_stage_0/add_48/n29 (net)                   2                   0.00      12.19 f
+  if_stage_0/add_48/U66/DIN1 (and2s1)                     0.17      0.00      12.20 f
+  if_stage_0/add_48/U66/Q (and2s1)                        0.17      0.20      12.40 f
+  if_stage_0/add_48/n58 (net)                   2                   0.00      12.40 f
+  if_stage_0/add_48/U67/DIN1 (and2s1)                     0.17      0.00      12.40 f
+  if_stage_0/add_48/U67/Q (and2s1)                        0.22      0.23      12.63 f
+  if_stage_0/add_48/n59 (net)                   2                   0.00      12.63 f
+  if_stage_0/add_48/U123/DIN1 (nnd2s2)                    0.22      0.00      12.63 f
+  if_stage_0/add_48/U123/Q (nnd2s2)                       0.26      0.10      12.73 r
+  if_stage_0/add_48/n60 (net)                   1                   0.00      12.73 r
+  if_stage_0/add_48/U32/DIN2 (xnr2s1)                     0.26      0.01      12.74 r
+  if_stage_0/add_48/U32/Q (xnr2s1)                        0.20      0.24      12.98 r
+  if_stage_0/add_48/SUM[63] (net)               2                   0.00      12.98 r
+  if_stage_0/add_48/SUM[63] (pipeline_DW01_add_1)                   0.00      12.98 r
+  if_stage_0/PC_plus_4[63] (net)                                    0.00      12.98 r
+  U687/DIN1 (nnd2s2)                                      0.20      0.00      12.98 r
+  U687/Q (nnd2s2)                                         0.55      0.07      13.05 f
+  n1050 (net)                                   2                   0.00      13.05 f
+  U4230/DIN (ib1s1)                                       0.55      0.00      13.05 f
+  U4230/Q (ib1s1)                                         0.62      0.30      13.35 r
+  if_NPC_out[63] (net)                          1                   0.00      13.35 r
+  if_NPC_out[63] (out)                                    0.62      0.02      13.38 r
+  data arrival time                                                           13.38
+
+  max_delay                                                        30.00      30.00
+  clock uncertainty                                                -0.10      29.90
+  output external delay                                            -0.10      29.80
+  data required time                                                          29.80
+  ------------------------------------------------------------------------------------
+  data required time                                                          29.80
+  data arrival time                                                          -13.38
+  ------------------------------------------------------------------------------------
+  slack (MET)                                                                 16.42
+
+
+  Startpoint: if_stage_0/PC_reg_reg[2]
+              (rising edge-triggered flip-flop clocked by clock)
+  Endpoint: if_NPC_out[62]
+            (output port clocked by clock)
+  Path Group: output_grp
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  pipeline           tsmcwire              lec25dscc25_TT
+
+  Point                                       Fanout     Trans      Incr       Path
+  ------------------------------------------------------------------------------------
+  if_stage_0/PC_reg_reg[2]/CLK (dffcs1)                   0.00      0.00 #     0.00 r
+  if_stage_0/PC_reg_reg[2]/QN (dffcs1)                    0.25      0.18       0.18 r
+  n5194 (net)                                   1                   0.00       0.18 r
+  U4695/DIN (i1s3)                                        0.25      0.00       0.18 r
+  U4695/Q (i1s3)                                          0.58      0.28       0.47 f
+  n5193 (net)                                  31                   0.00       0.47 f
+  if_stage_0/add_48/A[2] (pipeline_DW01_add_1)                      0.00       0.47 f
+  if_stage_0/add_48/A[2] (net)                                      0.00       0.47 f
+  if_stage_0/add_48/U2/DIN (ib1s1)                        0.58      0.00       0.47 f
+  if_stage_0/add_48/U2/Q (ib1s1)                          0.28      0.14       0.61 r
+  if_stage_0/add_48/SUM[2] (net)                2                   0.00       0.61 r
+  if_stage_0/add_48/U1/DIN (ib1s1)                        0.28      0.00       0.61 r
+  if_stage_0/add_48/U1/Q (ib1s1)                          0.16      0.07       0.69 f
+  if_stage_0/add_48/n61 (net)                   2                   0.00       0.69 f
+  if_stage_0/add_48/U38/DIN1 (and2s1)                     0.16      0.00       0.69 f
+  if_stage_0/add_48/U38/Q (and2s1)                        0.17      0.20       0.89 f
+  if_stage_0/add_48/n30 (net)                   2                   0.00       0.89 f
+  if_stage_0/add_48/U3/DIN1 (and2s1)                      0.17      0.00       0.89 f
+  if_stage_0/add_48/U3/Q (and2s1)                         0.17      0.20       1.09 f
+  if_stage_0/add_48/n1 (net)                    2                   0.00       1.09 f
+  if_stage_0/add_48/U39/DIN1 (and2s1)                     0.17      0.00       1.09 f
+  if_stage_0/add_48/U39/Q (and2s1)                        0.17      0.20       1.29 f
+  if_stage_0/add_48/n31 (net)                   2                   0.00       1.29 f
+  if_stage_0/add_48/U40/DIN1 (and2s1)                     0.17      0.00       1.29 f
+  if_stage_0/add_48/U40/Q (and2s1)                        0.17      0.20       1.49 f
+  if_stage_0/add_48/n32 (net)                   2                   0.00       1.49 f
+  if_stage_0/add_48/U4/DIN1 (and2s1)                      0.17      0.00       1.49 f
+  if_stage_0/add_48/U4/Q (and2s1)                         0.17      0.20       1.70 f
+  if_stage_0/add_48/n2 (net)                    2                   0.00       1.70 f
+  if_stage_0/add_48/U41/DIN1 (and2s1)                     0.17      0.00       1.70 f
+  if_stage_0/add_48/U41/Q (and2s1)                        0.17      0.20       1.90 f
+  if_stage_0/add_48/n33 (net)                   2                   0.00       1.90 f
+  if_stage_0/add_48/U5/DIN1 (and2s1)                      0.17      0.00       1.90 f
+  if_stage_0/add_48/U5/Q (and2s1)                         0.17      0.20       2.10 f
+  if_stage_0/add_48/n3 (net)                    2                   0.00       2.10 f
+  if_stage_0/add_48/U6/DIN1 (and2s1)                      0.17      0.00       2.10 f
+  if_stage_0/add_48/U6/Q (and2s1)                         0.17      0.20       2.30 f
+  if_stage_0/add_48/n4 (net)                    2                   0.00       2.30 f
+  if_stage_0/add_48/U42/DIN1 (and2s1)                     0.17      0.00       2.30 f
+  if_stage_0/add_48/U42/Q (and2s1)                        0.17      0.20       2.50 f
+  if_stage_0/add_48/n34 (net)                   2                   0.00       2.50 f
+  if_stage_0/add_48/U7/DIN1 (and2s1)                      0.17      0.00       2.50 f
+  if_stage_0/add_48/U7/Q (and2s1)                         0.17      0.20       2.71 f
+  if_stage_0/add_48/n5 (net)                    2                   0.00       2.71 f
+  if_stage_0/add_48/U8/DIN1 (and2s1)                      0.17      0.00       2.71 f
+  if_stage_0/add_48/U8/Q (and2s1)                         0.17      0.20       2.91 f
+  if_stage_0/add_48/n6 (net)                    2                   0.00       2.91 f
+  if_stage_0/add_48/U43/DIN1 (and2s1)                     0.17      0.00       2.91 f
+  if_stage_0/add_48/U43/Q (and2s1)                        0.17      0.20       3.11 f
+  if_stage_0/add_48/n35 (net)                   2                   0.00       3.11 f
+  if_stage_0/add_48/U9/DIN1 (and2s1)                      0.17      0.00       3.11 f
+  if_stage_0/add_48/U9/Q (and2s1)                         0.17      0.20       3.31 f
+  if_stage_0/add_48/n7 (net)                    2                   0.00       3.31 f
+  if_stage_0/add_48/U44/DIN1 (and2s1)                     0.17      0.00       3.31 f
+  if_stage_0/add_48/U44/Q (and2s1)                        0.17      0.20       3.51 f
+  if_stage_0/add_48/n36 (net)                   2                   0.00       3.51 f
+  if_stage_0/add_48/U45/DIN1 (and2s1)                     0.17      0.00       3.51 f
+  if_stage_0/add_48/U45/Q (and2s1)                        0.17      0.20       3.71 f
+  if_stage_0/add_48/n37 (net)                   2                   0.00       3.71 f
+  if_stage_0/add_48/U10/DIN1 (and2s1)                     0.17      0.00       3.72 f
+  if_stage_0/add_48/U10/Q (and2s1)                        0.17      0.20       3.92 f
+  if_stage_0/add_48/n8 (net)                    2                   0.00       3.92 f
+  if_stage_0/add_48/U46/DIN1 (and2s1)                     0.17      0.00       3.92 f
+  if_stage_0/add_48/U46/Q (and2s1)                        0.17      0.20       4.12 f
+  if_stage_0/add_48/n38 (net)                   2                   0.00       4.12 f
+  if_stage_0/add_48/U11/DIN1 (and2s1)                     0.17      0.00       4.12 f
+  if_stage_0/add_48/U11/Q (and2s1)                        0.17      0.20       4.32 f
+  if_stage_0/add_48/n9 (net)                    2                   0.00       4.32 f
+  if_stage_0/add_48/U47/DIN1 (and2s1)                     0.17      0.00       4.32 f
+  if_stage_0/add_48/U47/Q (and2s1)                        0.17      0.20       4.52 f
+  if_stage_0/add_48/n39 (net)                   2                   0.00       4.52 f
+  if_stage_0/add_48/U12/DIN1 (and2s1)                     0.17      0.00       4.52 f
+  if_stage_0/add_48/U12/Q (and2s1)                        0.17      0.20       4.72 f
+  if_stage_0/add_48/n10 (net)                   2                   0.00       4.72 f
+  if_stage_0/add_48/U13/DIN1 (and2s1)                     0.17      0.00       4.73 f
+  if_stage_0/add_48/U13/Q (and2s1)                        0.17      0.20       4.93 f
+  if_stage_0/add_48/n11 (net)                   2                   0.00       4.93 f
+  if_stage_0/add_48/U48/DIN1 (and2s1)                     0.17      0.00       4.93 f
+  if_stage_0/add_48/U48/Q (and2s1)                        0.17      0.20       5.13 f
+  if_stage_0/add_48/n40 (net)                   2                   0.00       5.13 f
+  if_stage_0/add_48/U49/DIN1 (and2s1)                     0.17      0.00       5.13 f
+  if_stage_0/add_48/U49/Q (and2s1)                        0.17      0.20       5.33 f
+  if_stage_0/add_48/n41 (net)                   2                   0.00       5.33 f
+  if_stage_0/add_48/U14/DIN1 (and2s1)                     0.17      0.00       5.33 f
+  if_stage_0/add_48/U14/Q (and2s1)                        0.17      0.20       5.53 f
+  if_stage_0/add_48/n12 (net)                   2                   0.00       5.53 f
+  if_stage_0/add_48/U15/DIN1 (and2s1)                     0.17      0.00       5.53 f
+  if_stage_0/add_48/U15/Q (and2s1)                        0.17      0.20       5.73 f
+  if_stage_0/add_48/n13 (net)                   2                   0.00       5.73 f
+  if_stage_0/add_48/U50/DIN1 (and2s1)                     0.17      0.00       5.73 f
+  if_stage_0/add_48/U50/Q (and2s1)                        0.17      0.20       5.94 f
+  if_stage_0/add_48/n42 (net)                   2                   0.00       5.94 f
+  if_stage_0/add_48/U51/DIN1 (and2s1)                     0.17      0.00       5.94 f
+  if_stage_0/add_48/U51/Q (and2s1)                        0.17      0.20       6.14 f
+  if_stage_0/add_48/n43 (net)                   2                   0.00       6.14 f
+  if_stage_0/add_48/U16/DIN1 (and2s1)                     0.17      0.00       6.14 f
+  if_stage_0/add_48/U16/Q (and2s1)                        0.17      0.20       6.34 f
+  if_stage_0/add_48/n14 (net)                   2                   0.00       6.34 f
+  if_stage_0/add_48/U17/DIN1 (and2s1)                     0.17      0.00       6.34 f
+  if_stage_0/add_48/U17/Q (and2s1)                        0.17      0.20       6.54 f
+  if_stage_0/add_48/n15 (net)                   2                   0.00       6.54 f
+  if_stage_0/add_48/U52/DIN1 (and2s1)                     0.17      0.00       6.54 f
+  if_stage_0/add_48/U52/Q (and2s1)                        0.17      0.20       6.74 f
+  if_stage_0/add_48/n44 (net)                   2                   0.00       6.74 f
+  if_stage_0/add_48/U53/DIN1 (and2s1)                     0.17      0.00       6.74 f
+  if_stage_0/add_48/U53/Q (and2s1)                        0.17      0.20       6.95 f
+  if_stage_0/add_48/n45 (net)                   2                   0.00       6.95 f
+  if_stage_0/add_48/U18/DIN1 (and2s1)                     0.17      0.00       6.95 f
+  if_stage_0/add_48/U18/Q (and2s1)                        0.17      0.20       7.15 f
+  if_stage_0/add_48/n16 (net)                   2                   0.00       7.15 f
+  if_stage_0/add_48/U19/DIN1 (and2s1)                     0.17      0.00       7.15 f
+  if_stage_0/add_48/U19/Q (and2s1)                        0.17      0.20       7.35 f
+  if_stage_0/add_48/n17 (net)                   2                   0.00       7.35 f
+  if_stage_0/add_48/U54/DIN1 (and2s1)                     0.17      0.00       7.35 f
+  if_stage_0/add_48/U54/Q (and2s1)                        0.17      0.20       7.55 f
+  if_stage_0/add_48/n46 (net)                   2                   0.00       7.55 f
+  if_stage_0/add_48/U55/DIN1 (and2s1)                     0.17      0.00       7.55 f
+  if_stage_0/add_48/U55/Q (and2s1)                        0.17      0.20       7.75 f
+  if_stage_0/add_48/n47 (net)                   2                   0.00       7.75 f
+  if_stage_0/add_48/U20/DIN1 (and2s1)                     0.17      0.00       7.75 f
+  if_stage_0/add_48/U20/Q (and2s1)                        0.17      0.20       7.95 f
+  if_stage_0/add_48/n18 (net)                   2                   0.00       7.95 f
+  if_stage_0/add_48/U21/DIN1 (and2s1)                     0.17      0.00       7.96 f
+  if_stage_0/add_48/U21/Q (and2s1)                        0.17      0.20       8.16 f
+  if_stage_0/add_48/n19 (net)                   2                   0.00       8.16 f
+  if_stage_0/add_48/U56/DIN1 (and2s1)                     0.17      0.00       8.16 f
+  if_stage_0/add_48/U56/Q (and2s1)                        0.17      0.20       8.36 f
+  if_stage_0/add_48/n48 (net)                   2                   0.00       8.36 f
+  if_stage_0/add_48/U57/DIN1 (and2s1)                     0.17      0.00       8.36 f
+  if_stage_0/add_48/U57/Q (and2s1)                        0.17      0.20       8.56 f
+  if_stage_0/add_48/n49 (net)                   2                   0.00       8.56 f
+  if_stage_0/add_48/U22/DIN1 (and2s1)                     0.17      0.00       8.56 f
+  if_stage_0/add_48/U22/Q (and2s1)                        0.17      0.20       8.76 f
+  if_stage_0/add_48/n20 (net)                   2                   0.00       8.76 f
+  if_stage_0/add_48/U23/DIN1 (and2s1)                     0.17      0.00       8.76 f
+  if_stage_0/add_48/U23/Q (and2s1)                        0.17      0.20       8.96 f
+  if_stage_0/add_48/n21 (net)                   2                   0.00       8.96 f
+  if_stage_0/add_48/U58/DIN1 (and2s1)                     0.17      0.00       8.97 f
+  if_stage_0/add_48/U58/Q (and2s1)                        0.17      0.20       9.17 f
+  if_stage_0/add_48/n50 (net)                   2                   0.00       9.17 f
+  if_stage_0/add_48/U59/DIN1 (and2s1)                     0.17      0.00       9.17 f
+  if_stage_0/add_48/U59/Q (and2s1)                        0.17      0.20       9.37 f
+  if_stage_0/add_48/n51 (net)                   2                   0.00       9.37 f
+  if_stage_0/add_48/U24/DIN1 (and2s1)                     0.17      0.00       9.37 f
+  if_stage_0/add_48/U24/Q (and2s1)                        0.17      0.20       9.57 f
+  if_stage_0/add_48/n22 (net)                   2                   0.00       9.57 f
+  if_stage_0/add_48/U25/DIN1 (and2s1)                     0.17      0.00       9.57 f
+  if_stage_0/add_48/U25/Q (and2s1)                        0.17      0.20       9.77 f
+  if_stage_0/add_48/n23 (net)                   2                   0.00       9.77 f
+  if_stage_0/add_48/U60/DIN1 (and2s1)                     0.17      0.00       9.77 f
+  if_stage_0/add_48/U60/Q (and2s1)                        0.17      0.20       9.97 f
+  if_stage_0/add_48/n52 (net)                   2                   0.00       9.97 f
+  if_stage_0/add_48/U61/DIN1 (and2s1)                     0.17      0.00       9.97 f
+  if_stage_0/add_48/U61/Q (and2s1)                        0.17      0.20      10.18 f
+  if_stage_0/add_48/n53 (net)                   2                   0.00      10.18 f
+  if_stage_0/add_48/U26/DIN1 (and2s1)                     0.17      0.00      10.18 f
+  if_stage_0/add_48/U26/Q (and2s1)                        0.17      0.20      10.38 f
+  if_stage_0/add_48/n24 (net)                   2                   0.00      10.38 f
+  if_stage_0/add_48/U27/DIN1 (and2s1)                     0.17      0.00      10.38 f
+  if_stage_0/add_48/U27/Q (and2s1)                        0.17      0.20      10.58 f
+  if_stage_0/add_48/n25 (net)                   2                   0.00      10.58 f
+  if_stage_0/add_48/U62/DIN1 (and2s1)                     0.17      0.00      10.58 f
+  if_stage_0/add_48/U62/Q (and2s1)                        0.17      0.20      10.78 f
+  if_stage_0/add_48/n54 (net)                   2                   0.00      10.78 f
+  if_stage_0/add_48/U63/DIN1 (and2s1)                     0.17      0.00      10.78 f
+  if_stage_0/add_48/U63/Q (and2s1)                        0.17      0.20      10.98 f
+  if_stage_0/add_48/n55 (net)                   2                   0.00      10.98 f
+  if_stage_0/add_48/U28/DIN1 (and2s1)                     0.17      0.00      10.98 f
+  if_stage_0/add_48/U28/Q (and2s1)                        0.17      0.20      11.19 f
+  if_stage_0/add_48/n26 (net)                   2                   0.00      11.19 f
+  if_stage_0/add_48/U29/DIN1 (and2s1)                     0.17      0.00      11.19 f
+  if_stage_0/add_48/U29/Q (and2s1)                        0.17      0.20      11.39 f
+  if_stage_0/add_48/n27 (net)                   2                   0.00      11.39 f
+  if_stage_0/add_48/U64/DIN1 (and2s1)                     0.17      0.00      11.39 f
+  if_stage_0/add_48/U64/Q (and2s1)                        0.17      0.20      11.59 f
+  if_stage_0/add_48/n56 (net)                   2                   0.00      11.59 f
+  if_stage_0/add_48/U65/DIN1 (and2s1)                     0.17      0.00      11.59 f
+  if_stage_0/add_48/U65/Q (and2s1)                        0.17      0.20      11.79 f
+  if_stage_0/add_48/n57 (net)                   2                   0.00      11.79 f
+  if_stage_0/add_48/U30/DIN1 (and2s1)                     0.17      0.00      11.79 f
+  if_stage_0/add_48/U30/Q (and2s1)                        0.17      0.20      11.99 f
+  if_stage_0/add_48/n28 (net)                   2                   0.00      11.99 f
+  if_stage_0/add_48/U31/DIN1 (and2s1)                     0.17      0.00      11.99 f
+  if_stage_0/add_48/U31/Q (and2s1)                        0.17      0.20      12.19 f
+  if_stage_0/add_48/n29 (net)                   2                   0.00      12.19 f
+  if_stage_0/add_48/U66/DIN1 (and2s1)                     0.17      0.00      12.20 f
+  if_stage_0/add_48/U66/Q (and2s1)                        0.17      0.20      12.40 f
+  if_stage_0/add_48/n58 (net)                   2                   0.00      12.40 f
+  if_stage_0/add_48/U67/DIN1 (and2s1)                     0.17      0.00      12.40 f
+  if_stage_0/add_48/U67/Q (and2s1)                        0.22      0.23      12.63 f
+  if_stage_0/add_48/n59 (net)                   2                   0.00      12.63 f
+  if_stage_0/add_48/U33/DIN1 (xor2s1)                     0.22      0.00      12.63 f
+  if_stage_0/add_48/U33/Q (xor2s1)                        0.17      0.23      12.86 f
+  if_stage_0/add_48/SUM[62] (net)               2                   0.00      12.86 f
+  if_stage_0/add_48/SUM[62] (pipeline_DW01_add_1)                   0.00      12.86 f
+  if_stage_0/PC_plus_4[62] (net)                                    0.00      12.86 f
+  U689/DIN1 (nnd2s2)                                      0.17      0.00      12.86 f
+  U689/Q (nnd2s2)                                         0.45      0.08      12.94 r
+  n1052 (net)                                   2                   0.00      12.94 r
+  U4233/DIN (ib1s1)                                       0.45      0.00      12.94 r
+  U4233/Q (ib1s1)                                         0.51      0.28      13.22 f
+  if_NPC_out[62] (net)                          1                   0.00      13.22 f
+  if_NPC_out[62] (out)                                    0.51      0.02      13.24 f
+  data arrival time                                                           13.24
+
+  max_delay                                                        30.00      30.00
+  clock uncertainty                                                -0.10      29.90
+  output external delay                                            -0.10      29.80
+  data required time                                                          29.80
+  ------------------------------------------------------------------------------------
+  data required time                                                          29.80
+  data arrival time                                                          -13.24
+  ------------------------------------------------------------------------------------
+  slack (MET)                                                                 16.56
+
+
+1
+ 
+****************************************
+Report : constraint
+        -verbose
+        -max_delay
+Design : pipeline
+Version: K-2015.06
+Date   : Sat Oct 10 17:25:31 2015
+****************************************
+
+
+  Startpoint: id_ex_opb_select_reg[0]
+              (rising edge-triggered flip-flop clocked by clock)
+  Endpoint: id_ex_rega_reg[63]
+            (rising edge-triggered flip-flop clocked by clock)
+  Path Group: clock
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  pipeline           tsmcwire              lec25dscc25_TT
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clock (rise edge)                                 0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  id_ex_opb_select_reg[0]/CLK (dffcs2)                    0.00 #     0.00 r
+  id_ex_opb_select_reg[0]/QN (dffcs2)                     0.19       0.19 f
+  id_ex_opb_select_reg[0]/Q (dffcs2)                      0.05       0.24 r
+  U2346/Q (nnd3s2)                                        0.08       0.33 f
+  U3212/Q (i1s9)                                          0.17       0.50 r
+  U3816/Q (or5s1)                                         0.19       0.69 r
+  U3321/Q (and2s2)                                        0.18       0.87 r
+  U3216/Q (i1s3)                                          0.07       0.93 f
+  U3214/Q (aoi21s3)                                       0.05       0.98 r
+  U3762/Q (oai221s2)                                      0.18       1.16 f
+  ex_stage_0/alu_0/mult_56/U14/Q (and2s1)                 0.27       1.43 f
+  ex_stage_0/alu_0/mult_56/U32/Q (and2s1)                 0.27       1.69 f
+  ex_stage_0/alu_0/mult_56/S2_2_60/OUTS (fadd1s2)         0.52       2.21 r
+  ex_stage_0/alu_0/mult_56/S2_3_59/OUTS (fadd1s2)         0.41       2.62 f
+  ex_stage_0/alu_0/mult_56/S2_4_58/OUTS (fadd1s2)         0.50       3.11 r
+  ex_stage_0/alu_0/mult_56/S2_5_57/OUTS (fadd1s2)         0.41       3.52 f
+  ex_stage_0/alu_0/mult_56/S2_6_56/OUTS (fadd1s2)         0.50       4.02 r
+  ex_stage_0/alu_0/mult_56/S2_7_55/OUTS (fadd1s2)         0.41       4.43 f
+  ex_stage_0/alu_0/mult_56/S2_8_54/OUTS (fadd1s2)         0.50       4.92 r
+  ex_stage_0/alu_0/mult_56/S2_9_53/OUTS (fadd1s2)         0.41       5.33 f
+  ex_stage_0/alu_0/mult_56/S2_10_52/OUTS (fadd1s2)        0.50       5.83 r
+  ex_stage_0/alu_0/mult_56/S2_11_51/OUTS (fadd1s2)        0.41       6.24 f
+  ex_stage_0/alu_0/mult_56/S2_12_50/OUTS (fadd1s2)        0.50       6.73 r
+  ex_stage_0/alu_0/mult_56/S2_13_49/OUTS (fadd1s2)        0.41       7.14 f
+  ex_stage_0/alu_0/mult_56/S2_14_48/OUTS (fadd1s2)        0.50       7.64 r
+  ex_stage_0/alu_0/mult_56/S2_15_47/OUTS (fadd1s2)        0.41       8.05 f
+  ex_stage_0/alu_0/mult_56/S2_16_46/OUTS (fadd1s2)        0.50       8.54 r
+  ex_stage_0/alu_0/mult_56/S2_17_45/OUTS (fadd1s2)        0.41       8.95 f
+  ex_stage_0/alu_0/mult_56/S2_18_44/OUTS (fadd1s2)        0.50       9.45 r
+  ex_stage_0/alu_0/mult_56/S2_19_43/OUTS (fadd1s2)        0.41       9.85 f
+  ex_stage_0/alu_0/mult_56/S2_20_42/OUTS (fadd1s2)        0.50      10.35 r
+  ex_stage_0/alu_0/mult_56/S2_21_41/OUTS (fadd1s2)        0.41      10.76 f
+  ex_stage_0/alu_0/mult_56/S2_22_40/OUTC (fadd1s2)        0.30      11.06 f
+  ex_stage_0/alu_0/mult_56/S2_23_40/OUTS (fadd1s1)        0.52      11.57 r
+  ex_stage_0/alu_0/mult_56/S2_24_39/OUTS (fadd1s1)        0.44      12.01 f
+  ex_stage_0/alu_0/mult_56/S2_25_38/OUTS (fadd1s2)        0.51      12.52 r
+  ex_stage_0/alu_0/mult_56/S2_26_37/OUTS (fadd1s2)        0.39      12.91 f
+  ex_stage_0/alu_0/mult_56/S2_27_36/OUTS (fadd1s1)        0.48      13.39 r
+  ex_stage_0/alu_0/mult_56/S2_28_35/OUTS (fadd1s1)        0.44      13.82 f
+  ex_stage_0/alu_0/mult_56/S2_29_34/OUTS (fadd1s2)        0.51      14.33 r
+  ex_stage_0/alu_0/mult_56/S2_30_33/OUTS (fadd1s2)        0.39      14.72 f
+  ex_stage_0/alu_0/mult_56/S2_31_32/OUTS (fadd1s1)        0.48      15.20 r
+  ex_stage_0/alu_0/mult_56/S2_32_31/OUTS (fadd1s1)        0.44      15.64 f
+  ex_stage_0/alu_0/mult_56/S2_33_30/OUTS (fadd1s2)        0.51      16.14 r
+  ex_stage_0/alu_0/mult_56/S2_34_29/OUTS (fadd1s2)        0.39      16.54 f
+  ex_stage_0/alu_0/mult_56/S2_35_28/OUTS (fadd1s1)        0.48      17.02 r
+  ex_stage_0/alu_0/mult_56/S2_36_27/OUTS (fadd1s1)        0.44      17.45 f
+  ex_stage_0/alu_0/mult_56/S2_37_26/OUTS (fadd1s2)        0.51      17.96 r
+  ex_stage_0/alu_0/mult_56/S2_38_25/OUTS (fadd1s2)        0.39      18.35 f
+  ex_stage_0/alu_0/mult_56/S2_39_24/OUTS (fadd1s1)        0.48      18.83 r
+  ex_stage_0/alu_0/mult_56/S2_40_23/OUTS (fadd1s1)        0.44      19.27 f
+  ex_stage_0/alu_0/mult_56/S2_41_22/OUTS (fadd1s2)        0.51      19.77 r
+  ex_stage_0/alu_0/mult_56/S2_42_21/OUTS (fadd1s2)        0.39      20.17 f
+  ex_stage_0/alu_0/mult_56/S2_43_20/OUTS (fadd1s1)        0.50      20.67 r
+  ex_stage_0/alu_0/mult_56/S2_44_19/OUTS (fadd1s2)        0.42      21.08 f
+  ex_stage_0/alu_0/mult_56/S2_45_18/OUTS (fadd1s2)        0.50      21.58 r
+  ex_stage_0/alu_0/mult_56/S2_46_17/OUTS (fadd1s2)        0.39      21.98 f
+  ex_stage_0/alu_0/mult_56/S2_47_16/OUTS (fadd1s1)        0.48      22.45 r
+  ex_stage_0/alu_0/mult_56/S2_48_15/OUTS (fadd1s1)        0.44      22.89 f
+  ex_stage_0/alu_0/mult_56/S2_49_14/OUTS (fadd1s2)        0.51      23.40 r
+  ex_stage_0/alu_0/mult_56/S2_50_13/OUTS (fadd1s2)        0.39      23.79 f
+  ex_stage_0/alu_0/mult_56/S2_51_12/OUTS (fadd1s1)        0.48      24.27 r
+  ex_stage_0/alu_0/mult_56/S2_52_11/OUTS (fadd1s1)        0.44      24.70 f
+  ex_stage_0/alu_0/mult_56/S2_53_10/OUTS (fadd1s2)        0.51      25.21 r
+  ex_stage_0/alu_0/mult_56/S2_54_9/OUTS (fadd1s2)         0.43      25.64 f
+  ex_stage_0/alu_0/mult_56/S2_55_8/OUTS (fadd1s3)         0.48      26.12 r
+  ex_stage_0/alu_0/mult_56/U116/Q (xor2s3)                0.21      26.32 r
+  ex_stage_0/alu_0/mult_56/S2_57_6/Q (xor3s1)             0.40      26.73 r
+  ex_stage_0/alu_0/mult_56/S2_58_5/Q (xor3s2)             0.36      27.08 r
+  ex_stage_0/alu_0/mult_56/S2_59_4/Q (xor3s1)             0.36      27.44 r
+  ex_stage_0/alu_0/mult_56/U114/Q (xor3s2)                0.22      27.66 r
+  ex_stage_0/alu_0/mult_56/S2_61_2/Q (xor3s1)             0.41      28.07 r
+  ex_stage_0/alu_0/mult_56/S2_62_1/Q (xor3s2)             0.37      28.45 r
+  ex_stage_0/alu_0/mult_56/S4_0/Q (xor3s2)                0.34      28.78 r
+  U3213/Q (nnd2s3)                                        0.05      28.83 f
+  U3306/Q (and3s2)                                        0.20      29.03 f
+  U1184/Q (and4s3)                                        0.14      29.17 f
+  U3829/Q (oai22s3)                                       0.09      29.26 r
+  U4426/Q (aoi22s2)                                       0.10      29.36 f
+  U4425/Q (oai22s2)                                       0.22      29.58 r
+  id_ex_rega_reg[63]/CLRB (dffcs1)                        0.00      29.58 r
+  data arrival time                                                 29.58
+
+  clock clock (rise edge)                                30.00      30.00
+  clock network delay (ideal)                             0.00      30.00
+  clock uncertainty                                      -0.10      29.90
+  id_ex_rega_reg[63]/CLK (dffcs1)                         0.00      29.90 r
+  library setup time                                     -0.32      29.58
+  data required time                                                29.58
+  --------------------------------------------------------------------------
+  data required time                                                29.58
+  data arrival time                                                -29.58
+  --------------------------------------------------------------------------
+  slack (MET)                                                        0.00
+
+
+  Startpoint: reset (input port clocked by clock)
+  Endpoint: if_stage_0/PC_reg_reg[38]
+            (rising edge-triggered flip-flop clocked by clock)
+  Path Group: input_grp
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  pipeline           tsmcwire              lec25dscc25_TT
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  clock clock (rise edge)                                 0.00       0.00
+  clock network delay (ideal)                             0.00       0.00
+  input external delay                                    0.10       0.10 r
+  reset (in)                                              0.05       0.15 r
+  U3628/Q (nb1s2)                                         0.18       0.34 r
+  U3309/Q (ib1s1)                                         0.05       0.39 f
+  U3495/Q (hi1s1)                                         0.30       0.69 r
+  U3478/Q (ib1s1)                                         0.34       1.03 f
+  U3480/Q (hi1s1)                                         0.31       1.34 r
+  U3481/Q (hi1s1)                                         0.82       2.16 f
+  U5480/Q (ib1s1)                                         0.18       2.35 r
+  U3880/Q (ib1s1)                                         0.11       2.45 f
+  U3873/Q (ib1s1)                                         0.11       2.56 r
+  U4166/Q (ib1s1)                                         0.14       2.70 f
+  if_stage_0/PC_reg_reg[38]/DIN (dffcs1)                  0.00       2.70 f
+  data arrival time                                                  2.70
+
+  clock clock (rise edge)                                30.00      30.00
+  clock network delay (ideal)                             0.00      30.00
+  clock uncertainty                                      -0.10      29.90
+  if_stage_0/PC_reg_reg[38]/CLK (dffcs1)                  0.00      29.90 r
+  library setup time                                     -0.32      29.58
+  data required time                                                29.58
+  --------------------------------------------------------------------------
+  data required time                                                29.58
+  data arrival time                                                 -2.70
+  --------------------------------------------------------------------------
+  slack (MET)                                                       26.88
+
+
+  Startpoint: if_stage_0/PC_reg_reg[2]
+              (rising edge-triggered flip-flop clocked by clock)
+  Endpoint: if_NPC_out[63]
+            (output port clocked by clock)
+  Path Group: output_grp
+  Path Type: max
+
+  Des/Clust/Port     Wire Load Model       Library
+  ------------------------------------------------
+  pipeline           tsmcwire              lec25dscc25_TT
+
+  Point                                                   Incr       Path
+  --------------------------------------------------------------------------
+  if_stage_0/PC_reg_reg[2]/CLK (dffcs1)                   0.00 #     0.00 r
+  if_stage_0/PC_reg_reg[2]/QN (dffcs1)                    0.18       0.18 r
+  U4695/Q (i1s3)                                          0.29       0.47 f
+  if_stage_0/add_48/U2/Q (ib1s1)                          0.15       0.61 r
+  if_stage_0/add_48/U1/Q (ib1s1)                          0.08       0.69 f
+  if_stage_0/add_48/U38/Q (and2s1)                        0.20       0.89 f
+  if_stage_0/add_48/U3/Q (and2s1)                         0.20       1.09 f
+  if_stage_0/add_48/U39/Q (and2s1)                        0.20       1.29 f
+  if_stage_0/add_48/U40/Q (and2s1)                        0.20       1.49 f
+  if_stage_0/add_48/U4/Q (and2s1)                         0.20       1.70 f
+  if_stage_0/add_48/U41/Q (and2s1)                        0.20       1.90 f
+  if_stage_0/add_48/U5/Q (and2s1)                         0.20       2.10 f
+  if_stage_0/add_48/U6/Q (and2s1)                         0.20       2.30 f
+  if_stage_0/add_48/U42/Q (and2s1)                        0.20       2.50 f
+  if_stage_0/add_48/U7/Q (and2s1)                         0.20       2.71 f
+  if_stage_0/add_48/U8/Q (and2s1)                         0.20       2.91 f
+  if_stage_0/add_48/U43/Q (and2s1)                        0.20       3.11 f
+  if_stage_0/add_48/U9/Q (and2s1)                         0.20       3.31 f
+  if_stage_0/add_48/U44/Q (and2s1)                        0.20       3.51 f
+  if_stage_0/add_48/U45/Q (and2s1)                        0.20       3.71 f
+  if_stage_0/add_48/U10/Q (and2s1)                        0.20       3.92 f
+  if_stage_0/add_48/U46/Q (and2s1)                        0.20       4.12 f
+  if_stage_0/add_48/U11/Q (and2s1)                        0.20       4.32 f
+  if_stage_0/add_48/U47/Q (and2s1)                        0.20       4.52 f
+  if_stage_0/add_48/U12/Q (and2s1)                        0.20       4.72 f
+  if_stage_0/add_48/U13/Q (and2s1)                        0.20       4.93 f
+  if_stage_0/add_48/U48/Q (and2s1)                        0.20       5.13 f
+  if_stage_0/add_48/U49/Q (and2s1)                        0.20       5.33 f
+  if_stage_0/add_48/U14/Q (and2s1)                        0.20       5.53 f
+  if_stage_0/add_48/U15/Q (and2s1)                        0.20       5.73 f
+  if_stage_0/add_48/U50/Q (and2s1)                        0.20       5.94 f
+  if_stage_0/add_48/U51/Q (and2s1)                        0.20       6.14 f
+  if_stage_0/add_48/U16/Q (and2s1)                        0.20       6.34 f
+  if_stage_0/add_48/U17/Q (and2s1)                        0.20       6.54 f
+  if_stage_0/add_48/U52/Q (and2s1)                        0.20       6.74 f
+  if_stage_0/add_48/U53/Q (and2s1)                        0.20       6.95 f
+  if_stage_0/add_48/U18/Q (and2s1)                        0.20       7.15 f
+  if_stage_0/add_48/U19/Q (and2s1)                        0.20       7.35 f
+  if_stage_0/add_48/U54/Q (and2s1)                        0.20       7.55 f
+  if_stage_0/add_48/U55/Q (and2s1)                        0.20       7.75 f
+  if_stage_0/add_48/U20/Q (and2s1)                        0.20       7.95 f
+  if_stage_0/add_48/U21/Q (and2s1)                        0.20       8.16 f
+  if_stage_0/add_48/U56/Q (and2s1)                        0.20       8.36 f
+  if_stage_0/add_48/U57/Q (and2s1)                        0.20       8.56 f
+  if_stage_0/add_48/U22/Q (and2s1)                        0.20       8.76 f
+  if_stage_0/add_48/U23/Q (and2s1)                        0.20       8.96 f
+  if_stage_0/add_48/U58/Q (and2s1)                        0.20       9.17 f
+  if_stage_0/add_48/U59/Q (and2s1)                        0.20       9.37 f
+  if_stage_0/add_48/U24/Q (and2s1)                        0.20       9.57 f
+  if_stage_0/add_48/U25/Q (and2s1)                        0.20       9.77 f
+  if_stage_0/add_48/U60/Q (and2s1)                        0.20       9.97 f
+  if_stage_0/add_48/U61/Q (and2s1)                        0.20      10.18 f
+  if_stage_0/add_48/U26/Q (and2s1)                        0.20      10.38 f
+  if_stage_0/add_48/U27/Q (and2s1)                        0.20      10.58 f
+  if_stage_0/add_48/U62/Q (and2s1)                        0.20      10.78 f
+  if_stage_0/add_48/U63/Q (and2s1)                        0.20      10.98 f
+  if_stage_0/add_48/U28/Q (and2s1)                        0.20      11.19 f
+  if_stage_0/add_48/U29/Q (and2s1)                        0.20      11.39 f
+  if_stage_0/add_48/U64/Q (and2s1)                        0.20      11.59 f
+  if_stage_0/add_48/U65/Q (and2s1)                        0.20      11.79 f
+  if_stage_0/add_48/U30/Q (and2s1)                        0.20      11.99 f
+  if_stage_0/add_48/U31/Q (and2s1)                        0.20      12.19 f
+  if_stage_0/add_48/U66/Q (and2s1)                        0.20      12.40 f
+  if_stage_0/add_48/U67/Q (and2s1)                        0.23      12.63 f
+  if_stage_0/add_48/U123/Q (nnd2s2)                       0.11      12.73 r
+  if_stage_0/add_48/U32/Q (xnr2s1)                        0.25      12.98 r
+  U687/Q (nnd2s2)                                         0.07      13.05 f
+  U4230/Q (ib1s1)                                         0.31      13.35 r
+  if_NPC_out[63] (out)                                    0.02      13.38 r
+  data arrival time                                                 13.38
+
+  max_delay                                              30.00      30.00
+  clock uncertainty                                      -0.10      29.90
+  output external delay                                  -0.10      29.80
+  data required time                                                29.80
+  --------------------------------------------------------------------------
+  data required time                                                29.80
+  data arrival time                                                -13.38
+  --------------------------------------------------------------------------
+  slack (MET)                                                       16.42
+
+
+1
+Information: Updating graph... (UID-83)
+Warning: Design 'pipeline' contains 1 high-fanout nets. A fanout number of 1000 will be used for delay calculations involving these nets. (TIM-134)
+ 
+****************************************
+Report : reference
+Design : pipeline
+Version: K-2015.06
+Date   : Sat Oct 10 17:25:34 2015
+****************************************
+
+Attributes:
+    b - black box (unknown)
+   bo - allows boundary optimization
+    d - dont_touch
+   mo - map_only
+    h - hierarchical
+    n - noncombinational
+    r - removable
+    s - synthetic operator
+    u - contains unmapped logic
+
+Reference          Library       Unit Area   Count    Total Area   Attributes
+-----------------------------------------------------------------------------
+and2s1             lec25dscc25_TT    49.766399     228 11346.739059
+and2s2             lec25dscc25_TT    58.060799       2   116.121597
+and3s1             lec25dscc25_TT    66.355202      15   995.328026
+and3s2             lec25dscc25_TT    99.532799       1    99.532799
+and4s1             lec25dscc25_TT    74.649597      76  5673.369385
+and4s3             lec25dscc25_TT   124.416000       2   248.832001
+aoai122s1          lec25dscc25_TT    74.649597       1    74.649597
+aoai122s2          lec25dscc25_TT    74.649597       2   149.299194
+aoai122s3          lec25dscc25_TT   107.827003       1   107.827003
+aoai1112s1         lec25dscc25_TT    66.355202       1    66.355202
+aoai1112s2         lec25dscc25_TT    66.355202       1    66.355202
+aoi13s2            lec25dscc25_TT    58.060799       3   174.182396
+aoi21s1            lec25dscc25_TT    49.766399      27  1343.692783
+aoi21s2            lec25dscc25_TT    49.766399      40  1990.655975
+aoi21s3            lec25dscc25_TT    74.649597       3   223.948792
+aoi22s1            lec25dscc25_TT    58.060799      27  1567.641563
+aoi22s2            lec25dscc25_TT    58.060799     352 20437.401123
+aoi23s2            lec25dscc25_TT    66.355202       2   132.710403
+aoi42s1            lec25dscc25_TT    74.649597       1    74.649597
+aoi211s1           lec25dscc25_TT    58.060799       3   174.182396
+aoi221s1           lec25dscc25_TT    74.649597      47  3508.531067
+aoi222s1           lec25dscc25_TT    82.944000     197 16339.968048
+dffcs1             lec25dscc25_TT   165.888000     701 116287.488342 n
+dffcs2             lec25dscc25_TT   182.477005      26  4744.402130 n
+dffles1            lec25dscc25_TT   199.065994    1985 395145.998611 n
+dffs1              lec25dscc25_TT   157.593994      64 10086.015625 n
+dffss1             lec25dscc25_TT   199.065994      59 11744.893661 n
+dffss2             lec25dscc25_TT   207.360001      29  6013.440018 n
+dsmxc31s1          lec25dscc25_TT    66.355202       2   132.710403
+dsmxc31s2          lec25dscc25_TT    66.355202     258 17119.642044
+hi1s1              lec25dscc25_TT    33.177601     126  4180.377708
+hnb1s1             lec25dscc25_TT    58.060799       5   290.303993
+i1s2               lec25dscc25_TT    41.472000      32  1327.104004
+i1s3               lec25dscc25_TT    41.472000      44  1824.768005
+i1s4               lec25dscc25_TT    49.766399       1    49.766399
+i1s6               lec25dscc25_TT    58.060799      64  3715.891113
+i1s8               lec25dscc25_TT   199.065994       3   597.197983
+i1s9               lec25dscc25_TT   215.654007       1   215.654007
+ib1s1              lec25dscc25_TT    33.177601     898 29793.485573
+ib1s6              lec25dscc25_TT   107.827003       1   107.827003
+lclks1             lec25dscc25_TT    91.238403       1    91.238403 n
+lclks2             lec25dscc25_TT    99.532799      63  6270.566322 n
+mx41s1             lec25dscc25_TT   124.416000       1   124.416000
+mxi21s1            lec25dscc25_TT    66.355202       8   530.841614
+mxi21s2            lec25dscc25_TT    66.355202       1    66.355202
+mxi41s1            lec25dscc25_TT   116.122002    1281 148752.284111
+nb1s1              lec25dscc25_TT    41.472000      68  2820.096008
+nb1s2              lec25dscc25_TT    49.766399      69  3433.881557
+nb1s3              lec25dscc25_TT    66.355202       2   132.710403
+nnd2s1             lec25dscc25_TT    41.472000      92  3815.424011
+nnd2s2             lec25dscc25_TT    41.472000     187  7755.264023
+nnd2s3             lec25dscc25_TT    58.060799       2   116.121597
+nnd3s1             lec25dscc25_TT    49.766399       1    49.766399
+nnd3s2             lec25dscc25_TT    49.766399      28  1393.459183
+nnd4s1             lec25dscc25_TT    58.060799      20  1161.215973
+nor2s1             lec25dscc25_TT    41.472000     301 12483.072037
+nor3s1             lec25dscc25_TT    82.944000       4   331.776001
+nor4s1             lec25dscc25_TT    82.944000       2   165.888000
+nor5s1             lec25dscc25_TT    99.532799       2   199.065598
+nor6s1             lec25dscc25_TT   107.827003       6   646.962021
+oai13s2            lec25dscc25_TT    58.060799       5   290.303993
+oai21s1            lec25dscc25_TT    49.766399      80  3981.311951
+oai21s2            lec25dscc25_TT    49.766399      93  4628.275143
+oai22s1            lec25dscc25_TT    58.060799      48  2786.918335
+oai22s2            lec25dscc25_TT    58.060799     392 22759.833069
+oai22s3            lec25dscc25_TT    96.725998       1    96.725998
+oai24s1            lec25dscc25_TT    91.238403       1    91.238403
+oai211s1           lec25dscc25_TT    58.060799       2   116.121597
+oai211s2           lec25dscc25_TT    58.060799      69  4006.195107
+oai211s3           lec25dscc25_TT    91.238403       6   547.430420
+oai221s1           lec25dscc25_TT    74.649597      25  1866.239929
+oai221s2           lec25dscc25_TT    74.649597      90  6718.463745
+oai221s3           lec25dscc25_TT   107.827003      10  1078.270035
+oai222s1           lec25dscc25_TT    82.944000       4   331.776001
+oai322s1           lec25dscc25_TT    93.398399       1    93.398399
+oai1112s2          lec25dscc25_TT    66.355202       6   398.131210
+oai1112s3          lec25dscc25_TT    99.532799      12  1194.393585
+or2s1              lec25dscc25_TT    49.766399       7   348.364796
+or2s2              lec25dscc25_TT    58.060799       1    58.060799
+or3s1              lec25dscc25_TT    58.060799       2   116.121597
+or5s1              lec25dscc25_TT    91.238403       9   821.145630
+pipeline_DW01_add_0           10583.654430       1  10583.654430  h
+pipeline_DW01_add_1            8103.628780       1   8103.628780  h
+pipeline_DW01_ash_1           24932.966957       1  24932.966957  h
+pipeline_DW01_cmp6_0           6743.347000       1   6743.347000  h
+pipeline_DW01_cmp6_3          16298.496040       1  16298.496040  h
+pipeline_DW01_sub_1           12765.081688       1  12765.081688  h
+pipeline_DW01_sub_2            8211.455978       1   8211.455978  h
+pipeline_DW02_mult_0          430802.854904       1 430802.854904 h
+pipeline_DW_rash_0            27230.477947       1  27230.477947  h
+xnr2s1             lec25dscc25_TT    82.944000      11   912.384003
+xor2s1             lec25dscc25_TT    82.944000      27  2239.488007
+-----------------------------------------------------------------------------
+Total 92 references                                 1459781.899776
+1

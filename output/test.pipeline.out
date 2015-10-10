@@ -1,0 +1,16 @@
+                                                                            D-MEM Bus &
+Cycle:      IF      |     ID      |     EX      |     MEM     |     WB      Reg Result
+    0:    4:lda     |   0:-       |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[0] accepted 1
+    1:    8:lda     |   4:lda     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[0] accepted 1
+    2:   12:lda     |   8:lda     |   4:lda     |   0:-       |   0:-       BUS_LOAD  MEM[8] accepted 1
+    3:   16:addq    |  12:lda     |   8:lda     |   4:lda     |   0:-       BUS_LOAD  MEM[8] accepted 1
+    4:   20:lda     |  16:addq    |  12:lda     |   8:lda     |   4:lda     r5=0  BUS_LOAD  MEM[16] accepted 1
+    5:   24:lda     |  20:lda     |  16:addq    |  12:lda     |   8:lda     r3=4096  BUS_LOAD  MEM[16] accepted 1
+    6:   28:lda     |  24:lda     |  20:lda     |  16:addq    |  12:lda     r1=0  BUS_LOAD  MEM[24] accepted 1
+    7:   32:lda     |  28:lda     |  24:lda     |  20:lda     |  16:addq    r4=4096  BUS_LOAD  MEM[24] accepted 1
+    8:   36:lda     |  32:lda     |  28:lda     |  24:lda     |  20:lda     r5=0  BUS_LOAD  MEM[32] accepted 1
+    9:   40:halt    |  36:lda     |  32:lda     |  28:lda     |  24:lda     r2=0  BUS_LOAD  MEM[32] accepted 1
+   10:   44:call_pal|  40:halt    |  36:lda     |  32:lda     |  28:lda     r2=0  BUS_LOAD  MEM[40] accepted 1
+   11:   48:call_pal|  44:call_pal|  40:halt    |  36:lda     |  32:lda     r2=0  BUS_LOAD  MEM[40] accepted 1
+   12:   52:call_pal|  48:call_pal|  44:-       |  40:halt    |  36:lda     r2=0  BUS_LOAD  MEM[48] accepted 1
+   13:   56:call_pal|  52:call_pal|  48:-       |  44:-       |  40:halt    BUS_LOAD  MEM[48] accepted 1
