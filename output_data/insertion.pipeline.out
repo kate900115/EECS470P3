@@ -1,0 +1,991 @@
+                                                                            D-MEM Bus &
+Cycle:      IF      |     ID      |     EX      |     MEM     |     WB      Reg Result
+    0:    4:br      |   0:-       |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[0] accepted 1
+    1:    8:ldqu    |   4:br      |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[0] accepted 1
+    2:   12:call_pal|   8:ldqu    |   4:br      |   0:-       |   0:-       BUS_LOAD  MEM[8] accepted 1
+    3:   16:call_pal|  12:call_pal|   8:-       |   4:br      |   0:-       BUS_LOAD  MEM[8] accepted 1
+    4:  140:lda     |   0:-       |   0:-       |   0:-       |   4:br      BUS_LOAD  MEM[136] accepted 1
+    5:  144:lda     | 140:lda     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[136] accepted 1
+    6:  148:ldq     | 144:lda     | 140:lda     |   0:-       |   0:-       BUS_LOAD  MEM[144] accepted 1
+    7:  152:bis     | 148:ldq     | 144:lda     | 140:lda     |   0:-       BUS_LOAD  MEM[144] accepted 1
+    8:  156:bis     | 152:bis     | 148:ldq     | 144:lda     | 140:lda     r5=1  BUS_LOAD  MEM[152] accepted 1
+    9:    0:-       | 156:bis     | 152:bis     | 148:ldq     | 144:lda     r9=16  BUS_LOAD  MEM[16] accepted 1
+   10:  160:subq    |   0:-       | 156:bis     | 152:bis     | 148:ldq     r3=1  BUS_LOAD  MEM[152] accepted 1
+   11:  164:ldq     | 160:subq    |   0:-       | 156:bis     | 152:bis     r6=1  BUS_LOAD  MEM[160] accepted 1
+   12:  168:ldq     | 164:ldq     | 160:subq    |   0:-       | 156:bis     r19=16  BUS_LOAD  MEM[160] accepted 1
+   13:  172:cmpult  | 168:ldq     | 164:ldq     | 160:subq    |   0:-       BUS_LOAD  MEM[168] accepted 1
+   14:    0:-       | 172:cmpult  | 168:ldq     | 164:ldq     | 160:subq    r18=8  BUS_LOAD  MEM[8] accepted 1
+   15:    0:-       |   0:-       | 172:cmpult  | 168:ldq     | 164:ldq     r14=3  BUS_LOAD  MEM[16] accepted 1
+   16:  176:bne     |   0:-       |   0:-       | 172:cmpult  | 168:ldq     r15=1  BUS_LOAD  MEM[168] accepted 1
+   17:  180:stq     | 176:bne     |   0:-       |   0:-       | 172:cmpult  r11=0  BUS_LOAD  MEM[176] accepted 1
+   18:  184:subq    | 180:stq     | 176:bne     |   0:-       |   0:-       BUS_LOAD  MEM[176] accepted 1
+   19:  188:subq    | 184:subq    | 180:stq     | 176:bne     |   0:-       BUS_LOAD  MEM[184] accepted 1
+   20:    0:-       | 188:subq    | 184:subq    | 180:stq     | 176:bne     BUS_STORE MEM[16] = 3 accepted 1
+   21:  192:subq    |   0:-       | 188:subq    | 184:subq    | 180:stq     BUS_LOAD  MEM[184] accepted 1
+   22:  196:beq     | 192:subq    |   0:-       | 188:subq    | 184:subq    r18=0  BUS_LOAD  MEM[192] accepted 1
+   23:  200:br      | 196:beq     | 192:subq    |   0:-       | 188:subq    r19=8  BUS_LOAD  MEM[192] accepted 1
+   24:  204:stq     | 200:br      | 196:beq     | 192:subq    |   0:-       BUS_LOAD  MEM[200] accepted 1
+   25:  208:addq    | 204:stq     | 200:br      | 196:beq     | 192:subq    r6=0  BUS_LOAD  MEM[200] accepted 1
+   26:  204:stq     |   0:-       |   0:-       |   0:-       | 196:beq     BUS_LOAD  MEM[200] accepted 1
+   27:  208:addq    | 204:stq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[200] accepted 1
+   28:  212:addq    | 208:addq    | 204:stq     |   0:-       |   0:-       BUS_LOAD  MEM[208] accepted 1
+   29:    0:-       | 212:addq    | 208:addq    | 204:stq     |   0:-       BUS_STORE MEM[8] = 1 accepted 1
+   30:  216:cmpult  |   0:-       | 212:addq    | 208:addq    | 204:stq     BUS_LOAD  MEM[208] accepted 1
+   31:  220:bne     | 216:cmpult  |   0:-       | 212:addq    | 208:addq    r9=24  BUS_LOAD  MEM[216] accepted 1
+   32:  224:halt    | 220:bne     | 216:cmpult  |   0:-       | 212:addq    r5=2  BUS_LOAD  MEM[216] accepted 1
+   33:  228:call_pal| 224:halt    | 220:bne     | 216:cmpult  |   0:-       BUS_LOAD  MEM[224] accepted 1
+   34:  232:call_pal| 228:call_pal| 224:halt    | 220:bne     | 216:cmpult  r10=1  BUS_LOAD  MEM[224] accepted 1
+   35:  148:ldq     |   0:-       |   0:-       |   0:-       | 220:bne     BUS_LOAD  MEM[144] accepted 1
+   36:  152:bis     | 148:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[144] accepted 1
+   37:  156:bis     | 152:bis     | 148:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[152] accepted 1
+   38:    0:-       | 156:bis     | 152:bis     | 148:ldq     |   0:-       BUS_LOAD  MEM[24] accepted 1
+   39:  160:subq    |   0:-       | 156:bis     | 152:bis     | 148:ldq     r3=4  BUS_LOAD  MEM[152] accepted 1
+   40:  164:ldq     | 160:subq    |   0:-       | 156:bis     | 152:bis     r6=2  BUS_LOAD  MEM[160] accepted 1
+   41:  168:ldq     | 164:ldq     | 160:subq    |   0:-       | 156:bis     r19=24  BUS_LOAD  MEM[160] accepted 1
+   42:  172:cmpult  | 168:ldq     | 164:ldq     | 160:subq    |   0:-       BUS_LOAD  MEM[168] accepted 1
+   43:    0:-       | 172:cmpult  | 168:ldq     | 164:ldq     | 160:subq    r18=16  BUS_LOAD  MEM[16] accepted 1
+   44:    0:-       |   0:-       | 172:cmpult  | 168:ldq     | 164:ldq     r14=3  BUS_LOAD  MEM[24] accepted 1
+   45:  176:bne     |   0:-       |   0:-       | 172:cmpult  | 168:ldq     r15=4  BUS_LOAD  MEM[168] accepted 1
+   46:  180:stq     | 176:bne     |   0:-       |   0:-       | 172:cmpult  r11=1  BUS_LOAD  MEM[176] accepted 1
+   47:  184:subq    | 180:stq     | 176:bne     |   0:-       |   0:-       BUS_LOAD  MEM[176] accepted 1
+   48:  188:subq    | 184:subq    | 180:stq     | 176:bne     |   0:-       BUS_LOAD  MEM[184] accepted 1
+   49:  204:stq     |   0:-       |   0:-       |   0:-       | 176:bne     BUS_LOAD  MEM[200] accepted 1
+   50:  208:addq    | 204:stq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[200] accepted 1
+   51:  212:addq    | 208:addq    | 204:stq     |   0:-       |   0:-       BUS_LOAD  MEM[208] accepted 1
+   52:    0:-       | 212:addq    | 208:addq    | 204:stq     |   0:-       BUS_STORE MEM[24] = 4 accepted 1
+   53:  216:cmpult  |   0:-       | 212:addq    | 208:addq    | 204:stq     BUS_LOAD  MEM[208] accepted 1
+   54:  220:bne     | 216:cmpult  |   0:-       | 212:addq    | 208:addq    r9=32  BUS_LOAD  MEM[216] accepted 1
+   55:  224:halt    | 220:bne     | 216:cmpult  |   0:-       | 212:addq    r5=3  BUS_LOAD  MEM[216] accepted 1
+   56:  228:call_pal| 224:halt    | 220:bne     | 216:cmpult  |   0:-       BUS_LOAD  MEM[224] accepted 1
+   57:  232:call_pal| 228:call_pal| 224:halt    | 220:bne     | 216:cmpult  r10=1  BUS_LOAD  MEM[224] accepted 1
+   58:  148:ldq     |   0:-       |   0:-       |   0:-       | 220:bne     BUS_LOAD  MEM[144] accepted 1
+   59:  152:bis     | 148:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[144] accepted 1
+   60:  156:bis     | 152:bis     | 148:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[152] accepted 1
+   61:    0:-       | 156:bis     | 152:bis     | 148:ldq     |   0:-       BUS_LOAD  MEM[32] accepted 1
+   62:  160:subq    |   0:-       | 156:bis     | 152:bis     | 148:ldq     r3=1  BUS_LOAD  MEM[152] accepted 1
+   63:  164:ldq     | 160:subq    |   0:-       | 156:bis     | 152:bis     r6=3  BUS_LOAD  MEM[160] accepted 1
+   64:  168:ldq     | 164:ldq     | 160:subq    |   0:-       | 156:bis     r19=32  BUS_LOAD  MEM[160] accepted 1
+   65:  172:cmpult  | 168:ldq     | 164:ldq     | 160:subq    |   0:-       BUS_LOAD  MEM[168] accepted 1
+   66:    0:-       | 172:cmpult  | 168:ldq     | 164:ldq     | 160:subq    r18=24  BUS_LOAD  MEM[24] accepted 1
+   67:    0:-       |   0:-       | 172:cmpult  | 168:ldq     | 164:ldq     r14=4  BUS_LOAD  MEM[32] accepted 1
+   68:  176:bne     |   0:-       |   0:-       | 172:cmpult  | 168:ldq     r15=1  BUS_LOAD  MEM[168] accepted 1
+   69:  180:stq     | 176:bne     |   0:-       |   0:-       | 172:cmpult  r11=0  BUS_LOAD  MEM[176] accepted 1
+   70:  184:subq    | 180:stq     | 176:bne     |   0:-       |   0:-       BUS_LOAD  MEM[176] accepted 1
+   71:  188:subq    | 184:subq    | 180:stq     | 176:bne     |   0:-       BUS_LOAD  MEM[184] accepted 1
+   72:    0:-       | 188:subq    | 184:subq    | 180:stq     | 176:bne     BUS_STORE MEM[32] = 4 accepted 1
+   73:  192:subq    |   0:-       | 188:subq    | 184:subq    | 180:stq     BUS_LOAD  MEM[184] accepted 1
+   74:  196:beq     | 192:subq    |   0:-       | 188:subq    | 184:subq    r18=16  BUS_LOAD  MEM[192] accepted 1
+   75:  200:br      | 196:beq     | 192:subq    |   0:-       | 188:subq    r19=24  BUS_LOAD  MEM[192] accepted 1
+   76:  204:stq     | 200:br      | 196:beq     | 192:subq    |   0:-       BUS_LOAD  MEM[200] accepted 1
+   77:  208:addq    | 204:stq     | 200:br      | 196:beq     | 192:subq    r6=2  BUS_LOAD  MEM[200] accepted 1
+   78:  212:addq    | 208:addq    | 204:stq     | 200:br      | 196:beq     BUS_LOAD  MEM[208] accepted 1
+   79:  164:ldq     |   0:-       |   0:-       |   0:-       | 200:br      BUS_LOAD  MEM[160] accepted 1
+   80:  168:ldq     | 164:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[160] accepted 1
+   81:  172:cmpult  | 168:ldq     | 164:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[168] accepted 1
+   82:    0:-       | 172:cmpult  | 168:ldq     | 164:ldq     |   0:-       BUS_LOAD  MEM[16] accepted 1
+   83:    0:-       |   0:-       | 172:cmpult  | 168:ldq     | 164:ldq     r14=3  BUS_LOAD  MEM[24] accepted 1
+   84:  176:bne     |   0:-       |   0:-       | 172:cmpult  | 168:ldq     r15=4  BUS_LOAD  MEM[168] accepted 1
+   85:  180:stq     | 176:bne     |   0:-       |   0:-       | 172:cmpult  r11=0  BUS_LOAD  MEM[176] accepted 1
+   86:  184:subq    | 180:stq     | 176:bne     |   0:-       |   0:-       BUS_LOAD  MEM[176] accepted 1
+   87:  188:subq    | 184:subq    | 180:stq     | 176:bne     |   0:-       BUS_LOAD  MEM[184] accepted 1
+   88:    0:-       | 188:subq    | 184:subq    | 180:stq     | 176:bne     BUS_STORE MEM[24] = 3 accepted 1
+   89:  192:subq    |   0:-       | 188:subq    | 184:subq    | 180:stq     BUS_LOAD  MEM[184] accepted 1
+   90:  196:beq     | 192:subq    |   0:-       | 188:subq    | 184:subq    r18=8  BUS_LOAD  MEM[192] accepted 1
+   91:  200:br      | 196:beq     | 192:subq    |   0:-       | 188:subq    r19=16  BUS_LOAD  MEM[192] accepted 1
+   92:  204:stq     | 200:br      | 196:beq     | 192:subq    |   0:-       BUS_LOAD  MEM[200] accepted 1
+   93:  208:addq    | 204:stq     | 200:br      | 196:beq     | 192:subq    r6=1  BUS_LOAD  MEM[200] accepted 1
+   94:  212:addq    | 208:addq    | 204:stq     | 200:br      | 196:beq     BUS_LOAD  MEM[208] accepted 1
+   95:  164:ldq     |   0:-       |   0:-       |   0:-       | 200:br      BUS_LOAD  MEM[160] accepted 1
+   96:  168:ldq     | 164:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[160] accepted 1
+   97:  172:cmpult  | 168:ldq     | 164:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[168] accepted 1
+   98:    0:-       | 172:cmpult  | 168:ldq     | 164:ldq     |   0:-       BUS_LOAD  MEM[8] accepted 1
+   99:    0:-       |   0:-       | 172:cmpult  | 168:ldq     | 164:ldq     r14=1  BUS_LOAD  MEM[16] accepted 1
+  100:  176:bne     |   0:-       |   0:-       | 172:cmpult  | 168:ldq     r15=3  BUS_LOAD  MEM[168] accepted 1
+  101:  180:stq     | 176:bne     |   0:-       |   0:-       | 172:cmpult  r11=0  BUS_LOAD  MEM[176] accepted 1
+  102:  184:subq    | 180:stq     | 176:bne     |   0:-       |   0:-       BUS_LOAD  MEM[176] accepted 1
+  103:  188:subq    | 184:subq    | 180:stq     | 176:bne     |   0:-       BUS_LOAD  MEM[184] accepted 1
+  104:    0:-       | 188:subq    | 184:subq    | 180:stq     | 176:bne     BUS_STORE MEM[16] = 1 accepted 1
+  105:  192:subq    |   0:-       | 188:subq    | 184:subq    | 180:stq     BUS_LOAD  MEM[184] accepted 1
+  106:  196:beq     | 192:subq    |   0:-       | 188:subq    | 184:subq    r18=0  BUS_LOAD  MEM[192] accepted 1
+  107:  200:br      | 196:beq     | 192:subq    |   0:-       | 188:subq    r19=8  BUS_LOAD  MEM[192] accepted 1
+  108:  204:stq     | 200:br      | 196:beq     | 192:subq    |   0:-       BUS_LOAD  MEM[200] accepted 1
+  109:  208:addq    | 204:stq     | 200:br      | 196:beq     | 192:subq    r6=0  BUS_LOAD  MEM[200] accepted 1
+  110:  204:stq     |   0:-       |   0:-       |   0:-       | 196:beq     BUS_LOAD  MEM[200] accepted 1
+  111:  208:addq    | 204:stq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[200] accepted 1
+  112:  212:addq    | 208:addq    | 204:stq     |   0:-       |   0:-       BUS_LOAD  MEM[208] accepted 1
+  113:    0:-       | 212:addq    | 208:addq    | 204:stq     |   0:-       BUS_STORE MEM[8] = 1 accepted 1
+  114:  216:cmpult  |   0:-       | 212:addq    | 208:addq    | 204:stq     BUS_LOAD  MEM[208] accepted 1
+  115:  220:bne     | 216:cmpult  |   0:-       | 212:addq    | 208:addq    r9=40  BUS_LOAD  MEM[216] accepted 1
+  116:  224:halt    | 220:bne     | 216:cmpult  |   0:-       | 212:addq    r5=4  BUS_LOAD  MEM[216] accepted 1
+  117:  228:call_pal| 224:halt    | 220:bne     | 216:cmpult  |   0:-       BUS_LOAD  MEM[224] accepted 1
+  118:  232:call_pal| 228:call_pal| 224:halt    | 220:bne     | 216:cmpult  r10=1  BUS_LOAD  MEM[224] accepted 1
+  119:  148:ldq     |   0:-       |   0:-       |   0:-       | 220:bne     BUS_LOAD  MEM[144] accepted 1
+  120:  152:bis     | 148:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[144] accepted 1
+  121:  156:bis     | 152:bis     | 148:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[152] accepted 1
+  122:    0:-       | 156:bis     | 152:bis     | 148:ldq     |   0:-       BUS_LOAD  MEM[40] accepted 1
+  123:  160:subq    |   0:-       | 156:bis     | 152:bis     | 148:ldq     r3=5  BUS_LOAD  MEM[152] accepted 1
+  124:  164:ldq     | 160:subq    |   0:-       | 156:bis     | 152:bis     r6=4  BUS_LOAD  MEM[160] accepted 1
+  125:  168:ldq     | 164:ldq     | 160:subq    |   0:-       | 156:bis     r19=40  BUS_LOAD  MEM[160] accepted 1
+  126:  172:cmpult  | 168:ldq     | 164:ldq     | 160:subq    |   0:-       BUS_LOAD  MEM[168] accepted 1
+  127:    0:-       | 172:cmpult  | 168:ldq     | 164:ldq     | 160:subq    r18=32  BUS_LOAD  MEM[32] accepted 1
+  128:    0:-       |   0:-       | 172:cmpult  | 168:ldq     | 164:ldq     r14=4  BUS_LOAD  MEM[40] accepted 1
+  129:  176:bne     |   0:-       |   0:-       | 172:cmpult  | 168:ldq     r15=5  BUS_LOAD  MEM[168] accepted 1
+  130:  180:stq     | 176:bne     |   0:-       |   0:-       | 172:cmpult  r11=1  BUS_LOAD  MEM[176] accepted 1
+  131:  184:subq    | 180:stq     | 176:bne     |   0:-       |   0:-       BUS_LOAD  MEM[176] accepted 1
+  132:  188:subq    | 184:subq    | 180:stq     | 176:bne     |   0:-       BUS_LOAD  MEM[184] accepted 1
+  133:  204:stq     |   0:-       |   0:-       |   0:-       | 176:bne     BUS_LOAD  MEM[200] accepted 1
+  134:  208:addq    | 204:stq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[200] accepted 1
+  135:  212:addq    | 208:addq    | 204:stq     |   0:-       |   0:-       BUS_LOAD  MEM[208] accepted 1
+  136:    0:-       | 212:addq    | 208:addq    | 204:stq     |   0:-       BUS_STORE MEM[40] = 5 accepted 1
+  137:  216:cmpult  |   0:-       | 212:addq    | 208:addq    | 204:stq     BUS_LOAD  MEM[208] accepted 1
+  138:  220:bne     | 216:cmpult  |   0:-       | 212:addq    | 208:addq    r9=48  BUS_LOAD  MEM[216] accepted 1
+  139:  224:halt    | 220:bne     | 216:cmpult  |   0:-       | 212:addq    r5=5  BUS_LOAD  MEM[216] accepted 1
+  140:  228:call_pal| 224:halt    | 220:bne     | 216:cmpult  |   0:-       BUS_LOAD  MEM[224] accepted 1
+  141:  232:call_pal| 228:call_pal| 224:halt    | 220:bne     | 216:cmpult  r10=1  BUS_LOAD  MEM[224] accepted 1
+  142:  148:ldq     |   0:-       |   0:-       |   0:-       | 220:bne     BUS_LOAD  MEM[144] accepted 1
+  143:  152:bis     | 148:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[144] accepted 1
+  144:  156:bis     | 152:bis     | 148:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[152] accepted 1
+  145:    0:-       | 156:bis     | 152:bis     | 148:ldq     |   0:-       BUS_LOAD  MEM[48] accepted 1
+  146:  160:subq    |   0:-       | 156:bis     | 152:bis     | 148:ldq     r3=9  BUS_LOAD  MEM[152] accepted 1
+  147:  164:ldq     | 160:subq    |   0:-       | 156:bis     | 152:bis     r6=5  BUS_LOAD  MEM[160] accepted 1
+  148:  168:ldq     | 164:ldq     | 160:subq    |   0:-       | 156:bis     r19=48  BUS_LOAD  MEM[160] accepted 1
+  149:  172:cmpult  | 168:ldq     | 164:ldq     | 160:subq    |   0:-       BUS_LOAD  MEM[168] accepted 1
+  150:    0:-       | 172:cmpult  | 168:ldq     | 164:ldq     | 160:subq    r18=40  BUS_LOAD  MEM[40] accepted 1
+  151:    0:-       |   0:-       | 172:cmpult  | 168:ldq     | 164:ldq     r14=5  BUS_LOAD  MEM[48] accepted 1
+  152:  176:bne     |   0:-       |   0:-       | 172:cmpult  | 168:ldq     r15=9  BUS_LOAD  MEM[168] accepted 1
+  153:  180:stq     | 176:bne     |   0:-       |   0:-       | 172:cmpult  r11=1  BUS_LOAD  MEM[176] accepted 1
+  154:  184:subq    | 180:stq     | 176:bne     |   0:-       |   0:-       BUS_LOAD  MEM[176] accepted 1
+  155:  188:subq    | 184:subq    | 180:stq     | 176:bne     |   0:-       BUS_LOAD  MEM[184] accepted 1
+  156:  204:stq     |   0:-       |   0:-       |   0:-       | 176:bne     BUS_LOAD  MEM[200] accepted 1
+  157:  208:addq    | 204:stq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[200] accepted 1
+  158:  212:addq    | 208:addq    | 204:stq     |   0:-       |   0:-       BUS_LOAD  MEM[208] accepted 1
+  159:    0:-       | 212:addq    | 208:addq    | 204:stq     |   0:-       BUS_STORE MEM[48] = 9 accepted 1
+  160:  216:cmpult  |   0:-       | 212:addq    | 208:addq    | 204:stq     BUS_LOAD  MEM[208] accepted 1
+  161:  220:bne     | 216:cmpult  |   0:-       | 212:addq    | 208:addq    r9=56  BUS_LOAD  MEM[216] accepted 1
+  162:  224:halt    | 220:bne     | 216:cmpult  |   0:-       | 212:addq    r5=6  BUS_LOAD  MEM[216] accepted 1
+  163:  228:call_pal| 224:halt    | 220:bne     | 216:cmpult  |   0:-       BUS_LOAD  MEM[224] accepted 1
+  164:  232:call_pal| 228:call_pal| 224:halt    | 220:bne     | 216:cmpult  r10=1  BUS_LOAD  MEM[224] accepted 1
+  165:  148:ldq     |   0:-       |   0:-       |   0:-       | 220:bne     BUS_LOAD  MEM[144] accepted 1
+  166:  152:bis     | 148:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[144] accepted 1
+  167:  156:bis     | 152:bis     | 148:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[152] accepted 1
+  168:    0:-       | 156:bis     | 152:bis     | 148:ldq     |   0:-       BUS_LOAD  MEM[56] accepted 1
+  169:  160:subq    |   0:-       | 156:bis     | 152:bis     | 148:ldq     r3=2  BUS_LOAD  MEM[152] accepted 1
+  170:  164:ldq     | 160:subq    |   0:-       | 156:bis     | 152:bis     r6=6  BUS_LOAD  MEM[160] accepted 1
+  171:  168:ldq     | 164:ldq     | 160:subq    |   0:-       | 156:bis     r19=56  BUS_LOAD  MEM[160] accepted 1
+  172:  172:cmpult  | 168:ldq     | 164:ldq     | 160:subq    |   0:-       BUS_LOAD  MEM[168] accepted 1
+  173:    0:-       | 172:cmpult  | 168:ldq     | 164:ldq     | 160:subq    r18=48  BUS_LOAD  MEM[48] accepted 1
+  174:    0:-       |   0:-       | 172:cmpult  | 168:ldq     | 164:ldq     r14=9  BUS_LOAD  MEM[56] accepted 1
+  175:  176:bne     |   0:-       |   0:-       | 172:cmpult  | 168:ldq     r15=2  BUS_LOAD  MEM[168] accepted 1
+  176:  180:stq     | 176:bne     |   0:-       |   0:-       | 172:cmpult  r11=0  BUS_LOAD  MEM[176] accepted 1
+  177:  184:subq    | 180:stq     | 176:bne     |   0:-       |   0:-       BUS_LOAD  MEM[176] accepted 1
+  178:  188:subq    | 184:subq    | 180:stq     | 176:bne     |   0:-       BUS_LOAD  MEM[184] accepted 1
+  179:    0:-       | 188:subq    | 184:subq    | 180:stq     | 176:bne     BUS_STORE MEM[56] = 9 accepted 1
+  180:  192:subq    |   0:-       | 188:subq    | 184:subq    | 180:stq     BUS_LOAD  MEM[184] accepted 1
+  181:  196:beq     | 192:subq    |   0:-       | 188:subq    | 184:subq    r18=40  BUS_LOAD  MEM[192] accepted 1
+  182:  200:br      | 196:beq     | 192:subq    |   0:-       | 188:subq    r19=48  BUS_LOAD  MEM[192] accepted 1
+  183:  204:stq     | 200:br      | 196:beq     | 192:subq    |   0:-       BUS_LOAD  MEM[200] accepted 1
+  184:  208:addq    | 204:stq     | 200:br      | 196:beq     | 192:subq    r6=5  BUS_LOAD  MEM[200] accepted 1
+  185:  212:addq    | 208:addq    | 204:stq     | 200:br      | 196:beq     BUS_LOAD  MEM[208] accepted 1
+  186:  164:ldq     |   0:-       |   0:-       |   0:-       | 200:br      BUS_LOAD  MEM[160] accepted 1
+  187:  168:ldq     | 164:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[160] accepted 1
+  188:  172:cmpult  | 168:ldq     | 164:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[168] accepted 1
+  189:    0:-       | 172:cmpult  | 168:ldq     | 164:ldq     |   0:-       BUS_LOAD  MEM[40] accepted 1
+  190:    0:-       |   0:-       | 172:cmpult  | 168:ldq     | 164:ldq     r14=5  BUS_LOAD  MEM[48] accepted 1
+  191:  176:bne     |   0:-       |   0:-       | 172:cmpult  | 168:ldq     r15=9  BUS_LOAD  MEM[168] accepted 1
+  192:  180:stq     | 176:bne     |   0:-       |   0:-       | 172:cmpult  r11=0  BUS_LOAD  MEM[176] accepted 1
+  193:  184:subq    | 180:stq     | 176:bne     |   0:-       |   0:-       BUS_LOAD  MEM[176] accepted 1
+  194:  188:subq    | 184:subq    | 180:stq     | 176:bne     |   0:-       BUS_LOAD  MEM[184] accepted 1
+  195:    0:-       | 188:subq    | 184:subq    | 180:stq     | 176:bne     BUS_STORE MEM[48] = 5 accepted 1
+  196:  192:subq    |   0:-       | 188:subq    | 184:subq    | 180:stq     BUS_LOAD  MEM[184] accepted 1
+  197:  196:beq     | 192:subq    |   0:-       | 188:subq    | 184:subq    r18=32  BUS_LOAD  MEM[192] accepted 1
+  198:  200:br      | 196:beq     | 192:subq    |   0:-       | 188:subq    r19=40  BUS_LOAD  MEM[192] accepted 1
+  199:  204:stq     | 200:br      | 196:beq     | 192:subq    |   0:-       BUS_LOAD  MEM[200] accepted 1
+  200:  208:addq    | 204:stq     | 200:br      | 196:beq     | 192:subq    r6=4  BUS_LOAD  MEM[200] accepted 1
+  201:  212:addq    | 208:addq    | 204:stq     | 200:br      | 196:beq     BUS_LOAD  MEM[208] accepted 1
+  202:  164:ldq     |   0:-       |   0:-       |   0:-       | 200:br      BUS_LOAD  MEM[160] accepted 1
+  203:  168:ldq     | 164:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[160] accepted 1
+  204:  172:cmpult  | 168:ldq     | 164:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[168] accepted 1
+  205:    0:-       | 172:cmpult  | 168:ldq     | 164:ldq     |   0:-       BUS_LOAD  MEM[32] accepted 1
+  206:    0:-       |   0:-       | 172:cmpult  | 168:ldq     | 164:ldq     r14=4  BUS_LOAD  MEM[40] accepted 1
+  207:  176:bne     |   0:-       |   0:-       | 172:cmpult  | 168:ldq     r15=5  BUS_LOAD  MEM[168] accepted 1
+  208:  180:stq     | 176:bne     |   0:-       |   0:-       | 172:cmpult  r11=0  BUS_LOAD  MEM[176] accepted 1
+  209:  184:subq    | 180:stq     | 176:bne     |   0:-       |   0:-       BUS_LOAD  MEM[176] accepted 1
+  210:  188:subq    | 184:subq    | 180:stq     | 176:bne     |   0:-       BUS_LOAD  MEM[184] accepted 1
+  211:    0:-       | 188:subq    | 184:subq    | 180:stq     | 176:bne     BUS_STORE MEM[40] = 4 accepted 1
+  212:  192:subq    |   0:-       | 188:subq    | 184:subq    | 180:stq     BUS_LOAD  MEM[184] accepted 1
+  213:  196:beq     | 192:subq    |   0:-       | 188:subq    | 184:subq    r18=24  BUS_LOAD  MEM[192] accepted 1
+  214:  200:br      | 196:beq     | 192:subq    |   0:-       | 188:subq    r19=32  BUS_LOAD  MEM[192] accepted 1
+  215:  204:stq     | 200:br      | 196:beq     | 192:subq    |   0:-       BUS_LOAD  MEM[200] accepted 1
+  216:  208:addq    | 204:stq     | 200:br      | 196:beq     | 192:subq    r6=3  BUS_LOAD  MEM[200] accepted 1
+  217:  212:addq    | 208:addq    | 204:stq     | 200:br      | 196:beq     BUS_LOAD  MEM[208] accepted 1
+  218:  164:ldq     |   0:-       |   0:-       |   0:-       | 200:br      BUS_LOAD  MEM[160] accepted 1
+  219:  168:ldq     | 164:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[160] accepted 1
+  220:  172:cmpult  | 168:ldq     | 164:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[168] accepted 1
+  221:    0:-       | 172:cmpult  | 168:ldq     | 164:ldq     |   0:-       BUS_LOAD  MEM[24] accepted 1
+  222:    0:-       |   0:-       | 172:cmpult  | 168:ldq     | 164:ldq     r14=3  BUS_LOAD  MEM[32] accepted 1
+  223:  176:bne     |   0:-       |   0:-       | 172:cmpult  | 168:ldq     r15=4  BUS_LOAD  MEM[168] accepted 1
+  224:  180:stq     | 176:bne     |   0:-       |   0:-       | 172:cmpult  r11=0  BUS_LOAD  MEM[176] accepted 1
+  225:  184:subq    | 180:stq     | 176:bne     |   0:-       |   0:-       BUS_LOAD  MEM[176] accepted 1
+  226:  188:subq    | 184:subq    | 180:stq     | 176:bne     |   0:-       BUS_LOAD  MEM[184] accepted 1
+  227:    0:-       | 188:subq    | 184:subq    | 180:stq     | 176:bne     BUS_STORE MEM[32] = 3 accepted 1
+  228:  192:subq    |   0:-       | 188:subq    | 184:subq    | 180:stq     BUS_LOAD  MEM[184] accepted 1
+  229:  196:beq     | 192:subq    |   0:-       | 188:subq    | 184:subq    r18=16  BUS_LOAD  MEM[192] accepted 1
+  230:  200:br      | 196:beq     | 192:subq    |   0:-       | 188:subq    r19=24  BUS_LOAD  MEM[192] accepted 1
+  231:  204:stq     | 200:br      | 196:beq     | 192:subq    |   0:-       BUS_LOAD  MEM[200] accepted 1
+  232:  208:addq    | 204:stq     | 200:br      | 196:beq     | 192:subq    r6=2  BUS_LOAD  MEM[200] accepted 1
+  233:  212:addq    | 208:addq    | 204:stq     | 200:br      | 196:beq     BUS_LOAD  MEM[208] accepted 1
+  234:  164:ldq     |   0:-       |   0:-       |   0:-       | 200:br      BUS_LOAD  MEM[160] accepted 1
+  235:  168:ldq     | 164:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[160] accepted 1
+  236:  172:cmpult  | 168:ldq     | 164:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[168] accepted 1
+  237:    0:-       | 172:cmpult  | 168:ldq     | 164:ldq     |   0:-       BUS_LOAD  MEM[16] accepted 1
+  238:    0:-       |   0:-       | 172:cmpult  | 168:ldq     | 164:ldq     r14=1  BUS_LOAD  MEM[24] accepted 1
+  239:  176:bne     |   0:-       |   0:-       | 172:cmpult  | 168:ldq     r15=3  BUS_LOAD  MEM[168] accepted 1
+  240:  180:stq     | 176:bne     |   0:-       |   0:-       | 172:cmpult  r11=1  BUS_LOAD  MEM[176] accepted 1
+  241:  184:subq    | 180:stq     | 176:bne     |   0:-       |   0:-       BUS_LOAD  MEM[176] accepted 1
+  242:  188:subq    | 184:subq    | 180:stq     | 176:bne     |   0:-       BUS_LOAD  MEM[184] accepted 1
+  243:  204:stq     |   0:-       |   0:-       |   0:-       | 176:bne     BUS_LOAD  MEM[200] accepted 1
+  244:  208:addq    | 204:stq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[200] accepted 1
+  245:  212:addq    | 208:addq    | 204:stq     |   0:-       |   0:-       BUS_LOAD  MEM[208] accepted 1
+  246:    0:-       | 212:addq    | 208:addq    | 204:stq     |   0:-       BUS_STORE MEM[24] = 2 accepted 1
+  247:  216:cmpult  |   0:-       | 212:addq    | 208:addq    | 204:stq     BUS_LOAD  MEM[208] accepted 1
+  248:  220:bne     | 216:cmpult  |   0:-       | 212:addq    | 208:addq    r9=64  BUS_LOAD  MEM[216] accepted 1
+  249:  224:halt    | 220:bne     | 216:cmpult  |   0:-       | 212:addq    r5=7  BUS_LOAD  MEM[216] accepted 1
+  250:  228:call_pal| 224:halt    | 220:bne     | 216:cmpult  |   0:-       BUS_LOAD  MEM[224] accepted 1
+  251:  232:call_pal| 228:call_pal| 224:halt    | 220:bne     | 216:cmpult  r10=1  BUS_LOAD  MEM[224] accepted 1
+  252:  148:ldq     |   0:-       |   0:-       |   0:-       | 220:bne     BUS_LOAD  MEM[144] accepted 1
+  253:  152:bis     | 148:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[144] accepted 1
+  254:  156:bis     | 152:bis     | 148:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[152] accepted 1
+  255:    0:-       | 156:bis     | 152:bis     | 148:ldq     |   0:-       BUS_LOAD  MEM[64] accepted 1
+  256:  160:subq    |   0:-       | 156:bis     | 152:bis     | 148:ldq     r3=6  BUS_LOAD  MEM[152] accepted 1
+  257:  164:ldq     | 160:subq    |   0:-       | 156:bis     | 152:bis     r6=7  BUS_LOAD  MEM[160] accepted 1
+  258:  168:ldq     | 164:ldq     | 160:subq    |   0:-       | 156:bis     r19=64  BUS_LOAD  MEM[160] accepted 1
+  259:  172:cmpult  | 168:ldq     | 164:ldq     | 160:subq    |   0:-       BUS_LOAD  MEM[168] accepted 1
+  260:    0:-       | 172:cmpult  | 168:ldq     | 164:ldq     | 160:subq    r18=56  BUS_LOAD  MEM[56] accepted 1
+  261:    0:-       |   0:-       | 172:cmpult  | 168:ldq     | 164:ldq     r14=9  BUS_LOAD  MEM[64] accepted 1
+  262:  176:bne     |   0:-       |   0:-       | 172:cmpult  | 168:ldq     r15=6  BUS_LOAD  MEM[168] accepted 1
+  263:  180:stq     | 176:bne     |   0:-       |   0:-       | 172:cmpult  r11=0  BUS_LOAD  MEM[176] accepted 1
+  264:  184:subq    | 180:stq     | 176:bne     |   0:-       |   0:-       BUS_LOAD  MEM[176] accepted 1
+  265:  188:subq    | 184:subq    | 180:stq     | 176:bne     |   0:-       BUS_LOAD  MEM[184] accepted 1
+  266:    0:-       | 188:subq    | 184:subq    | 180:stq     | 176:bne     BUS_STORE MEM[64] = 9 accepted 1
+  267:  192:subq    |   0:-       | 188:subq    | 184:subq    | 180:stq     BUS_LOAD  MEM[184] accepted 1
+  268:  196:beq     | 192:subq    |   0:-       | 188:subq    | 184:subq    r18=48  BUS_LOAD  MEM[192] accepted 1
+  269:  200:br      | 196:beq     | 192:subq    |   0:-       | 188:subq    r19=56  BUS_LOAD  MEM[192] accepted 1
+  270:  204:stq     | 200:br      | 196:beq     | 192:subq    |   0:-       BUS_LOAD  MEM[200] accepted 1
+  271:  208:addq    | 204:stq     | 200:br      | 196:beq     | 192:subq    r6=6  BUS_LOAD  MEM[200] accepted 1
+  272:  212:addq    | 208:addq    | 204:stq     | 200:br      | 196:beq     BUS_LOAD  MEM[208] accepted 1
+  273:  164:ldq     |   0:-       |   0:-       |   0:-       | 200:br      BUS_LOAD  MEM[160] accepted 1
+  274:  168:ldq     | 164:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[160] accepted 1
+  275:  172:cmpult  | 168:ldq     | 164:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[168] accepted 1
+  276:    0:-       | 172:cmpult  | 168:ldq     | 164:ldq     |   0:-       BUS_LOAD  MEM[48] accepted 1
+  277:    0:-       |   0:-       | 172:cmpult  | 168:ldq     | 164:ldq     r14=5  BUS_LOAD  MEM[56] accepted 1
+  278:  176:bne     |   0:-       |   0:-       | 172:cmpult  | 168:ldq     r15=9  BUS_LOAD  MEM[168] accepted 1
+  279:  180:stq     | 176:bne     |   0:-       |   0:-       | 172:cmpult  r11=1  BUS_LOAD  MEM[176] accepted 1
+  280:  184:subq    | 180:stq     | 176:bne     |   0:-       |   0:-       BUS_LOAD  MEM[176] accepted 1
+  281:  188:subq    | 184:subq    | 180:stq     | 176:bne     |   0:-       BUS_LOAD  MEM[184] accepted 1
+  282:  204:stq     |   0:-       |   0:-       |   0:-       | 176:bne     BUS_LOAD  MEM[200] accepted 1
+  283:  208:addq    | 204:stq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[200] accepted 1
+  284:  212:addq    | 208:addq    | 204:stq     |   0:-       |   0:-       BUS_LOAD  MEM[208] accepted 1
+  285:    0:-       | 212:addq    | 208:addq    | 204:stq     |   0:-       BUS_STORE MEM[56] = 6 accepted 1
+  286:  216:cmpult  |   0:-       | 212:addq    | 208:addq    | 204:stq     BUS_LOAD  MEM[208] accepted 1
+  287:  220:bne     | 216:cmpult  |   0:-       | 212:addq    | 208:addq    r9=72  BUS_LOAD  MEM[216] accepted 1
+  288:  224:halt    | 220:bne     | 216:cmpult  |   0:-       | 212:addq    r5=8  BUS_LOAD  MEM[216] accepted 1
+  289:  228:call_pal| 224:halt    | 220:bne     | 216:cmpult  |   0:-       BUS_LOAD  MEM[224] accepted 1
+  290:  232:call_pal| 228:call_pal| 224:halt    | 220:bne     | 216:cmpult  r10=1  BUS_LOAD  MEM[224] accepted 1
+  291:  148:ldq     |   0:-       |   0:-       |   0:-       | 220:bne     BUS_LOAD  MEM[144] accepted 1
+  292:  152:bis     | 148:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[144] accepted 1
+  293:  156:bis     | 152:bis     | 148:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[152] accepted 1
+  294:    0:-       | 156:bis     | 152:bis     | 148:ldq     |   0:-       BUS_LOAD  MEM[72] accepted 1
+  295:  160:subq    |   0:-       | 156:bis     | 152:bis     | 148:ldq     r3=5  BUS_LOAD  MEM[152] accepted 1
+  296:  164:ldq     | 160:subq    |   0:-       | 156:bis     | 152:bis     r6=8  BUS_LOAD  MEM[160] accepted 1
+  297:  168:ldq     | 164:ldq     | 160:subq    |   0:-       | 156:bis     r19=72  BUS_LOAD  MEM[160] accepted 1
+  298:  172:cmpult  | 168:ldq     | 164:ldq     | 160:subq    |   0:-       BUS_LOAD  MEM[168] accepted 1
+  299:    0:-       | 172:cmpult  | 168:ldq     | 164:ldq     | 160:subq    r18=64  BUS_LOAD  MEM[64] accepted 1
+  300:    0:-       |   0:-       | 172:cmpult  | 168:ldq     | 164:ldq     r14=9  BUS_LOAD  MEM[72] accepted 1
+  301:  176:bne     |   0:-       |   0:-       | 172:cmpult  | 168:ldq     r15=5  BUS_LOAD  MEM[168] accepted 1
+  302:  180:stq     | 176:bne     |   0:-       |   0:-       | 172:cmpult  r11=0  BUS_LOAD  MEM[176] accepted 1
+  303:  184:subq    | 180:stq     | 176:bne     |   0:-       |   0:-       BUS_LOAD  MEM[176] accepted 1
+  304:  188:subq    | 184:subq    | 180:stq     | 176:bne     |   0:-       BUS_LOAD  MEM[184] accepted 1
+  305:    0:-       | 188:subq    | 184:subq    | 180:stq     | 176:bne     BUS_STORE MEM[72] = 9 accepted 1
+  306:  192:subq    |   0:-       | 188:subq    | 184:subq    | 180:stq     BUS_LOAD  MEM[184] accepted 1
+  307:  196:beq     | 192:subq    |   0:-       | 188:subq    | 184:subq    r18=56  BUS_LOAD  MEM[192] accepted 1
+  308:  200:br      | 196:beq     | 192:subq    |   0:-       | 188:subq    r19=64  BUS_LOAD  MEM[192] accepted 1
+  309:  204:stq     | 200:br      | 196:beq     | 192:subq    |   0:-       BUS_LOAD  MEM[200] accepted 1
+  310:  208:addq    | 204:stq     | 200:br      | 196:beq     | 192:subq    r6=7  BUS_LOAD  MEM[200] accepted 1
+  311:  212:addq    | 208:addq    | 204:stq     | 200:br      | 196:beq     BUS_LOAD  MEM[208] accepted 1
+  312:  164:ldq     |   0:-       |   0:-       |   0:-       | 200:br      BUS_LOAD  MEM[160] accepted 1
+  313:  168:ldq     | 164:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[160] accepted 1
+  314:  172:cmpult  | 168:ldq     | 164:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[168] accepted 1
+  315:    0:-       | 172:cmpult  | 168:ldq     | 164:ldq     |   0:-       BUS_LOAD  MEM[56] accepted 1
+  316:    0:-       |   0:-       | 172:cmpult  | 168:ldq     | 164:ldq     r14=6  BUS_LOAD  MEM[64] accepted 1
+  317:  176:bne     |   0:-       |   0:-       | 172:cmpult  | 168:ldq     r15=9  BUS_LOAD  MEM[168] accepted 1
+  318:  180:stq     | 176:bne     |   0:-       |   0:-       | 172:cmpult  r11=0  BUS_LOAD  MEM[176] accepted 1
+  319:  184:subq    | 180:stq     | 176:bne     |   0:-       |   0:-       BUS_LOAD  MEM[176] accepted 1
+  320:  188:subq    | 184:subq    | 180:stq     | 176:bne     |   0:-       BUS_LOAD  MEM[184] accepted 1
+  321:    0:-       | 188:subq    | 184:subq    | 180:stq     | 176:bne     BUS_STORE MEM[64] = 6 accepted 1
+  322:  192:subq    |   0:-       | 188:subq    | 184:subq    | 180:stq     BUS_LOAD  MEM[184] accepted 1
+  323:  196:beq     | 192:subq    |   0:-       | 188:subq    | 184:subq    r18=48  BUS_LOAD  MEM[192] accepted 1
+  324:  200:br      | 196:beq     | 192:subq    |   0:-       | 188:subq    r19=56  BUS_LOAD  MEM[192] accepted 1
+  325:  204:stq     | 200:br      | 196:beq     | 192:subq    |   0:-       BUS_LOAD  MEM[200] accepted 1
+  326:  208:addq    | 204:stq     | 200:br      | 196:beq     | 192:subq    r6=6  BUS_LOAD  MEM[200] accepted 1
+  327:  212:addq    | 208:addq    | 204:stq     | 200:br      | 196:beq     BUS_LOAD  MEM[208] accepted 1
+  328:  164:ldq     |   0:-       |   0:-       |   0:-       | 200:br      BUS_LOAD  MEM[160] accepted 1
+  329:  168:ldq     | 164:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[160] accepted 1
+  330:  172:cmpult  | 168:ldq     | 164:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[168] accepted 1
+  331:    0:-       | 172:cmpult  | 168:ldq     | 164:ldq     |   0:-       BUS_LOAD  MEM[48] accepted 1
+  332:    0:-       |   0:-       | 172:cmpult  | 168:ldq     | 164:ldq     r14=5  BUS_LOAD  MEM[56] accepted 1
+  333:  176:bne     |   0:-       |   0:-       | 172:cmpult  | 168:ldq     r15=6  BUS_LOAD  MEM[168] accepted 1
+  334:  180:stq     | 176:bne     |   0:-       |   0:-       | 172:cmpult  r11=0  BUS_LOAD  MEM[176] accepted 1
+  335:  184:subq    | 180:stq     | 176:bne     |   0:-       |   0:-       BUS_LOAD  MEM[176] accepted 1
+  336:  188:subq    | 184:subq    | 180:stq     | 176:bne     |   0:-       BUS_LOAD  MEM[184] accepted 1
+  337:    0:-       | 188:subq    | 184:subq    | 180:stq     | 176:bne     BUS_STORE MEM[56] = 5 accepted 1
+  338:  192:subq    |   0:-       | 188:subq    | 184:subq    | 180:stq     BUS_LOAD  MEM[184] accepted 1
+  339:  196:beq     | 192:subq    |   0:-       | 188:subq    | 184:subq    r18=40  BUS_LOAD  MEM[192] accepted 1
+  340:  200:br      | 196:beq     | 192:subq    |   0:-       | 188:subq    r19=48  BUS_LOAD  MEM[192] accepted 1
+  341:  204:stq     | 200:br      | 196:beq     | 192:subq    |   0:-       BUS_LOAD  MEM[200] accepted 1
+  342:  208:addq    | 204:stq     | 200:br      | 196:beq     | 192:subq    r6=5  BUS_LOAD  MEM[200] accepted 1
+  343:  212:addq    | 208:addq    | 204:stq     | 200:br      | 196:beq     BUS_LOAD  MEM[208] accepted 1
+  344:  164:ldq     |   0:-       |   0:-       |   0:-       | 200:br      BUS_LOAD  MEM[160] accepted 1
+  345:  168:ldq     | 164:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[160] accepted 1
+  346:  172:cmpult  | 168:ldq     | 164:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[168] accepted 1
+  347:    0:-       | 172:cmpult  | 168:ldq     | 164:ldq     |   0:-       BUS_LOAD  MEM[40] accepted 1
+  348:    0:-       |   0:-       | 172:cmpult  | 168:ldq     | 164:ldq     r14=4  BUS_LOAD  MEM[48] accepted 1
+  349:  176:bne     |   0:-       |   0:-       | 172:cmpult  | 168:ldq     r15=5  BUS_LOAD  MEM[168] accepted 1
+  350:  180:stq     | 176:bne     |   0:-       |   0:-       | 172:cmpult  r11=1  BUS_LOAD  MEM[176] accepted 1
+  351:  184:subq    | 180:stq     | 176:bne     |   0:-       |   0:-       BUS_LOAD  MEM[176] accepted 1
+  352:  188:subq    | 184:subq    | 180:stq     | 176:bne     |   0:-       BUS_LOAD  MEM[184] accepted 1
+  353:  204:stq     |   0:-       |   0:-       |   0:-       | 176:bne     BUS_LOAD  MEM[200] accepted 1
+  354:  208:addq    | 204:stq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[200] accepted 1
+  355:  212:addq    | 208:addq    | 204:stq     |   0:-       |   0:-       BUS_LOAD  MEM[208] accepted 1
+  356:    0:-       | 212:addq    | 208:addq    | 204:stq     |   0:-       BUS_STORE MEM[48] = 5 accepted 1
+  357:  216:cmpult  |   0:-       | 212:addq    | 208:addq    | 204:stq     BUS_LOAD  MEM[208] accepted 1
+  358:  220:bne     | 216:cmpult  |   0:-       | 212:addq    | 208:addq    r9=80  BUS_LOAD  MEM[216] accepted 1
+  359:  224:halt    | 220:bne     | 216:cmpult  |   0:-       | 212:addq    r5=9  BUS_LOAD  MEM[216] accepted 1
+  360:  228:call_pal| 224:halt    | 220:bne     | 216:cmpult  |   0:-       BUS_LOAD  MEM[224] accepted 1
+  361:  232:call_pal| 228:call_pal| 224:halt    | 220:bne     | 216:cmpult  r10=1  BUS_LOAD  MEM[224] accepted 1
+  362:  148:ldq     |   0:-       |   0:-       |   0:-       | 220:bne     BUS_LOAD  MEM[144] accepted 1
+  363:  152:bis     | 148:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[144] accepted 1
+  364:  156:bis     | 152:bis     | 148:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[152] accepted 1
+  365:    0:-       | 156:bis     | 152:bis     | 148:ldq     |   0:-       BUS_LOAD  MEM[80] accepted 1
+  366:  160:subq    |   0:-       | 156:bis     | 152:bis     | 148:ldq     r3=3  BUS_LOAD  MEM[152] accepted 1
+  367:  164:ldq     | 160:subq    |   0:-       | 156:bis     | 152:bis     r6=9  BUS_LOAD  MEM[160] accepted 1
+  368:  168:ldq     | 164:ldq     | 160:subq    |   0:-       | 156:bis     r19=80  BUS_LOAD  MEM[160] accepted 1
+  369:  172:cmpult  | 168:ldq     | 164:ldq     | 160:subq    |   0:-       BUS_LOAD  MEM[168] accepted 1
+  370:    0:-       | 172:cmpult  | 168:ldq     | 164:ldq     | 160:subq    r18=72  BUS_LOAD  MEM[72] accepted 1
+  371:    0:-       |   0:-       | 172:cmpult  | 168:ldq     | 164:ldq     r14=9  BUS_LOAD  MEM[80] accepted 1
+  372:  176:bne     |   0:-       |   0:-       | 172:cmpult  | 168:ldq     r15=3  BUS_LOAD  MEM[168] accepted 1
+  373:  180:stq     | 176:bne     |   0:-       |   0:-       | 172:cmpult  r11=0  BUS_LOAD  MEM[176] accepted 1
+  374:  184:subq    | 180:stq     | 176:bne     |   0:-       |   0:-       BUS_LOAD  MEM[176] accepted 1
+  375:  188:subq    | 184:subq    | 180:stq     | 176:bne     |   0:-       BUS_LOAD  MEM[184] accepted 1
+  376:    0:-       | 188:subq    | 184:subq    | 180:stq     | 176:bne     BUS_STORE MEM[80] = 9 accepted 1
+  377:  192:subq    |   0:-       | 188:subq    | 184:subq    | 180:stq     BUS_LOAD  MEM[184] accepted 1
+  378:  196:beq     | 192:subq    |   0:-       | 188:subq    | 184:subq    r18=64  BUS_LOAD  MEM[192] accepted 1
+  379:  200:br      | 196:beq     | 192:subq    |   0:-       | 188:subq    r19=72  BUS_LOAD  MEM[192] accepted 1
+  380:  204:stq     | 200:br      | 196:beq     | 192:subq    |   0:-       BUS_LOAD  MEM[200] accepted 1
+  381:  208:addq    | 204:stq     | 200:br      | 196:beq     | 192:subq    r6=8  BUS_LOAD  MEM[200] accepted 1
+  382:  212:addq    | 208:addq    | 204:stq     | 200:br      | 196:beq     BUS_LOAD  MEM[208] accepted 1
+  383:  164:ldq     |   0:-       |   0:-       |   0:-       | 200:br      BUS_LOAD  MEM[160] accepted 1
+  384:  168:ldq     | 164:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[160] accepted 1
+  385:  172:cmpult  | 168:ldq     | 164:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[168] accepted 1
+  386:    0:-       | 172:cmpult  | 168:ldq     | 164:ldq     |   0:-       BUS_LOAD  MEM[64] accepted 1
+  387:    0:-       |   0:-       | 172:cmpult  | 168:ldq     | 164:ldq     r14=6  BUS_LOAD  MEM[72] accepted 1
+  388:  176:bne     |   0:-       |   0:-       | 172:cmpult  | 168:ldq     r15=9  BUS_LOAD  MEM[168] accepted 1
+  389:  180:stq     | 176:bne     |   0:-       |   0:-       | 172:cmpult  r11=0  BUS_LOAD  MEM[176] accepted 1
+  390:  184:subq    | 180:stq     | 176:bne     |   0:-       |   0:-       BUS_LOAD  MEM[176] accepted 1
+  391:  188:subq    | 184:subq    | 180:stq     | 176:bne     |   0:-       BUS_LOAD  MEM[184] accepted 1
+  392:    0:-       | 188:subq    | 184:subq    | 180:stq     | 176:bne     BUS_STORE MEM[72] = 6 accepted 1
+  393:  192:subq    |   0:-       | 188:subq    | 184:subq    | 180:stq     BUS_LOAD  MEM[184] accepted 1
+  394:  196:beq     | 192:subq    |   0:-       | 188:subq    | 184:subq    r18=56  BUS_LOAD  MEM[192] accepted 1
+  395:  200:br      | 196:beq     | 192:subq    |   0:-       | 188:subq    r19=64  BUS_LOAD  MEM[192] accepted 1
+  396:  204:stq     | 200:br      | 196:beq     | 192:subq    |   0:-       BUS_LOAD  MEM[200] accepted 1
+  397:  208:addq    | 204:stq     | 200:br      | 196:beq     | 192:subq    r6=7  BUS_LOAD  MEM[200] accepted 1
+  398:  212:addq    | 208:addq    | 204:stq     | 200:br      | 196:beq     BUS_LOAD  MEM[208] accepted 1
+  399:  164:ldq     |   0:-       |   0:-       |   0:-       | 200:br      BUS_LOAD  MEM[160] accepted 1
+  400:  168:ldq     | 164:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[160] accepted 1
+  401:  172:cmpult  | 168:ldq     | 164:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[168] accepted 1
+  402:    0:-       | 172:cmpult  | 168:ldq     | 164:ldq     |   0:-       BUS_LOAD  MEM[56] accepted 1
+  403:    0:-       |   0:-       | 172:cmpult  | 168:ldq     | 164:ldq     r14=5  BUS_LOAD  MEM[64] accepted 1
+  404:  176:bne     |   0:-       |   0:-       | 172:cmpult  | 168:ldq     r15=6  BUS_LOAD  MEM[168] accepted 1
+  405:  180:stq     | 176:bne     |   0:-       |   0:-       | 172:cmpult  r11=0  BUS_LOAD  MEM[176] accepted 1
+  406:  184:subq    | 180:stq     | 176:bne     |   0:-       |   0:-       BUS_LOAD  MEM[176] accepted 1
+  407:  188:subq    | 184:subq    | 180:stq     | 176:bne     |   0:-       BUS_LOAD  MEM[184] accepted 1
+  408:    0:-       | 188:subq    | 184:subq    | 180:stq     | 176:bne     BUS_STORE MEM[64] = 5 accepted 1
+  409:  192:subq    |   0:-       | 188:subq    | 184:subq    | 180:stq     BUS_LOAD  MEM[184] accepted 1
+  410:  196:beq     | 192:subq    |   0:-       | 188:subq    | 184:subq    r18=48  BUS_LOAD  MEM[192] accepted 1
+  411:  200:br      | 196:beq     | 192:subq    |   0:-       | 188:subq    r19=56  BUS_LOAD  MEM[192] accepted 1
+  412:  204:stq     | 200:br      | 196:beq     | 192:subq    |   0:-       BUS_LOAD  MEM[200] accepted 1
+  413:  208:addq    | 204:stq     | 200:br      | 196:beq     | 192:subq    r6=6  BUS_LOAD  MEM[200] accepted 1
+  414:  212:addq    | 208:addq    | 204:stq     | 200:br      | 196:beq     BUS_LOAD  MEM[208] accepted 1
+  415:  164:ldq     |   0:-       |   0:-       |   0:-       | 200:br      BUS_LOAD  MEM[160] accepted 1
+  416:  168:ldq     | 164:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[160] accepted 1
+  417:  172:cmpult  | 168:ldq     | 164:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[168] accepted 1
+  418:    0:-       | 172:cmpult  | 168:ldq     | 164:ldq     |   0:-       BUS_LOAD  MEM[48] accepted 1
+  419:    0:-       |   0:-       | 172:cmpult  | 168:ldq     | 164:ldq     r14=5  BUS_LOAD  MEM[56] accepted 1
+  420:  176:bne     |   0:-       |   0:-       | 172:cmpult  | 168:ldq     r15=5  BUS_LOAD  MEM[168] accepted 1
+  421:  180:stq     | 176:bne     |   0:-       |   0:-       | 172:cmpult  r11=0  BUS_LOAD  MEM[176] accepted 1
+  422:  184:subq    | 180:stq     | 176:bne     |   0:-       |   0:-       BUS_LOAD  MEM[176] accepted 1
+  423:  188:subq    | 184:subq    | 180:stq     | 176:bne     |   0:-       BUS_LOAD  MEM[184] accepted 1
+  424:    0:-       | 188:subq    | 184:subq    | 180:stq     | 176:bne     BUS_STORE MEM[56] = 5 accepted 1
+  425:  192:subq    |   0:-       | 188:subq    | 184:subq    | 180:stq     BUS_LOAD  MEM[184] accepted 1
+  426:  196:beq     | 192:subq    |   0:-       | 188:subq    | 184:subq    r18=40  BUS_LOAD  MEM[192] accepted 1
+  427:  200:br      | 196:beq     | 192:subq    |   0:-       | 188:subq    r19=48  BUS_LOAD  MEM[192] accepted 1
+  428:  204:stq     | 200:br      | 196:beq     | 192:subq    |   0:-       BUS_LOAD  MEM[200] accepted 1
+  429:  208:addq    | 204:stq     | 200:br      | 196:beq     | 192:subq    r6=5  BUS_LOAD  MEM[200] accepted 1
+  430:  212:addq    | 208:addq    | 204:stq     | 200:br      | 196:beq     BUS_LOAD  MEM[208] accepted 1
+  431:  164:ldq     |   0:-       |   0:-       |   0:-       | 200:br      BUS_LOAD  MEM[160] accepted 1
+  432:  168:ldq     | 164:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[160] accepted 1
+  433:  172:cmpult  | 168:ldq     | 164:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[168] accepted 1
+  434:    0:-       | 172:cmpult  | 168:ldq     | 164:ldq     |   0:-       BUS_LOAD  MEM[40] accepted 1
+  435:    0:-       |   0:-       | 172:cmpult  | 168:ldq     | 164:ldq     r14=4  BUS_LOAD  MEM[48] accepted 1
+  436:  176:bne     |   0:-       |   0:-       | 172:cmpult  | 168:ldq     r15=5  BUS_LOAD  MEM[168] accepted 1
+  437:  180:stq     | 176:bne     |   0:-       |   0:-       | 172:cmpult  r11=0  BUS_LOAD  MEM[176] accepted 1
+  438:  184:subq    | 180:stq     | 176:bne     |   0:-       |   0:-       BUS_LOAD  MEM[176] accepted 1
+  439:  188:subq    | 184:subq    | 180:stq     | 176:bne     |   0:-       BUS_LOAD  MEM[184] accepted 1
+  440:    0:-       | 188:subq    | 184:subq    | 180:stq     | 176:bne     BUS_STORE MEM[48] = 4 accepted 1
+  441:  192:subq    |   0:-       | 188:subq    | 184:subq    | 180:stq     BUS_LOAD  MEM[184] accepted 1
+  442:  196:beq     | 192:subq    |   0:-       | 188:subq    | 184:subq    r18=32  BUS_LOAD  MEM[192] accepted 1
+  443:  200:br      | 196:beq     | 192:subq    |   0:-       | 188:subq    r19=40  BUS_LOAD  MEM[192] accepted 1
+  444:  204:stq     | 200:br      | 196:beq     | 192:subq    |   0:-       BUS_LOAD  MEM[200] accepted 1
+  445:  208:addq    | 204:stq     | 200:br      | 196:beq     | 192:subq    r6=4  BUS_LOAD  MEM[200] accepted 1
+  446:  212:addq    | 208:addq    | 204:stq     | 200:br      | 196:beq     BUS_LOAD  MEM[208] accepted 1
+  447:  164:ldq     |   0:-       |   0:-       |   0:-       | 200:br      BUS_LOAD  MEM[160] accepted 1
+  448:  168:ldq     | 164:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[160] accepted 1
+  449:  172:cmpult  | 168:ldq     | 164:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[168] accepted 1
+  450:    0:-       | 172:cmpult  | 168:ldq     | 164:ldq     |   0:-       BUS_LOAD  MEM[32] accepted 1
+  451:    0:-       |   0:-       | 172:cmpult  | 168:ldq     | 164:ldq     r14=3  BUS_LOAD  MEM[40] accepted 1
+  452:  176:bne     |   0:-       |   0:-       | 172:cmpult  | 168:ldq     r15=4  BUS_LOAD  MEM[168] accepted 1
+  453:  180:stq     | 176:bne     |   0:-       |   0:-       | 172:cmpult  r11=0  BUS_LOAD  MEM[176] accepted 1
+  454:  184:subq    | 180:stq     | 176:bne     |   0:-       |   0:-       BUS_LOAD  MEM[176] accepted 1
+  455:  188:subq    | 184:subq    | 180:stq     | 176:bne     |   0:-       BUS_LOAD  MEM[184] accepted 1
+  456:    0:-       | 188:subq    | 184:subq    | 180:stq     | 176:bne     BUS_STORE MEM[40] = 3 accepted 1
+  457:  192:subq    |   0:-       | 188:subq    | 184:subq    | 180:stq     BUS_LOAD  MEM[184] accepted 1
+  458:  196:beq     | 192:subq    |   0:-       | 188:subq    | 184:subq    r18=24  BUS_LOAD  MEM[192] accepted 1
+  459:  200:br      | 196:beq     | 192:subq    |   0:-       | 188:subq    r19=32  BUS_LOAD  MEM[192] accepted 1
+  460:  204:stq     | 200:br      | 196:beq     | 192:subq    |   0:-       BUS_LOAD  MEM[200] accepted 1
+  461:  208:addq    | 204:stq     | 200:br      | 196:beq     | 192:subq    r6=3  BUS_LOAD  MEM[200] accepted 1
+  462:  212:addq    | 208:addq    | 204:stq     | 200:br      | 196:beq     BUS_LOAD  MEM[208] accepted 1
+  463:  164:ldq     |   0:-       |   0:-       |   0:-       | 200:br      BUS_LOAD  MEM[160] accepted 1
+  464:  168:ldq     | 164:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[160] accepted 1
+  465:  172:cmpult  | 168:ldq     | 164:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[168] accepted 1
+  466:    0:-       | 172:cmpult  | 168:ldq     | 164:ldq     |   0:-       BUS_LOAD  MEM[24] accepted 1
+  467:    0:-       |   0:-       | 172:cmpult  | 168:ldq     | 164:ldq     r14=2  BUS_LOAD  MEM[32] accepted 1
+  468:  176:bne     |   0:-       |   0:-       | 172:cmpult  | 168:ldq     r15=3  BUS_LOAD  MEM[168] accepted 1
+  469:  180:stq     | 176:bne     |   0:-       |   0:-       | 172:cmpult  r11=1  BUS_LOAD  MEM[176] accepted 1
+  470:  184:subq    | 180:stq     | 176:bne     |   0:-       |   0:-       BUS_LOAD  MEM[176] accepted 1
+  471:  188:subq    | 184:subq    | 180:stq     | 176:bne     |   0:-       BUS_LOAD  MEM[184] accepted 1
+  472:  204:stq     |   0:-       |   0:-       |   0:-       | 176:bne     BUS_LOAD  MEM[200] accepted 1
+  473:  208:addq    | 204:stq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[200] accepted 1
+  474:  212:addq    | 208:addq    | 204:stq     |   0:-       |   0:-       BUS_LOAD  MEM[208] accepted 1
+  475:    0:-       | 212:addq    | 208:addq    | 204:stq     |   0:-       BUS_STORE MEM[32] = 3 accepted 1
+  476:  216:cmpult  |   0:-       | 212:addq    | 208:addq    | 204:stq     BUS_LOAD  MEM[208] accepted 1
+  477:  220:bne     | 216:cmpult  |   0:-       | 212:addq    | 208:addq    r9=88  BUS_LOAD  MEM[216] accepted 1
+  478:  224:halt    | 220:bne     | 216:cmpult  |   0:-       | 212:addq    r5=10  BUS_LOAD  MEM[216] accepted 1
+  479:  228:call_pal| 224:halt    | 220:bne     | 216:cmpult  |   0:-       BUS_LOAD  MEM[224] accepted 1
+  480:  232:call_pal| 228:call_pal| 224:halt    | 220:bne     | 216:cmpult  r10=1  BUS_LOAD  MEM[224] accepted 1
+  481:  148:ldq     |   0:-       |   0:-       |   0:-       | 220:bne     BUS_LOAD  MEM[144] accepted 1
+  482:  152:bis     | 148:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[144] accepted 1
+  483:  156:bis     | 152:bis     | 148:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[152] accepted 1
+  484:    0:-       | 156:bis     | 152:bis     | 148:ldq     |   0:-       BUS_LOAD  MEM[88] accepted 1
+  485:  160:subq    |   0:-       | 156:bis     | 152:bis     | 148:ldq     r3=5  BUS_LOAD  MEM[152] accepted 1
+  486:  164:ldq     | 160:subq    |   0:-       | 156:bis     | 152:bis     r6=10  BUS_LOAD  MEM[160] accepted 1
+  487:  168:ldq     | 164:ldq     | 160:subq    |   0:-       | 156:bis     r19=88  BUS_LOAD  MEM[160] accepted 1
+  488:  172:cmpult  | 168:ldq     | 164:ldq     | 160:subq    |   0:-       BUS_LOAD  MEM[168] accepted 1
+  489:    0:-       | 172:cmpult  | 168:ldq     | 164:ldq     | 160:subq    r18=80  BUS_LOAD  MEM[80] accepted 1
+  490:    0:-       |   0:-       | 172:cmpult  | 168:ldq     | 164:ldq     r14=9  BUS_LOAD  MEM[88] accepted 1
+  491:  176:bne     |   0:-       |   0:-       | 172:cmpult  | 168:ldq     r15=5  BUS_LOAD  MEM[168] accepted 1
+  492:  180:stq     | 176:bne     |   0:-       |   0:-       | 172:cmpult  r11=0  BUS_LOAD  MEM[176] accepted 1
+  493:  184:subq    | 180:stq     | 176:bne     |   0:-       |   0:-       BUS_LOAD  MEM[176] accepted 1
+  494:  188:subq    | 184:subq    | 180:stq     | 176:bne     |   0:-       BUS_LOAD  MEM[184] accepted 1
+  495:    0:-       | 188:subq    | 184:subq    | 180:stq     | 176:bne     BUS_STORE MEM[88] = 9 accepted 1
+  496:  192:subq    |   0:-       | 188:subq    | 184:subq    | 180:stq     BUS_LOAD  MEM[184] accepted 1
+  497:  196:beq     | 192:subq    |   0:-       | 188:subq    | 184:subq    r18=72  BUS_LOAD  MEM[192] accepted 1
+  498:  200:br      | 196:beq     | 192:subq    |   0:-       | 188:subq    r19=80  BUS_LOAD  MEM[192] accepted 1
+  499:  204:stq     | 200:br      | 196:beq     | 192:subq    |   0:-       BUS_LOAD  MEM[200] accepted 1
+  500:  208:addq    | 204:stq     | 200:br      | 196:beq     | 192:subq    r6=9  BUS_LOAD  MEM[200] accepted 1
+  501:  212:addq    | 208:addq    | 204:stq     | 200:br      | 196:beq     BUS_LOAD  MEM[208] accepted 1
+  502:  164:ldq     |   0:-       |   0:-       |   0:-       | 200:br      BUS_LOAD  MEM[160] accepted 1
+  503:  168:ldq     | 164:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[160] accepted 1
+  504:  172:cmpult  | 168:ldq     | 164:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[168] accepted 1
+  505:    0:-       | 172:cmpult  | 168:ldq     | 164:ldq     |   0:-       BUS_LOAD  MEM[72] accepted 1
+  506:    0:-       |   0:-       | 172:cmpult  | 168:ldq     | 164:ldq     r14=6  BUS_LOAD  MEM[80] accepted 1
+  507:  176:bne     |   0:-       |   0:-       | 172:cmpult  | 168:ldq     r15=9  BUS_LOAD  MEM[168] accepted 1
+  508:  180:stq     | 176:bne     |   0:-       |   0:-       | 172:cmpult  r11=0  BUS_LOAD  MEM[176] accepted 1
+  509:  184:subq    | 180:stq     | 176:bne     |   0:-       |   0:-       BUS_LOAD  MEM[176] accepted 1
+  510:  188:subq    | 184:subq    | 180:stq     | 176:bne     |   0:-       BUS_LOAD  MEM[184] accepted 1
+  511:    0:-       | 188:subq    | 184:subq    | 180:stq     | 176:bne     BUS_STORE MEM[80] = 6 accepted 1
+  512:  192:subq    |   0:-       | 188:subq    | 184:subq    | 180:stq     BUS_LOAD  MEM[184] accepted 1
+  513:  196:beq     | 192:subq    |   0:-       | 188:subq    | 184:subq    r18=64  BUS_LOAD  MEM[192] accepted 1
+  514:  200:br      | 196:beq     | 192:subq    |   0:-       | 188:subq    r19=72  BUS_LOAD  MEM[192] accepted 1
+  515:  204:stq     | 200:br      | 196:beq     | 192:subq    |   0:-       BUS_LOAD  MEM[200] accepted 1
+  516:  208:addq    | 204:stq     | 200:br      | 196:beq     | 192:subq    r6=8  BUS_LOAD  MEM[200] accepted 1
+  517:  212:addq    | 208:addq    | 204:stq     | 200:br      | 196:beq     BUS_LOAD  MEM[208] accepted 1
+  518:  164:ldq     |   0:-       |   0:-       |   0:-       | 200:br      BUS_LOAD  MEM[160] accepted 1
+  519:  168:ldq     | 164:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[160] accepted 1
+  520:  172:cmpult  | 168:ldq     | 164:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[168] accepted 1
+  521:    0:-       | 172:cmpult  | 168:ldq     | 164:ldq     |   0:-       BUS_LOAD  MEM[64] accepted 1
+  522:    0:-       |   0:-       | 172:cmpult  | 168:ldq     | 164:ldq     r14=5  BUS_LOAD  MEM[72] accepted 1
+  523:  176:bne     |   0:-       |   0:-       | 172:cmpult  | 168:ldq     r15=6  BUS_LOAD  MEM[168] accepted 1
+  524:  180:stq     | 176:bne     |   0:-       |   0:-       | 172:cmpult  r11=0  BUS_LOAD  MEM[176] accepted 1
+  525:  184:subq    | 180:stq     | 176:bne     |   0:-       |   0:-       BUS_LOAD  MEM[176] accepted 1
+  526:  188:subq    | 184:subq    | 180:stq     | 176:bne     |   0:-       BUS_LOAD  MEM[184] accepted 1
+  527:    0:-       | 188:subq    | 184:subq    | 180:stq     | 176:bne     BUS_STORE MEM[72] = 5 accepted 1
+  528:  192:subq    |   0:-       | 188:subq    | 184:subq    | 180:stq     BUS_LOAD  MEM[184] accepted 1
+  529:  196:beq     | 192:subq    |   0:-       | 188:subq    | 184:subq    r18=56  BUS_LOAD  MEM[192] accepted 1
+  530:  200:br      | 196:beq     | 192:subq    |   0:-       | 188:subq    r19=64  BUS_LOAD  MEM[192] accepted 1
+  531:  204:stq     | 200:br      | 196:beq     | 192:subq    |   0:-       BUS_LOAD  MEM[200] accepted 1
+  532:  208:addq    | 204:stq     | 200:br      | 196:beq     | 192:subq    r6=7  BUS_LOAD  MEM[200] accepted 1
+  533:  212:addq    | 208:addq    | 204:stq     | 200:br      | 196:beq     BUS_LOAD  MEM[208] accepted 1
+  534:  164:ldq     |   0:-       |   0:-       |   0:-       | 200:br      BUS_LOAD  MEM[160] accepted 1
+  535:  168:ldq     | 164:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[160] accepted 1
+  536:  172:cmpult  | 168:ldq     | 164:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[168] accepted 1
+  537:    0:-       | 172:cmpult  | 168:ldq     | 164:ldq     |   0:-       BUS_LOAD  MEM[56] accepted 1
+  538:    0:-       |   0:-       | 172:cmpult  | 168:ldq     | 164:ldq     r14=5  BUS_LOAD  MEM[64] accepted 1
+  539:  176:bne     |   0:-       |   0:-       | 172:cmpult  | 168:ldq     r15=5  BUS_LOAD  MEM[168] accepted 1
+  540:  180:stq     | 176:bne     |   0:-       |   0:-       | 172:cmpult  r11=0  BUS_LOAD  MEM[176] accepted 1
+  541:  184:subq    | 180:stq     | 176:bne     |   0:-       |   0:-       BUS_LOAD  MEM[176] accepted 1
+  542:  188:subq    | 184:subq    | 180:stq     | 176:bne     |   0:-       BUS_LOAD  MEM[184] accepted 1
+  543:    0:-       | 188:subq    | 184:subq    | 180:stq     | 176:bne     BUS_STORE MEM[64] = 5 accepted 1
+  544:  192:subq    |   0:-       | 188:subq    | 184:subq    | 180:stq     BUS_LOAD  MEM[184] accepted 1
+  545:  196:beq     | 192:subq    |   0:-       | 188:subq    | 184:subq    r18=48  BUS_LOAD  MEM[192] accepted 1
+  546:  200:br      | 196:beq     | 192:subq    |   0:-       | 188:subq    r19=56  BUS_LOAD  MEM[192] accepted 1
+  547:  204:stq     | 200:br      | 196:beq     | 192:subq    |   0:-       BUS_LOAD  MEM[200] accepted 1
+  548:  208:addq    | 204:stq     | 200:br      | 196:beq     | 192:subq    r6=6  BUS_LOAD  MEM[200] accepted 1
+  549:  212:addq    | 208:addq    | 204:stq     | 200:br      | 196:beq     BUS_LOAD  MEM[208] accepted 1
+  550:  164:ldq     |   0:-       |   0:-       |   0:-       | 200:br      BUS_LOAD  MEM[160] accepted 1
+  551:  168:ldq     | 164:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[160] accepted 1
+  552:  172:cmpult  | 168:ldq     | 164:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[168] accepted 1
+  553:    0:-       | 172:cmpult  | 168:ldq     | 164:ldq     |   0:-       BUS_LOAD  MEM[48] accepted 1
+  554:    0:-       |   0:-       | 172:cmpult  | 168:ldq     | 164:ldq     r14=4  BUS_LOAD  MEM[56] accepted 1
+  555:  176:bne     |   0:-       |   0:-       | 172:cmpult  | 168:ldq     r15=5  BUS_LOAD  MEM[168] accepted 1
+  556:  180:stq     | 176:bne     |   0:-       |   0:-       | 172:cmpult  r11=1  BUS_LOAD  MEM[176] accepted 1
+  557:  184:subq    | 180:stq     | 176:bne     |   0:-       |   0:-       BUS_LOAD  MEM[176] accepted 1
+  558:  188:subq    | 184:subq    | 180:stq     | 176:bne     |   0:-       BUS_LOAD  MEM[184] accepted 1
+  559:  204:stq     |   0:-       |   0:-       |   0:-       | 176:bne     BUS_LOAD  MEM[200] accepted 1
+  560:  208:addq    | 204:stq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[200] accepted 1
+  561:  212:addq    | 208:addq    | 204:stq     |   0:-       |   0:-       BUS_LOAD  MEM[208] accepted 1
+  562:    0:-       | 212:addq    | 208:addq    | 204:stq     |   0:-       BUS_STORE MEM[56] = 5 accepted 1
+  563:  216:cmpult  |   0:-       | 212:addq    | 208:addq    | 204:stq     BUS_LOAD  MEM[208] accepted 1
+  564:  220:bne     | 216:cmpult  |   0:-       | 212:addq    | 208:addq    r9=96  BUS_LOAD  MEM[216] accepted 1
+  565:  224:halt    | 220:bne     | 216:cmpult  |   0:-       | 212:addq    r5=11  BUS_LOAD  MEM[216] accepted 1
+  566:  228:call_pal| 224:halt    | 220:bne     | 216:cmpult  |   0:-       BUS_LOAD  MEM[224] accepted 1
+  567:  232:call_pal| 228:call_pal| 224:halt    | 220:bne     | 216:cmpult  r10=1  BUS_LOAD  MEM[224] accepted 1
+  568:  148:ldq     |   0:-       |   0:-       |   0:-       | 220:bne     BUS_LOAD  MEM[144] accepted 1
+  569:  152:bis     | 148:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[144] accepted 1
+  570:  156:bis     | 152:bis     | 148:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[152] accepted 1
+  571:    0:-       | 156:bis     | 152:bis     | 148:ldq     |   0:-       BUS_LOAD  MEM[96] accepted 1
+  572:  160:subq    |   0:-       | 156:bis     | 152:bis     | 148:ldq     r3=8  BUS_LOAD  MEM[152] accepted 1
+  573:  164:ldq     | 160:subq    |   0:-       | 156:bis     | 152:bis     r6=11  BUS_LOAD  MEM[160] accepted 1
+  574:  168:ldq     | 164:ldq     | 160:subq    |   0:-       | 156:bis     r19=96  BUS_LOAD  MEM[160] accepted 1
+  575:  172:cmpult  | 168:ldq     | 164:ldq     | 160:subq    |   0:-       BUS_LOAD  MEM[168] accepted 1
+  576:    0:-       | 172:cmpult  | 168:ldq     | 164:ldq     | 160:subq    r18=88  BUS_LOAD  MEM[88] accepted 1
+  577:    0:-       |   0:-       | 172:cmpult  | 168:ldq     | 164:ldq     r14=9  BUS_LOAD  MEM[96] accepted 1
+  578:  176:bne     |   0:-       |   0:-       | 172:cmpult  | 168:ldq     r15=8  BUS_LOAD  MEM[168] accepted 1
+  579:  180:stq     | 176:bne     |   0:-       |   0:-       | 172:cmpult  r11=0  BUS_LOAD  MEM[176] accepted 1
+  580:  184:subq    | 180:stq     | 176:bne     |   0:-       |   0:-       BUS_LOAD  MEM[176] accepted 1
+  581:  188:subq    | 184:subq    | 180:stq     | 176:bne     |   0:-       BUS_LOAD  MEM[184] accepted 1
+  582:    0:-       | 188:subq    | 184:subq    | 180:stq     | 176:bne     BUS_STORE MEM[96] = 9 accepted 1
+  583:  192:subq    |   0:-       | 188:subq    | 184:subq    | 180:stq     BUS_LOAD  MEM[184] accepted 1
+  584:  196:beq     | 192:subq    |   0:-       | 188:subq    | 184:subq    r18=80  BUS_LOAD  MEM[192] accepted 1
+  585:  200:br      | 196:beq     | 192:subq    |   0:-       | 188:subq    r19=88  BUS_LOAD  MEM[192] accepted 1
+  586:  204:stq     | 200:br      | 196:beq     | 192:subq    |   0:-       BUS_LOAD  MEM[200] accepted 1
+  587:  208:addq    | 204:stq     | 200:br      | 196:beq     | 192:subq    r6=10  BUS_LOAD  MEM[200] accepted 1
+  588:  212:addq    | 208:addq    | 204:stq     | 200:br      | 196:beq     BUS_LOAD  MEM[208] accepted 1
+  589:  164:ldq     |   0:-       |   0:-       |   0:-       | 200:br      BUS_LOAD  MEM[160] accepted 1
+  590:  168:ldq     | 164:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[160] accepted 1
+  591:  172:cmpult  | 168:ldq     | 164:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[168] accepted 1
+  592:    0:-       | 172:cmpult  | 168:ldq     | 164:ldq     |   0:-       BUS_LOAD  MEM[80] accepted 1
+  593:    0:-       |   0:-       | 172:cmpult  | 168:ldq     | 164:ldq     r14=6  BUS_LOAD  MEM[88] accepted 1
+  594:  176:bne     |   0:-       |   0:-       | 172:cmpult  | 168:ldq     r15=9  BUS_LOAD  MEM[168] accepted 1
+  595:  180:stq     | 176:bne     |   0:-       |   0:-       | 172:cmpult  r11=1  BUS_LOAD  MEM[176] accepted 1
+  596:  184:subq    | 180:stq     | 176:bne     |   0:-       |   0:-       BUS_LOAD  MEM[176] accepted 1
+  597:  188:subq    | 184:subq    | 180:stq     | 176:bne     |   0:-       BUS_LOAD  MEM[184] accepted 1
+  598:  204:stq     |   0:-       |   0:-       |   0:-       | 176:bne     BUS_LOAD  MEM[200] accepted 1
+  599:  208:addq    | 204:stq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[200] accepted 1
+  600:  212:addq    | 208:addq    | 204:stq     |   0:-       |   0:-       BUS_LOAD  MEM[208] accepted 1
+  601:    0:-       | 212:addq    | 208:addq    | 204:stq     |   0:-       BUS_STORE MEM[88] = 8 accepted 1
+  602:  216:cmpult  |   0:-       | 212:addq    | 208:addq    | 204:stq     BUS_LOAD  MEM[208] accepted 1
+  603:  220:bne     | 216:cmpult  |   0:-       | 212:addq    | 208:addq    r9=104  BUS_LOAD  MEM[216] accepted 1
+  604:  224:halt    | 220:bne     | 216:cmpult  |   0:-       | 212:addq    r5=12  BUS_LOAD  MEM[216] accepted 1
+  605:  228:call_pal| 224:halt    | 220:bne     | 216:cmpult  |   0:-       BUS_LOAD  MEM[224] accepted 1
+  606:  232:call_pal| 228:call_pal| 224:halt    | 220:bne     | 216:cmpult  r10=1  BUS_LOAD  MEM[224] accepted 1
+  607:  148:ldq     |   0:-       |   0:-       |   0:-       | 220:bne     BUS_LOAD  MEM[144] accepted 1
+  608:  152:bis     | 148:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[144] accepted 1
+  609:  156:bis     | 152:bis     | 148:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[152] accepted 1
+  610:    0:-       | 156:bis     | 152:bis     | 148:ldq     |   0:-       BUS_LOAD  MEM[104] accepted 1
+  611:  160:subq    |   0:-       | 156:bis     | 152:bis     | 148:ldq     r3=9  BUS_LOAD  MEM[152] accepted 1
+  612:  164:ldq     | 160:subq    |   0:-       | 156:bis     | 152:bis     r6=12  BUS_LOAD  MEM[160] accepted 1
+  613:  168:ldq     | 164:ldq     | 160:subq    |   0:-       | 156:bis     r19=104  BUS_LOAD  MEM[160] accepted 1
+  614:  172:cmpult  | 168:ldq     | 164:ldq     | 160:subq    |   0:-       BUS_LOAD  MEM[168] accepted 1
+  615:    0:-       | 172:cmpult  | 168:ldq     | 164:ldq     | 160:subq    r18=96  BUS_LOAD  MEM[96] accepted 1
+  616:    0:-       |   0:-       | 172:cmpult  | 168:ldq     | 164:ldq     r14=9  BUS_LOAD  MEM[104] accepted 1
+  617:  176:bne     |   0:-       |   0:-       | 172:cmpult  | 168:ldq     r15=9  BUS_LOAD  MEM[168] accepted 1
+  618:  180:stq     | 176:bne     |   0:-       |   0:-       | 172:cmpult  r11=0  BUS_LOAD  MEM[176] accepted 1
+  619:  184:subq    | 180:stq     | 176:bne     |   0:-       |   0:-       BUS_LOAD  MEM[176] accepted 1
+  620:  188:subq    | 184:subq    | 180:stq     | 176:bne     |   0:-       BUS_LOAD  MEM[184] accepted 1
+  621:    0:-       | 188:subq    | 184:subq    | 180:stq     | 176:bne     BUS_STORE MEM[104] = 9 accepted 1
+  622:  192:subq    |   0:-       | 188:subq    | 184:subq    | 180:stq     BUS_LOAD  MEM[184] accepted 1
+  623:  196:beq     | 192:subq    |   0:-       | 188:subq    | 184:subq    r18=88  BUS_LOAD  MEM[192] accepted 1
+  624:  200:br      | 196:beq     | 192:subq    |   0:-       | 188:subq    r19=96  BUS_LOAD  MEM[192] accepted 1
+  625:  204:stq     | 200:br      | 196:beq     | 192:subq    |   0:-       BUS_LOAD  MEM[200] accepted 1
+  626:  208:addq    | 204:stq     | 200:br      | 196:beq     | 192:subq    r6=11  BUS_LOAD  MEM[200] accepted 1
+  627:  212:addq    | 208:addq    | 204:stq     | 200:br      | 196:beq     BUS_LOAD  MEM[208] accepted 1
+  628:  164:ldq     |   0:-       |   0:-       |   0:-       | 200:br      BUS_LOAD  MEM[160] accepted 1
+  629:  168:ldq     | 164:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[160] accepted 1
+  630:  172:cmpult  | 168:ldq     | 164:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[168] accepted 1
+  631:    0:-       | 172:cmpult  | 168:ldq     | 164:ldq     |   0:-       BUS_LOAD  MEM[88] accepted 1
+  632:    0:-       |   0:-       | 172:cmpult  | 168:ldq     | 164:ldq     r14=8  BUS_LOAD  MEM[96] accepted 1
+  633:  176:bne     |   0:-       |   0:-       | 172:cmpult  | 168:ldq     r15=9  BUS_LOAD  MEM[168] accepted 1
+  634:  180:stq     | 176:bne     |   0:-       |   0:-       | 172:cmpult  r11=1  BUS_LOAD  MEM[176] accepted 1
+  635:  184:subq    | 180:stq     | 176:bne     |   0:-       |   0:-       BUS_LOAD  MEM[176] accepted 1
+  636:  188:subq    | 184:subq    | 180:stq     | 176:bne     |   0:-       BUS_LOAD  MEM[184] accepted 1
+  637:  204:stq     |   0:-       |   0:-       |   0:-       | 176:bne     BUS_LOAD  MEM[200] accepted 1
+  638:  208:addq    | 204:stq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[200] accepted 1
+  639:  212:addq    | 208:addq    | 204:stq     |   0:-       |   0:-       BUS_LOAD  MEM[208] accepted 1
+  640:    0:-       | 212:addq    | 208:addq    | 204:stq     |   0:-       BUS_STORE MEM[96] = 9 accepted 1
+  641:  216:cmpult  |   0:-       | 212:addq    | 208:addq    | 204:stq     BUS_LOAD  MEM[208] accepted 1
+  642:  220:bne     | 216:cmpult  |   0:-       | 212:addq    | 208:addq    r9=112  BUS_LOAD  MEM[216] accepted 1
+  643:  224:halt    | 220:bne     | 216:cmpult  |   0:-       | 212:addq    r5=13  BUS_LOAD  MEM[216] accepted 1
+  644:  228:call_pal| 224:halt    | 220:bne     | 216:cmpult  |   0:-       BUS_LOAD  MEM[224] accepted 1
+  645:  232:call_pal| 228:call_pal| 224:halt    | 220:bne     | 216:cmpult  r10=1  BUS_LOAD  MEM[224] accepted 1
+  646:  148:ldq     |   0:-       |   0:-       |   0:-       | 220:bne     BUS_LOAD  MEM[144] accepted 1
+  647:  152:bis     | 148:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[144] accepted 1
+  648:  156:bis     | 152:bis     | 148:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[152] accepted 1
+  649:    0:-       | 156:bis     | 152:bis     | 148:ldq     |   0:-       BUS_LOAD  MEM[112] accepted 1
+  650:  160:subq    |   0:-       | 156:bis     | 152:bis     | 148:ldq     r3=7  BUS_LOAD  MEM[152] accepted 1
+  651:  164:ldq     | 160:subq    |   0:-       | 156:bis     | 152:bis     r6=13  BUS_LOAD  MEM[160] accepted 1
+  652:  168:ldq     | 164:ldq     | 160:subq    |   0:-       | 156:bis     r19=112  BUS_LOAD  MEM[160] accepted 1
+  653:  172:cmpult  | 168:ldq     | 164:ldq     | 160:subq    |   0:-       BUS_LOAD  MEM[168] accepted 1
+  654:    0:-       | 172:cmpult  | 168:ldq     | 164:ldq     | 160:subq    r18=104  BUS_LOAD  MEM[104] accepted 1
+  655:    0:-       |   0:-       | 172:cmpult  | 168:ldq     | 164:ldq     r14=9  BUS_LOAD  MEM[112] accepted 1
+  656:  176:bne     |   0:-       |   0:-       | 172:cmpult  | 168:ldq     r15=7  BUS_LOAD  MEM[168] accepted 1
+  657:  180:stq     | 176:bne     |   0:-       |   0:-       | 172:cmpult  r11=0  BUS_LOAD  MEM[176] accepted 1
+  658:  184:subq    | 180:stq     | 176:bne     |   0:-       |   0:-       BUS_LOAD  MEM[176] accepted 1
+  659:  188:subq    | 184:subq    | 180:stq     | 176:bne     |   0:-       BUS_LOAD  MEM[184] accepted 1
+  660:    0:-       | 188:subq    | 184:subq    | 180:stq     | 176:bne     BUS_STORE MEM[112] = 9 accepted 1
+  661:  192:subq    |   0:-       | 188:subq    | 184:subq    | 180:stq     BUS_LOAD  MEM[184] accepted 1
+  662:  196:beq     | 192:subq    |   0:-       | 188:subq    | 184:subq    r18=96  BUS_LOAD  MEM[192] accepted 1
+  663:  200:br      | 196:beq     | 192:subq    |   0:-       | 188:subq    r19=104  BUS_LOAD  MEM[192] accepted 1
+  664:  204:stq     | 200:br      | 196:beq     | 192:subq    |   0:-       BUS_LOAD  MEM[200] accepted 1
+  665:  208:addq    | 204:stq     | 200:br      | 196:beq     | 192:subq    r6=12  BUS_LOAD  MEM[200] accepted 1
+  666:  212:addq    | 208:addq    | 204:stq     | 200:br      | 196:beq     BUS_LOAD  MEM[208] accepted 1
+  667:  164:ldq     |   0:-       |   0:-       |   0:-       | 200:br      BUS_LOAD  MEM[160] accepted 1
+  668:  168:ldq     | 164:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[160] accepted 1
+  669:  172:cmpult  | 168:ldq     | 164:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[168] accepted 1
+  670:    0:-       | 172:cmpult  | 168:ldq     | 164:ldq     |   0:-       BUS_LOAD  MEM[96] accepted 1
+  671:    0:-       |   0:-       | 172:cmpult  | 168:ldq     | 164:ldq     r14=9  BUS_LOAD  MEM[104] accepted 1
+  672:  176:bne     |   0:-       |   0:-       | 172:cmpult  | 168:ldq     r15=9  BUS_LOAD  MEM[168] accepted 1
+  673:  180:stq     | 176:bne     |   0:-       |   0:-       | 172:cmpult  r11=0  BUS_LOAD  MEM[176] accepted 1
+  674:  184:subq    | 180:stq     | 176:bne     |   0:-       |   0:-       BUS_LOAD  MEM[176] accepted 1
+  675:  188:subq    | 184:subq    | 180:stq     | 176:bne     |   0:-       BUS_LOAD  MEM[184] accepted 1
+  676:    0:-       | 188:subq    | 184:subq    | 180:stq     | 176:bne     BUS_STORE MEM[104] = 9 accepted 1
+  677:  192:subq    |   0:-       | 188:subq    | 184:subq    | 180:stq     BUS_LOAD  MEM[184] accepted 1
+  678:  196:beq     | 192:subq    |   0:-       | 188:subq    | 184:subq    r18=88  BUS_LOAD  MEM[192] accepted 1
+  679:  200:br      | 196:beq     | 192:subq    |   0:-       | 188:subq    r19=96  BUS_LOAD  MEM[192] accepted 1
+  680:  204:stq     | 200:br      | 196:beq     | 192:subq    |   0:-       BUS_LOAD  MEM[200] accepted 1
+  681:  208:addq    | 204:stq     | 200:br      | 196:beq     | 192:subq    r6=11  BUS_LOAD  MEM[200] accepted 1
+  682:  212:addq    | 208:addq    | 204:stq     | 200:br      | 196:beq     BUS_LOAD  MEM[208] accepted 1
+  683:  164:ldq     |   0:-       |   0:-       |   0:-       | 200:br      BUS_LOAD  MEM[160] accepted 1
+  684:  168:ldq     | 164:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[160] accepted 1
+  685:  172:cmpult  | 168:ldq     | 164:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[168] accepted 1
+  686:    0:-       | 172:cmpult  | 168:ldq     | 164:ldq     |   0:-       BUS_LOAD  MEM[88] accepted 1
+  687:    0:-       |   0:-       | 172:cmpult  | 168:ldq     | 164:ldq     r14=8  BUS_LOAD  MEM[96] accepted 1
+  688:  176:bne     |   0:-       |   0:-       | 172:cmpult  | 168:ldq     r15=9  BUS_LOAD  MEM[168] accepted 1
+  689:  180:stq     | 176:bne     |   0:-       |   0:-       | 172:cmpult  r11=0  BUS_LOAD  MEM[176] accepted 1
+  690:  184:subq    | 180:stq     | 176:bne     |   0:-       |   0:-       BUS_LOAD  MEM[176] accepted 1
+  691:  188:subq    | 184:subq    | 180:stq     | 176:bne     |   0:-       BUS_LOAD  MEM[184] accepted 1
+  692:    0:-       | 188:subq    | 184:subq    | 180:stq     | 176:bne     BUS_STORE MEM[96] = 8 accepted 1
+  693:  192:subq    |   0:-       | 188:subq    | 184:subq    | 180:stq     BUS_LOAD  MEM[184] accepted 1
+  694:  196:beq     | 192:subq    |   0:-       | 188:subq    | 184:subq    r18=80  BUS_LOAD  MEM[192] accepted 1
+  695:  200:br      | 196:beq     | 192:subq    |   0:-       | 188:subq    r19=88  BUS_LOAD  MEM[192] accepted 1
+  696:  204:stq     | 200:br      | 196:beq     | 192:subq    |   0:-       BUS_LOAD  MEM[200] accepted 1
+  697:  208:addq    | 204:stq     | 200:br      | 196:beq     | 192:subq    r6=10  BUS_LOAD  MEM[200] accepted 1
+  698:  212:addq    | 208:addq    | 204:stq     | 200:br      | 196:beq     BUS_LOAD  MEM[208] accepted 1
+  699:  164:ldq     |   0:-       |   0:-       |   0:-       | 200:br      BUS_LOAD  MEM[160] accepted 1
+  700:  168:ldq     | 164:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[160] accepted 1
+  701:  172:cmpult  | 168:ldq     | 164:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[168] accepted 1
+  702:    0:-       | 172:cmpult  | 168:ldq     | 164:ldq     |   0:-       BUS_LOAD  MEM[80] accepted 1
+  703:    0:-       |   0:-       | 172:cmpult  | 168:ldq     | 164:ldq     r14=6  BUS_LOAD  MEM[88] accepted 1
+  704:  176:bne     |   0:-       |   0:-       | 172:cmpult  | 168:ldq     r15=8  BUS_LOAD  MEM[168] accepted 1
+  705:  180:stq     | 176:bne     |   0:-       |   0:-       | 172:cmpult  r11=1  BUS_LOAD  MEM[176] accepted 1
+  706:  184:subq    | 180:stq     | 176:bne     |   0:-       |   0:-       BUS_LOAD  MEM[176] accepted 1
+  707:  188:subq    | 184:subq    | 180:stq     | 176:bne     |   0:-       BUS_LOAD  MEM[184] accepted 1
+  708:  204:stq     |   0:-       |   0:-       |   0:-       | 176:bne     BUS_LOAD  MEM[200] accepted 1
+  709:  208:addq    | 204:stq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[200] accepted 1
+  710:  212:addq    | 208:addq    | 204:stq     |   0:-       |   0:-       BUS_LOAD  MEM[208] accepted 1
+  711:    0:-       | 212:addq    | 208:addq    | 204:stq     |   0:-       BUS_STORE MEM[88] = 7 accepted 1
+  712:  216:cmpult  |   0:-       | 212:addq    | 208:addq    | 204:stq     BUS_LOAD  MEM[208] accepted 1
+  713:  220:bne     | 216:cmpult  |   0:-       | 212:addq    | 208:addq    r9=120  BUS_LOAD  MEM[216] accepted 1
+  714:  224:halt    | 220:bne     | 216:cmpult  |   0:-       | 212:addq    r5=14  BUS_LOAD  MEM[216] accepted 1
+  715:  228:call_pal| 224:halt    | 220:bne     | 216:cmpult  |   0:-       BUS_LOAD  MEM[224] accepted 1
+  716:  232:call_pal| 228:call_pal| 224:halt    | 220:bne     | 216:cmpult  r10=1  BUS_LOAD  MEM[224] accepted 1
+  717:  148:ldq     |   0:-       |   0:-       |   0:-       | 220:bne     BUS_LOAD  MEM[144] accepted 1
+  718:  152:bis     | 148:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[144] accepted 1
+  719:  156:bis     | 152:bis     | 148:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[152] accepted 1
+  720:    0:-       | 156:bis     | 152:bis     | 148:ldq     |   0:-       BUS_LOAD  MEM[120] accepted 1
+  721:  160:subq    |   0:-       | 156:bis     | 152:bis     | 148:ldq     r3=9  BUS_LOAD  MEM[152] accepted 1
+  722:  164:ldq     | 160:subq    |   0:-       | 156:bis     | 152:bis     r6=14  BUS_LOAD  MEM[160] accepted 1
+  723:  168:ldq     | 164:ldq     | 160:subq    |   0:-       | 156:bis     r19=120  BUS_LOAD  MEM[160] accepted 1
+  724:  172:cmpult  | 168:ldq     | 164:ldq     | 160:subq    |   0:-       BUS_LOAD  MEM[168] accepted 1
+  725:    0:-       | 172:cmpult  | 168:ldq     | 164:ldq     | 160:subq    r18=112  BUS_LOAD  MEM[112] accepted 1
+  726:    0:-       |   0:-       | 172:cmpult  | 168:ldq     | 164:ldq     r14=9  BUS_LOAD  MEM[120] accepted 1
+  727:  176:bne     |   0:-       |   0:-       | 172:cmpult  | 168:ldq     r15=9  BUS_LOAD  MEM[168] accepted 1
+  728:  180:stq     | 176:bne     |   0:-       |   0:-       | 172:cmpult  r11=0  BUS_LOAD  MEM[176] accepted 1
+  729:  184:subq    | 180:stq     | 176:bne     |   0:-       |   0:-       BUS_LOAD  MEM[176] accepted 1
+  730:  188:subq    | 184:subq    | 180:stq     | 176:bne     |   0:-       BUS_LOAD  MEM[184] accepted 1
+  731:    0:-       | 188:subq    | 184:subq    | 180:stq     | 176:bne     BUS_STORE MEM[120] = 9 accepted 1
+  732:  192:subq    |   0:-       | 188:subq    | 184:subq    | 180:stq     BUS_LOAD  MEM[184] accepted 1
+  733:  196:beq     | 192:subq    |   0:-       | 188:subq    | 184:subq    r18=104  BUS_LOAD  MEM[192] accepted 1
+  734:  200:br      | 196:beq     | 192:subq    |   0:-       | 188:subq    r19=112  BUS_LOAD  MEM[192] accepted 1
+  735:  204:stq     | 200:br      | 196:beq     | 192:subq    |   0:-       BUS_LOAD  MEM[200] accepted 1
+  736:  208:addq    | 204:stq     | 200:br      | 196:beq     | 192:subq    r6=13  BUS_LOAD  MEM[200] accepted 1
+  737:  212:addq    | 208:addq    | 204:stq     | 200:br      | 196:beq     BUS_LOAD  MEM[208] accepted 1
+  738:  164:ldq     |   0:-       |   0:-       |   0:-       | 200:br      BUS_LOAD  MEM[160] accepted 1
+  739:  168:ldq     | 164:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[160] accepted 1
+  740:  172:cmpult  | 168:ldq     | 164:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[168] accepted 1
+  741:    0:-       | 172:cmpult  | 168:ldq     | 164:ldq     |   0:-       BUS_LOAD  MEM[104] accepted 1
+  742:    0:-       |   0:-       | 172:cmpult  | 168:ldq     | 164:ldq     r14=9  BUS_LOAD  MEM[112] accepted 1
+  743:  176:bne     |   0:-       |   0:-       | 172:cmpult  | 168:ldq     r15=9  BUS_LOAD  MEM[168] accepted 1
+  744:  180:stq     | 176:bne     |   0:-       |   0:-       | 172:cmpult  r11=0  BUS_LOAD  MEM[176] accepted 1
+  745:  184:subq    | 180:stq     | 176:bne     |   0:-       |   0:-       BUS_LOAD  MEM[176] accepted 1
+  746:  188:subq    | 184:subq    | 180:stq     | 176:bne     |   0:-       BUS_LOAD  MEM[184] accepted 1
+  747:    0:-       | 188:subq    | 184:subq    | 180:stq     | 176:bne     BUS_STORE MEM[112] = 9 accepted 1
+  748:  192:subq    |   0:-       | 188:subq    | 184:subq    | 180:stq     BUS_LOAD  MEM[184] accepted 1
+  749:  196:beq     | 192:subq    |   0:-       | 188:subq    | 184:subq    r18=96  BUS_LOAD  MEM[192] accepted 1
+  750:  200:br      | 196:beq     | 192:subq    |   0:-       | 188:subq    r19=104  BUS_LOAD  MEM[192] accepted 1
+  751:  204:stq     | 200:br      | 196:beq     | 192:subq    |   0:-       BUS_LOAD  MEM[200] accepted 1
+  752:  208:addq    | 204:stq     | 200:br      | 196:beq     | 192:subq    r6=12  BUS_LOAD  MEM[200] accepted 1
+  753:  212:addq    | 208:addq    | 204:stq     | 200:br      | 196:beq     BUS_LOAD  MEM[208] accepted 1
+  754:  164:ldq     |   0:-       |   0:-       |   0:-       | 200:br      BUS_LOAD  MEM[160] accepted 1
+  755:  168:ldq     | 164:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[160] accepted 1
+  756:  172:cmpult  | 168:ldq     | 164:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[168] accepted 1
+  757:    0:-       | 172:cmpult  | 168:ldq     | 164:ldq     |   0:-       BUS_LOAD  MEM[96] accepted 1
+  758:    0:-       |   0:-       | 172:cmpult  | 168:ldq     | 164:ldq     r14=8  BUS_LOAD  MEM[104] accepted 1
+  759:  176:bne     |   0:-       |   0:-       | 172:cmpult  | 168:ldq     r15=9  BUS_LOAD  MEM[168] accepted 1
+  760:  180:stq     | 176:bne     |   0:-       |   0:-       | 172:cmpult  r11=1  BUS_LOAD  MEM[176] accepted 1
+  761:  184:subq    | 180:stq     | 176:bne     |   0:-       |   0:-       BUS_LOAD  MEM[176] accepted 1
+  762:  188:subq    | 184:subq    | 180:stq     | 176:bne     |   0:-       BUS_LOAD  MEM[184] accepted 1
+  763:  204:stq     |   0:-       |   0:-       |   0:-       | 176:bne     BUS_LOAD  MEM[200] accepted 1
+  764:  208:addq    | 204:stq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[200] accepted 1
+  765:  212:addq    | 208:addq    | 204:stq     |   0:-       |   0:-       BUS_LOAD  MEM[208] accepted 1
+  766:    0:-       | 212:addq    | 208:addq    | 204:stq     |   0:-       BUS_STORE MEM[104] = 9 accepted 1
+  767:  216:cmpult  |   0:-       | 212:addq    | 208:addq    | 204:stq     BUS_LOAD  MEM[208] accepted 1
+  768:  220:bne     | 216:cmpult  |   0:-       | 212:addq    | 208:addq    r9=128  BUS_LOAD  MEM[216] accepted 1
+  769:  224:halt    | 220:bne     | 216:cmpult  |   0:-       | 212:addq    r5=15  BUS_LOAD  MEM[216] accepted 1
+  770:  228:call_pal| 224:halt    | 220:bne     | 216:cmpult  |   0:-       BUS_LOAD  MEM[224] accepted 1
+  771:  232:call_pal| 228:call_pal| 224:halt    | 220:bne     | 216:cmpult  r10=1  BUS_LOAD  MEM[224] accepted 1
+  772:  148:ldq     |   0:-       |   0:-       |   0:-       | 220:bne     BUS_LOAD  MEM[144] accepted 1
+  773:  152:bis     | 148:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[144] accepted 1
+  774:  156:bis     | 152:bis     | 148:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[152] accepted 1
+  775:    0:-       | 156:bis     | 152:bis     | 148:ldq     |   0:-       BUS_LOAD  MEM[128] accepted 1
+  776:  160:subq    |   0:-       | 156:bis     | 152:bis     | 148:ldq     r3=3  BUS_LOAD  MEM[152] accepted 1
+  777:  164:ldq     | 160:subq    |   0:-       | 156:bis     | 152:bis     r6=15  BUS_LOAD  MEM[160] accepted 1
+  778:  168:ldq     | 164:ldq     | 160:subq    |   0:-       | 156:bis     r19=128  BUS_LOAD  MEM[160] accepted 1
+  779:  172:cmpult  | 168:ldq     | 164:ldq     | 160:subq    |   0:-       BUS_LOAD  MEM[168] accepted 1
+  780:    0:-       | 172:cmpult  | 168:ldq     | 164:ldq     | 160:subq    r18=120  BUS_LOAD  MEM[120] accepted 1
+  781:    0:-       |   0:-       | 172:cmpult  | 168:ldq     | 164:ldq     r14=9  BUS_LOAD  MEM[128] accepted 1
+  782:  176:bne     |   0:-       |   0:-       | 172:cmpult  | 168:ldq     r15=3  BUS_LOAD  MEM[168] accepted 1
+  783:  180:stq     | 176:bne     |   0:-       |   0:-       | 172:cmpult  r11=0  BUS_LOAD  MEM[176] accepted 1
+  784:  184:subq    | 180:stq     | 176:bne     |   0:-       |   0:-       BUS_LOAD  MEM[176] accepted 1
+  785:  188:subq    | 184:subq    | 180:stq     | 176:bne     |   0:-       BUS_LOAD  MEM[184] accepted 1
+  786:    0:-       | 188:subq    | 184:subq    | 180:stq     | 176:bne     BUS_STORE MEM[128] = 9 accepted 1
+  787:  192:subq    |   0:-       | 188:subq    | 184:subq    | 180:stq     BUS_LOAD  MEM[184] accepted 1
+  788:  196:beq     | 192:subq    |   0:-       | 188:subq    | 184:subq    r18=112  BUS_LOAD  MEM[192] accepted 1
+  789:  200:br      | 196:beq     | 192:subq    |   0:-       | 188:subq    r19=120  BUS_LOAD  MEM[192] accepted 1
+  790:  204:stq     | 200:br      | 196:beq     | 192:subq    |   0:-       BUS_LOAD  MEM[200] accepted 1
+  791:  208:addq    | 204:stq     | 200:br      | 196:beq     | 192:subq    r6=14  BUS_LOAD  MEM[200] accepted 1
+  792:  212:addq    | 208:addq    | 204:stq     | 200:br      | 196:beq     BUS_LOAD  MEM[208] accepted 1
+  793:  164:ldq     |   0:-       |   0:-       |   0:-       | 200:br      BUS_LOAD  MEM[160] accepted 1
+  794:  168:ldq     | 164:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[160] accepted 1
+  795:  172:cmpult  | 168:ldq     | 164:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[168] accepted 1
+  796:    0:-       | 172:cmpult  | 168:ldq     | 164:ldq     |   0:-       BUS_LOAD  MEM[112] accepted 1
+  797:    0:-       |   0:-       | 172:cmpult  | 168:ldq     | 164:ldq     r14=9  BUS_LOAD  MEM[120] accepted 1
+  798:  176:bne     |   0:-       |   0:-       | 172:cmpult  | 168:ldq     r15=9  BUS_LOAD  MEM[168] accepted 1
+  799:  180:stq     | 176:bne     |   0:-       |   0:-       | 172:cmpult  r11=0  BUS_LOAD  MEM[176] accepted 1
+  800:  184:subq    | 180:stq     | 176:bne     |   0:-       |   0:-       BUS_LOAD  MEM[176] accepted 1
+  801:  188:subq    | 184:subq    | 180:stq     | 176:bne     |   0:-       BUS_LOAD  MEM[184] accepted 1
+  802:    0:-       | 188:subq    | 184:subq    | 180:stq     | 176:bne     BUS_STORE MEM[120] = 9 accepted 1
+  803:  192:subq    |   0:-       | 188:subq    | 184:subq    | 180:stq     BUS_LOAD  MEM[184] accepted 1
+  804:  196:beq     | 192:subq    |   0:-       | 188:subq    | 184:subq    r18=104  BUS_LOAD  MEM[192] accepted 1
+  805:  200:br      | 196:beq     | 192:subq    |   0:-       | 188:subq    r19=112  BUS_LOAD  MEM[192] accepted 1
+  806:  204:stq     | 200:br      | 196:beq     | 192:subq    |   0:-       BUS_LOAD  MEM[200] accepted 1
+  807:  208:addq    | 204:stq     | 200:br      | 196:beq     | 192:subq    r6=13  BUS_LOAD  MEM[200] accepted 1
+  808:  212:addq    | 208:addq    | 204:stq     | 200:br      | 196:beq     BUS_LOAD  MEM[208] accepted 1
+  809:  164:ldq     |   0:-       |   0:-       |   0:-       | 200:br      BUS_LOAD  MEM[160] accepted 1
+  810:  168:ldq     | 164:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[160] accepted 1
+  811:  172:cmpult  | 168:ldq     | 164:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[168] accepted 1
+  812:    0:-       | 172:cmpult  | 168:ldq     | 164:ldq     |   0:-       BUS_LOAD  MEM[104] accepted 1
+  813:    0:-       |   0:-       | 172:cmpult  | 168:ldq     | 164:ldq     r14=9  BUS_LOAD  MEM[112] accepted 1
+  814:  176:bne     |   0:-       |   0:-       | 172:cmpult  | 168:ldq     r15=9  BUS_LOAD  MEM[168] accepted 1
+  815:  180:stq     | 176:bne     |   0:-       |   0:-       | 172:cmpult  r11=0  BUS_LOAD  MEM[176] accepted 1
+  816:  184:subq    | 180:stq     | 176:bne     |   0:-       |   0:-       BUS_LOAD  MEM[176] accepted 1
+  817:  188:subq    | 184:subq    | 180:stq     | 176:bne     |   0:-       BUS_LOAD  MEM[184] accepted 1
+  818:    0:-       | 188:subq    | 184:subq    | 180:stq     | 176:bne     BUS_STORE MEM[112] = 9 accepted 1
+  819:  192:subq    |   0:-       | 188:subq    | 184:subq    | 180:stq     BUS_LOAD  MEM[184] accepted 1
+  820:  196:beq     | 192:subq    |   0:-       | 188:subq    | 184:subq    r18=96  BUS_LOAD  MEM[192] accepted 1
+  821:  200:br      | 196:beq     | 192:subq    |   0:-       | 188:subq    r19=104  BUS_LOAD  MEM[192] accepted 1
+  822:  204:stq     | 200:br      | 196:beq     | 192:subq    |   0:-       BUS_LOAD  MEM[200] accepted 1
+  823:  208:addq    | 204:stq     | 200:br      | 196:beq     | 192:subq    r6=12  BUS_LOAD  MEM[200] accepted 1
+  824:  212:addq    | 208:addq    | 204:stq     | 200:br      | 196:beq     BUS_LOAD  MEM[208] accepted 1
+  825:  164:ldq     |   0:-       |   0:-       |   0:-       | 200:br      BUS_LOAD  MEM[160] accepted 1
+  826:  168:ldq     | 164:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[160] accepted 1
+  827:  172:cmpult  | 168:ldq     | 164:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[168] accepted 1
+  828:    0:-       | 172:cmpult  | 168:ldq     | 164:ldq     |   0:-       BUS_LOAD  MEM[96] accepted 1
+  829:    0:-       |   0:-       | 172:cmpult  | 168:ldq     | 164:ldq     r14=8  BUS_LOAD  MEM[104] accepted 1
+  830:  176:bne     |   0:-       |   0:-       | 172:cmpult  | 168:ldq     r15=9  BUS_LOAD  MEM[168] accepted 1
+  831:  180:stq     | 176:bne     |   0:-       |   0:-       | 172:cmpult  r11=0  BUS_LOAD  MEM[176] accepted 1
+  832:  184:subq    | 180:stq     | 176:bne     |   0:-       |   0:-       BUS_LOAD  MEM[176] accepted 1
+  833:  188:subq    | 184:subq    | 180:stq     | 176:bne     |   0:-       BUS_LOAD  MEM[184] accepted 1
+  834:    0:-       | 188:subq    | 184:subq    | 180:stq     | 176:bne     BUS_STORE MEM[104] = 8 accepted 1
+  835:  192:subq    |   0:-       | 188:subq    | 184:subq    | 180:stq     BUS_LOAD  MEM[184] accepted 1
+  836:  196:beq     | 192:subq    |   0:-       | 188:subq    | 184:subq    r18=88  BUS_LOAD  MEM[192] accepted 1
+  837:  200:br      | 196:beq     | 192:subq    |   0:-       | 188:subq    r19=96  BUS_LOAD  MEM[192] accepted 1
+  838:  204:stq     | 200:br      | 196:beq     | 192:subq    |   0:-       BUS_LOAD  MEM[200] accepted 1
+  839:  208:addq    | 204:stq     | 200:br      | 196:beq     | 192:subq    r6=11  BUS_LOAD  MEM[200] accepted 1
+  840:  212:addq    | 208:addq    | 204:stq     | 200:br      | 196:beq     BUS_LOAD  MEM[208] accepted 1
+  841:  164:ldq     |   0:-       |   0:-       |   0:-       | 200:br      BUS_LOAD  MEM[160] accepted 1
+  842:  168:ldq     | 164:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[160] accepted 1
+  843:  172:cmpult  | 168:ldq     | 164:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[168] accepted 1
+  844:    0:-       | 172:cmpult  | 168:ldq     | 164:ldq     |   0:-       BUS_LOAD  MEM[88] accepted 1
+  845:    0:-       |   0:-       | 172:cmpult  | 168:ldq     | 164:ldq     r14=7  BUS_LOAD  MEM[96] accepted 1
+  846:  176:bne     |   0:-       |   0:-       | 172:cmpult  | 168:ldq     r15=8  BUS_LOAD  MEM[168] accepted 1
+  847:  180:stq     | 176:bne     |   0:-       |   0:-       | 172:cmpult  r11=0  BUS_LOAD  MEM[176] accepted 1
+  848:  184:subq    | 180:stq     | 176:bne     |   0:-       |   0:-       BUS_LOAD  MEM[176] accepted 1
+  849:  188:subq    | 184:subq    | 180:stq     | 176:bne     |   0:-       BUS_LOAD  MEM[184] accepted 1
+  850:    0:-       | 188:subq    | 184:subq    | 180:stq     | 176:bne     BUS_STORE MEM[96] = 7 accepted 1
+  851:  192:subq    |   0:-       | 188:subq    | 184:subq    | 180:stq     BUS_LOAD  MEM[184] accepted 1
+  852:  196:beq     | 192:subq    |   0:-       | 188:subq    | 184:subq    r18=80  BUS_LOAD  MEM[192] accepted 1
+  853:  200:br      | 196:beq     | 192:subq    |   0:-       | 188:subq    r19=88  BUS_LOAD  MEM[192] accepted 1
+  854:  204:stq     | 200:br      | 196:beq     | 192:subq    |   0:-       BUS_LOAD  MEM[200] accepted 1
+  855:  208:addq    | 204:stq     | 200:br      | 196:beq     | 192:subq    r6=10  BUS_LOAD  MEM[200] accepted 1
+  856:  212:addq    | 208:addq    | 204:stq     | 200:br      | 196:beq     BUS_LOAD  MEM[208] accepted 1
+  857:  164:ldq     |   0:-       |   0:-       |   0:-       | 200:br      BUS_LOAD  MEM[160] accepted 1
+  858:  168:ldq     | 164:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[160] accepted 1
+  859:  172:cmpult  | 168:ldq     | 164:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[168] accepted 1
+  860:    0:-       | 172:cmpult  | 168:ldq     | 164:ldq     |   0:-       BUS_LOAD  MEM[80] accepted 1
+  861:    0:-       |   0:-       | 172:cmpult  | 168:ldq     | 164:ldq     r14=6  BUS_LOAD  MEM[88] accepted 1
+  862:  176:bne     |   0:-       |   0:-       | 172:cmpult  | 168:ldq     r15=7  BUS_LOAD  MEM[168] accepted 1
+  863:  180:stq     | 176:bne     |   0:-       |   0:-       | 172:cmpult  r11=0  BUS_LOAD  MEM[176] accepted 1
+  864:  184:subq    | 180:stq     | 176:bne     |   0:-       |   0:-       BUS_LOAD  MEM[176] accepted 1
+  865:  188:subq    | 184:subq    | 180:stq     | 176:bne     |   0:-       BUS_LOAD  MEM[184] accepted 1
+  866:    0:-       | 188:subq    | 184:subq    | 180:stq     | 176:bne     BUS_STORE MEM[88] = 6 accepted 1
+  867:  192:subq    |   0:-       | 188:subq    | 184:subq    | 180:stq     BUS_LOAD  MEM[184] accepted 1
+  868:  196:beq     | 192:subq    |   0:-       | 188:subq    | 184:subq    r18=72  BUS_LOAD  MEM[192] accepted 1
+  869:  200:br      | 196:beq     | 192:subq    |   0:-       | 188:subq    r19=80  BUS_LOAD  MEM[192] accepted 1
+  870:  204:stq     | 200:br      | 196:beq     | 192:subq    |   0:-       BUS_LOAD  MEM[200] accepted 1
+  871:  208:addq    | 204:stq     | 200:br      | 196:beq     | 192:subq    r6=9  BUS_LOAD  MEM[200] accepted 1
+  872:  212:addq    | 208:addq    | 204:stq     | 200:br      | 196:beq     BUS_LOAD  MEM[208] accepted 1
+  873:  164:ldq     |   0:-       |   0:-       |   0:-       | 200:br      BUS_LOAD  MEM[160] accepted 1
+  874:  168:ldq     | 164:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[160] accepted 1
+  875:  172:cmpult  | 168:ldq     | 164:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[168] accepted 1
+  876:    0:-       | 172:cmpult  | 168:ldq     | 164:ldq     |   0:-       BUS_LOAD  MEM[72] accepted 1
+  877:    0:-       |   0:-       | 172:cmpult  | 168:ldq     | 164:ldq     r14=5  BUS_LOAD  MEM[80] accepted 1
+  878:  176:bne     |   0:-       |   0:-       | 172:cmpult  | 168:ldq     r15=6  BUS_LOAD  MEM[168] accepted 1
+  879:  180:stq     | 176:bne     |   0:-       |   0:-       | 172:cmpult  r11=0  BUS_LOAD  MEM[176] accepted 1
+  880:  184:subq    | 180:stq     | 176:bne     |   0:-       |   0:-       BUS_LOAD  MEM[176] accepted 1
+  881:  188:subq    | 184:subq    | 180:stq     | 176:bne     |   0:-       BUS_LOAD  MEM[184] accepted 1
+  882:    0:-       | 188:subq    | 184:subq    | 180:stq     | 176:bne     BUS_STORE MEM[80] = 5 accepted 1
+  883:  192:subq    |   0:-       | 188:subq    | 184:subq    | 180:stq     BUS_LOAD  MEM[184] accepted 1
+  884:  196:beq     | 192:subq    |   0:-       | 188:subq    | 184:subq    r18=64  BUS_LOAD  MEM[192] accepted 1
+  885:  200:br      | 196:beq     | 192:subq    |   0:-       | 188:subq    r19=72  BUS_LOAD  MEM[192] accepted 1
+  886:  204:stq     | 200:br      | 196:beq     | 192:subq    |   0:-       BUS_LOAD  MEM[200] accepted 1
+  887:  208:addq    | 204:stq     | 200:br      | 196:beq     | 192:subq    r6=8  BUS_LOAD  MEM[200] accepted 1
+  888:  212:addq    | 208:addq    | 204:stq     | 200:br      | 196:beq     BUS_LOAD  MEM[208] accepted 1
+  889:  164:ldq     |   0:-       |   0:-       |   0:-       | 200:br      BUS_LOAD  MEM[160] accepted 1
+  890:  168:ldq     | 164:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[160] accepted 1
+  891:  172:cmpult  | 168:ldq     | 164:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[168] accepted 1
+  892:    0:-       | 172:cmpult  | 168:ldq     | 164:ldq     |   0:-       BUS_LOAD  MEM[64] accepted 1
+  893:    0:-       |   0:-       | 172:cmpult  | 168:ldq     | 164:ldq     r14=5  BUS_LOAD  MEM[72] accepted 1
+  894:  176:bne     |   0:-       |   0:-       | 172:cmpult  | 168:ldq     r15=5  BUS_LOAD  MEM[168] accepted 1
+  895:  180:stq     | 176:bne     |   0:-       |   0:-       | 172:cmpult  r11=0  BUS_LOAD  MEM[176] accepted 1
+  896:  184:subq    | 180:stq     | 176:bne     |   0:-       |   0:-       BUS_LOAD  MEM[176] accepted 1
+  897:  188:subq    | 184:subq    | 180:stq     | 176:bne     |   0:-       BUS_LOAD  MEM[184] accepted 1
+  898:    0:-       | 188:subq    | 184:subq    | 180:stq     | 176:bne     BUS_STORE MEM[72] = 5 accepted 1
+  899:  192:subq    |   0:-       | 188:subq    | 184:subq    | 180:stq     BUS_LOAD  MEM[184] accepted 1
+  900:  196:beq     | 192:subq    |   0:-       | 188:subq    | 184:subq    r18=56  BUS_LOAD  MEM[192] accepted 1
+  901:  200:br      | 196:beq     | 192:subq    |   0:-       | 188:subq    r19=64  BUS_LOAD  MEM[192] accepted 1
+  902:  204:stq     | 200:br      | 196:beq     | 192:subq    |   0:-       BUS_LOAD  MEM[200] accepted 1
+  903:  208:addq    | 204:stq     | 200:br      | 196:beq     | 192:subq    r6=7  BUS_LOAD  MEM[200] accepted 1
+  904:  212:addq    | 208:addq    | 204:stq     | 200:br      | 196:beq     BUS_LOAD  MEM[208] accepted 1
+  905:  164:ldq     |   0:-       |   0:-       |   0:-       | 200:br      BUS_LOAD  MEM[160] accepted 1
+  906:  168:ldq     | 164:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[160] accepted 1
+  907:  172:cmpult  | 168:ldq     | 164:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[168] accepted 1
+  908:    0:-       | 172:cmpult  | 168:ldq     | 164:ldq     |   0:-       BUS_LOAD  MEM[56] accepted 1
+  909:    0:-       |   0:-       | 172:cmpult  | 168:ldq     | 164:ldq     r14=5  BUS_LOAD  MEM[64] accepted 1
+  910:  176:bne     |   0:-       |   0:-       | 172:cmpult  | 168:ldq     r15=5  BUS_LOAD  MEM[168] accepted 1
+  911:  180:stq     | 176:bne     |   0:-       |   0:-       | 172:cmpult  r11=0  BUS_LOAD  MEM[176] accepted 1
+  912:  184:subq    | 180:stq     | 176:bne     |   0:-       |   0:-       BUS_LOAD  MEM[176] accepted 1
+  913:  188:subq    | 184:subq    | 180:stq     | 176:bne     |   0:-       BUS_LOAD  MEM[184] accepted 1
+  914:    0:-       | 188:subq    | 184:subq    | 180:stq     | 176:bne     BUS_STORE MEM[64] = 5 accepted 1
+  915:  192:subq    |   0:-       | 188:subq    | 184:subq    | 180:stq     BUS_LOAD  MEM[184] accepted 1
+  916:  196:beq     | 192:subq    |   0:-       | 188:subq    | 184:subq    r18=48  BUS_LOAD  MEM[192] accepted 1
+  917:  200:br      | 196:beq     | 192:subq    |   0:-       | 188:subq    r19=56  BUS_LOAD  MEM[192] accepted 1
+  918:  204:stq     | 200:br      | 196:beq     | 192:subq    |   0:-       BUS_LOAD  MEM[200] accepted 1
+  919:  208:addq    | 204:stq     | 200:br      | 196:beq     | 192:subq    r6=6  BUS_LOAD  MEM[200] accepted 1
+  920:  212:addq    | 208:addq    | 204:stq     | 200:br      | 196:beq     BUS_LOAD  MEM[208] accepted 1
+  921:  164:ldq     |   0:-       |   0:-       |   0:-       | 200:br      BUS_LOAD  MEM[160] accepted 1
+  922:  168:ldq     | 164:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[160] accepted 1
+  923:  172:cmpult  | 168:ldq     | 164:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[168] accepted 1
+  924:    0:-       | 172:cmpult  | 168:ldq     | 164:ldq     |   0:-       BUS_LOAD  MEM[48] accepted 1
+  925:    0:-       |   0:-       | 172:cmpult  | 168:ldq     | 164:ldq     r14=4  BUS_LOAD  MEM[56] accepted 1
+  926:  176:bne     |   0:-       |   0:-       | 172:cmpult  | 168:ldq     r15=5  BUS_LOAD  MEM[168] accepted 1
+  927:  180:stq     | 176:bne     |   0:-       |   0:-       | 172:cmpult  r11=0  BUS_LOAD  MEM[176] accepted 1
+  928:  184:subq    | 180:stq     | 176:bne     |   0:-       |   0:-       BUS_LOAD  MEM[176] accepted 1
+  929:  188:subq    | 184:subq    | 180:stq     | 176:bne     |   0:-       BUS_LOAD  MEM[184] accepted 1
+  930:    0:-       | 188:subq    | 184:subq    | 180:stq     | 176:bne     BUS_STORE MEM[56] = 4 accepted 1
+  931:  192:subq    |   0:-       | 188:subq    | 184:subq    | 180:stq     BUS_LOAD  MEM[184] accepted 1
+  932:  196:beq     | 192:subq    |   0:-       | 188:subq    | 184:subq    r18=40  BUS_LOAD  MEM[192] accepted 1
+  933:  200:br      | 196:beq     | 192:subq    |   0:-       | 188:subq    r19=48  BUS_LOAD  MEM[192] accepted 1
+  934:  204:stq     | 200:br      | 196:beq     | 192:subq    |   0:-       BUS_LOAD  MEM[200] accepted 1
+  935:  208:addq    | 204:stq     | 200:br      | 196:beq     | 192:subq    r6=5  BUS_LOAD  MEM[200] accepted 1
+  936:  212:addq    | 208:addq    | 204:stq     | 200:br      | 196:beq     BUS_LOAD  MEM[208] accepted 1
+  937:  164:ldq     |   0:-       |   0:-       |   0:-       | 200:br      BUS_LOAD  MEM[160] accepted 1
+  938:  168:ldq     | 164:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[160] accepted 1
+  939:  172:cmpult  | 168:ldq     | 164:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[168] accepted 1
+  940:    0:-       | 172:cmpult  | 168:ldq     | 164:ldq     |   0:-       BUS_LOAD  MEM[40] accepted 1
+  941:    0:-       |   0:-       | 172:cmpult  | 168:ldq     | 164:ldq     r14=3  BUS_LOAD  MEM[48] accepted 1
+  942:  176:bne     |   0:-       |   0:-       | 172:cmpult  | 168:ldq     r15=4  BUS_LOAD  MEM[168] accepted 1
+  943:  180:stq     | 176:bne     |   0:-       |   0:-       | 172:cmpult  r11=0  BUS_LOAD  MEM[176] accepted 1
+  944:  184:subq    | 180:stq     | 176:bne     |   0:-       |   0:-       BUS_LOAD  MEM[176] accepted 1
+  945:  188:subq    | 184:subq    | 180:stq     | 176:bne     |   0:-       BUS_LOAD  MEM[184] accepted 1
+  946:    0:-       | 188:subq    | 184:subq    | 180:stq     | 176:bne     BUS_STORE MEM[48] = 3 accepted 1
+  947:  192:subq    |   0:-       | 188:subq    | 184:subq    | 180:stq     BUS_LOAD  MEM[184] accepted 1
+  948:  196:beq     | 192:subq    |   0:-       | 188:subq    | 184:subq    r18=32  BUS_LOAD  MEM[192] accepted 1
+  949:  200:br      | 196:beq     | 192:subq    |   0:-       | 188:subq    r19=40  BUS_LOAD  MEM[192] accepted 1
+  950:  204:stq     | 200:br      | 196:beq     | 192:subq    |   0:-       BUS_LOAD  MEM[200] accepted 1
+  951:  208:addq    | 204:stq     | 200:br      | 196:beq     | 192:subq    r6=4  BUS_LOAD  MEM[200] accepted 1
+  952:  212:addq    | 208:addq    | 204:stq     | 200:br      | 196:beq     BUS_LOAD  MEM[208] accepted 1
+  953:  164:ldq     |   0:-       |   0:-       |   0:-       | 200:br      BUS_LOAD  MEM[160] accepted 1
+  954:  168:ldq     | 164:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[160] accepted 1
+  955:  172:cmpult  | 168:ldq     | 164:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[168] accepted 1
+  956:    0:-       | 172:cmpult  | 168:ldq     | 164:ldq     |   0:-       BUS_LOAD  MEM[32] accepted 1
+  957:    0:-       |   0:-       | 172:cmpult  | 168:ldq     | 164:ldq     r14=3  BUS_LOAD  MEM[40] accepted 1
+  958:  176:bne     |   0:-       |   0:-       | 172:cmpult  | 168:ldq     r15=3  BUS_LOAD  MEM[168] accepted 1
+  959:  180:stq     | 176:bne     |   0:-       |   0:-       | 172:cmpult  r11=0  BUS_LOAD  MEM[176] accepted 1
+  960:  184:subq    | 180:stq     | 176:bne     |   0:-       |   0:-       BUS_LOAD  MEM[176] accepted 1
+  961:  188:subq    | 184:subq    | 180:stq     | 176:bne     |   0:-       BUS_LOAD  MEM[184] accepted 1
+  962:    0:-       | 188:subq    | 184:subq    | 180:stq     | 176:bne     BUS_STORE MEM[40] = 3 accepted 1
+  963:  192:subq    |   0:-       | 188:subq    | 184:subq    | 180:stq     BUS_LOAD  MEM[184] accepted 1
+  964:  196:beq     | 192:subq    |   0:-       | 188:subq    | 184:subq    r18=24  BUS_LOAD  MEM[192] accepted 1
+  965:  200:br      | 196:beq     | 192:subq    |   0:-       | 188:subq    r19=32  BUS_LOAD  MEM[192] accepted 1
+  966:  204:stq     | 200:br      | 196:beq     | 192:subq    |   0:-       BUS_LOAD  MEM[200] accepted 1
+  967:  208:addq    | 204:stq     | 200:br      | 196:beq     | 192:subq    r6=3  BUS_LOAD  MEM[200] accepted 1
+  968:  212:addq    | 208:addq    | 204:stq     | 200:br      | 196:beq     BUS_LOAD  MEM[208] accepted 1
+  969:  164:ldq     |   0:-       |   0:-       |   0:-       | 200:br      BUS_LOAD  MEM[160] accepted 1
+  970:  168:ldq     | 164:ldq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[160] accepted 1
+  971:  172:cmpult  | 168:ldq     | 164:ldq     |   0:-       |   0:-       BUS_LOAD  MEM[168] accepted 1
+  972:    0:-       | 172:cmpult  | 168:ldq     | 164:ldq     |   0:-       BUS_LOAD  MEM[24] accepted 1
+  973:    0:-       |   0:-       | 172:cmpult  | 168:ldq     | 164:ldq     r14=2  BUS_LOAD  MEM[32] accepted 1
+  974:  176:bne     |   0:-       |   0:-       | 172:cmpult  | 168:ldq     r15=3  BUS_LOAD  MEM[168] accepted 1
+  975:  180:stq     | 176:bne     |   0:-       |   0:-       | 172:cmpult  r11=1  BUS_LOAD  MEM[176] accepted 1
+  976:  184:subq    | 180:stq     | 176:bne     |   0:-       |   0:-       BUS_LOAD  MEM[176] accepted 1
+  977:  188:subq    | 184:subq    | 180:stq     | 176:bne     |   0:-       BUS_LOAD  MEM[184] accepted 1
+  978:  204:stq     |   0:-       |   0:-       |   0:-       | 176:bne     BUS_LOAD  MEM[200] accepted 1
+  979:  208:addq    | 204:stq     |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[200] accepted 1
+  980:  212:addq    | 208:addq    | 204:stq     |   0:-       |   0:-       BUS_LOAD  MEM[208] accepted 1
+  981:    0:-       | 212:addq    | 208:addq    | 204:stq     |   0:-       BUS_STORE MEM[32] = 3 accepted 1
+  982:  216:cmpult  |   0:-       | 212:addq    | 208:addq    | 204:stq     BUS_LOAD  MEM[208] accepted 1
+  983:  220:bne     | 216:cmpult  |   0:-       | 212:addq    | 208:addq    r9=136  BUS_LOAD  MEM[216] accepted 1
+  984:  224:halt    | 220:bne     | 216:cmpult  |   0:-       | 212:addq    r5=16  BUS_LOAD  MEM[216] accepted 1
+  985:  228:call_pal| 224:halt    | 220:bne     | 216:cmpult  |   0:-       BUS_LOAD  MEM[224] accepted 1
+  986:  232:call_pal| 228:call_pal| 224:halt    | 220:bne     | 216:cmpult  r10=0  BUS_LOAD  MEM[224] accepted 1
+  987:  236:call_pal| 232:call_pal| 228:-       | 224:halt    | 220:bne     BUS_LOAD  MEM[232] accepted 1
+  988:  240:call_pal| 236:call_pal| 232:-       | 228:-       | 224:halt    BUS_LOAD  MEM[232] accepted 1

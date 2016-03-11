@@ -1,0 +1,7 @@
+                                                                            D-MEM Bus &
+Cycle:      IF      |     ID      |     EX      |     MEM     |     WB      Reg Result
+    0:    4:halt    |   0:-       |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[0] accepted 1
+    1:    8:call_pal|   4:halt    |   0:-       |   0:-       |   0:-       BUS_LOAD  MEM[0] accepted 1
+    2:   12:call_pal|   8:call_pal|   4:halt    |   0:-       |   0:-       BUS_LOAD  MEM[8] accepted 1
+    3:   16:call_pal|  12:call_pal|   8:-       |   4:halt    |   0:-       BUS_LOAD  MEM[8] accepted 1
+    4:   20:call_pal|  16:call_pal|  12:-       |   8:-       |   4:halt    BUS_LOAD  MEM[16] accepted 1
